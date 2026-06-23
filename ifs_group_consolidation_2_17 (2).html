@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IFS Cloud · Group Consolidation 2.17 · Guía de Capacitación</title>
+<style>
+  :root {
+    --ink: #1a1917; --ink-2: #3d3d3a; --ink-3: #73726c; --ink-4: #9c9a92;
+    --surface: #ffffff; --surface-2: #f7f6f2; --surface-3: #efede7;
+    --border: #e0ded7; --border-2: #cac8c0;
+    --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px; --radius-xl: 22px;
+    --sans: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    --blue-50:#E6F1FB; --blue-100:#B5D4F4; --blue-200:#85B7EB; --blue-600:#185FA5; --blue-800:#0C447C; --blue-900:#042C53;
+    --purple-50:#EEEDFE; --purple-100:#CECBF6; --purple-600:#534AB7; --purple-800:#3C3489; --purple-900:#26215C;
+    --teal-50:#E1F5EE; --teal-100:#9FE1CB; --teal-600:#0F6E56; --teal-800:#085041;
+    --coral-50:#FAECE7; --coral-100:#F5C4B3; --coral-600:#993C1D; --coral-800:#712B13;
+    --amber-50:#FAEEDA; --amber-100:#FAC775; --amber-600:#854F0B; --amber-800:#633806;
+    --green-50:#EAF3DE; --green-100:#C0DD97; --green-600:#3B6D11; --green-800:#27500A;
+    --red-50:#FCEBEB; --red-100:#F7C1C1; --red-600:#A32D2D; --red-800:#791F1F;
+    --gray-50:#F1EFE8; --gray-100:#D3D1C7; --gray-400:#888780; --gray-600:#5F5E5A; --gray-800:#444441;
+    --pink-50:#FBEAF0; --pink-100:#F4C0D1; --pink-600:#993556; --pink-800:#72243E;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:var(--sans); background:var(--surface-2); color:var(--ink-2); font-size:15px; line-height:1.65; }
+
+  .site-header { background:var(--blue-800); color:#fff; position:sticky; top:0; z-index:100; box-shadow:0 2px 8px rgba(0,0,0,.18); }
+  .header-inner { max-width:1120px; margin:0 auto; padding:0 28px; display:flex; align-items:center; justify-content:space-between; height:58px; gap:20px; }
+  .header-logo { display:flex; align-items:center; gap:10px; text-decoration:none; color:#fff; white-space:nowrap; }
+  .logo-badge { background:rgba(255,255,255,.2); border:1px solid rgba(255,255,255,.25); border-radius:6px; padding:3px 9px; font-size:11px; font-weight:700; letter-spacing:.05em; }
+  .logo-title { font-size:14px; font-weight:600; opacity:.92; }
+  .logo-course { font-size:11px; opacity:.6; font-weight:400; }
+  .nav-tabs { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; }
+  .nav-tabs::-webkit-scrollbar { display:none; }
+  .nav-tab { background:none; border:none; color:rgba(255,255,255,.65); padding:7px 13px; border-radius:6px; cursor:pointer; font-size:12.5px; font-family:var(--sans); white-space:nowrap; transition:all .14s; }
+  .nav-tab:hover { background:rgba(255,255,255,.12); color:#fff; }
+  .nav-tab.active { background:rgba(255,255,255,.2); color:#fff; font-weight:600; }
+
+  .page { max-width:1120px; margin:0 auto; padding:36px 28px 80px; }
+  .section { display:none; }
+  .section.active { display:block; }
+
+  .hero { border-radius:var(--radius-xl); padding:40px 48px; color:#fff; margin-bottom:32px; position:relative; overflow:hidden; }
+  .hero::before { content:''; position:absolute; right:-60px; bottom:-60px; width:260px; height:260px; border-radius:50%; background:rgba(255,255,255,.05); }
+  .hero::after { content:''; position:absolute; right:60px; bottom:-20px; width:140px; height:140px; border-radius:50%; background:rgba(255,255,255,.04); }
+  .hero-blue { background:linear-gradient(135deg, var(--blue-900) 0%, var(--blue-800) 100%); }
+  .hero-purple { background:linear-gradient(135deg, var(--purple-900) 0%, var(--purple-800) 100%); }
+  .hero-teal { background:linear-gradient(135deg, #085041 0%, var(--teal-600) 100%); }
+  .hero-coral { background:linear-gradient(135deg, var(--coral-800) 0%, var(--coral-600) 100%); }
+  .hero-badge { display:inline-block; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.22); border-radius:100px; padding:4px 14px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; margin-bottom:14px; }
+  .hero h1 { font-size:28px; font-weight:800; margin-bottom:10px; line-height:1.2; }
+  .hero p { font-size:15px; opacity:.82; max-width:600px; line-height:1.6; }
+
+  .course-topics { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:28px; }
+  .topic-pill { display:flex; align-items:center; gap:10px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); padding:12px 16px; font-size:13px; cursor:pointer; transition:all .14s; }
+  .topic-pill:hover { border-color:var(--blue-200); background:var(--blue-50); }
+  .topic-pill .t-num { min-width:26px; height:26px; border-radius:50%; background:var(--blue-50); color:var(--blue-800); font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  .topic-pill .t-status { margin-left:auto; font-size:11px; font-weight:600; }
+  .topic-pill .done { color:var(--green-600); }
+  .topic-pill .pending { color:var(--amber-600); }
+
+  .card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); overflow:hidden; }
+  .card + .card { margin-top:20px; }
+  .card-header { padding:14px 22px; border-bottom:1px solid var(--border); font-weight:600; font-size:14px; display:flex; align-items:center; gap:8px; color:var(--ink); }
+  .card-body { padding:22px; }
+
+  .g2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .g3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+  .g4 { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+  @media(max-width:720px) { .g2,.g3,.g4 { grid-template-columns:1fr; } .course-topics { grid-template-columns:1fr; } }
+
+  .concept { border-radius:var(--radius-lg); padding:22px; border:1.5px solid transparent; }
+  .concept.blue { background:var(--blue-50); border-color:var(--blue-100); }
+  .concept.purple { background:var(--purple-50); border-color:var(--purple-100); }
+  .concept.teal { background:var(--teal-50); border-color:var(--teal-100); }
+  .concept.coral { background:var(--coral-50); border-color:var(--coral-100); }
+  .concept.amber { background:var(--amber-50); border-color:var(--amber-100); }
+  .concept.green { background:var(--green-50); border-color:var(--green-100); }
+  .concept.pink { background:var(--pink-50); border-color:var(--pink-100); }
+  .concept-tag { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; margin-bottom:8px; }
+  .blue .concept-tag { color:var(--blue-600); }
+  .purple .concept-tag { color:var(--purple-600); }
+  .teal .concept-tag { color:var(--teal-600); }
+  .coral .concept-tag { color:var(--coral-600); }
+  .amber .concept-tag { color:var(--amber-600); }
+  .green .concept-tag { color:var(--green-600); }
+  .pink .concept-tag { color:var(--pink-600); }
+  .concept h3 { font-size:15px; font-weight:700; color:var(--ink); margin-bottom:8px; }
+  .concept p { font-size:13px; color:var(--ink-3); line-height:1.6; }
+
+  .flow { display:flex; align-items:stretch; gap:0; overflow-x:auto; padding:4px 0 8px; }
+  .flow-step { flex:1; min-width:130px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); padding:14px 14px; text-align:center; }
+  .flow-num { width:26px; height:26px; border-radius:50%; background:var(--blue-800); color:#fff; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; margin:0 auto 8px; }
+  .flow-step h4 { font-size:13px; font-weight:600; color:var(--ink); margin-bottom:3px; }
+  .flow-step p { font-size:11px; color:var(--ink-3); }
+  .flow-arr { font-size:20px; color:var(--ink-4); padding:0 6px; align-self:center; flex-shrink:0; }
+
+  .dt { width:100%; border-collapse:collapse; font-size:13px; }
+  .dt th { background:var(--surface-2); text-align:left; padding:9px 14px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-3); border-bottom:1px solid var(--border); }
+  .dt td { padding:10px 14px; border-bottom:1px solid var(--border); vertical-align:top; }
+  .dt tr:last-child td { border-bottom:none; }
+  .dt tr:hover td { background:var(--surface-2); }
+  code { font-family:var(--mono); background:var(--surface-3); border:1px solid var(--border); border-radius:4px; padding:1px 6px; font-size:11.5px; color:var(--blue-800); }
+
+  .badge { display:inline-block; border-radius:100px; padding:2px 10px; font-size:11px; font-weight:600; }
+  .b-blue { background:var(--blue-50); color:var(--blue-800); }
+  .b-green { background:var(--green-50); color:var(--green-800); }
+  .b-amber { background:var(--amber-50); color:var(--amber-800); }
+  .b-red { background:var(--red-50); color:var(--red-800); }
+  .b-purple { background:var(--purple-50); color:var(--purple-800); }
+  .b-teal { background:var(--teal-50); color:var(--teal-800); }
+  .b-coral { background:var(--coral-50); color:var(--coral-800); }
+  .b-gray { background:var(--gray-50); color:var(--gray-800); }
+
+  .callout { border-radius:var(--radius-md); padding:14px 18px; margin:14px 0; font-size:13px; display:flex; gap:10px; align-items:flex-start; }
+  .callout-icon { font-size:17px; flex-shrink:0; margin-top:1px; }
+  .tip { background:var(--teal-50); color:var(--teal-800); }
+  .warn { background:var(--amber-50); color:var(--amber-800); }
+  .danger { background:var(--red-50); color:var(--red-800); }
+  .info { background:var(--blue-50); color:var(--blue-800); }
+  .callout strong { display:block; font-weight:700; margin-bottom:2px; }
+
+  .steps { list-style:none; counter-reset:s; }
+  .steps li { counter-increment:s; display:flex; gap:16px; padding:16px 0; border-bottom:1px solid var(--border); }
+  .steps li:last-child { border-bottom:none; }
+  .steps li::before { content:counter(s); min-width:32px; height:32px; border-radius:50%; background:var(--blue-50); color:var(--blue-800); font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+  .steps h4 { font-size:14px; font-weight:600; color:var(--ink); margin-bottom:4px; }
+  .steps p { font-size:13px; color:var(--ink-3); }
+
+  .stat { background:var(--surface-2); border-radius:var(--radius-md); padding:16px; text-align:center; }
+  .stat-num { font-size:30px; font-weight:800; }
+  .stat-lbl { font-size:12px; color:var(--ink-3); margin-top:2px; }
+
+  .sec-title { font-size:22px; font-weight:700; color:var(--ink); margin-bottom:5px; }
+  .sec-desc { font-size:14px; color:var(--ink-3); margin-bottom:26px; }
+
+  .msg-list { display:flex; flex-direction:column; gap:10px; }
+  .msg-item { display:flex; gap:14px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); padding:14px 16px; }
+  .msg-icon { font-size:20px; flex-shrink:0; }
+  .msg-item h4 { font-size:13px; font-weight:700; margin-bottom:3px; color:var(--ink); }
+  .msg-item p { font-size:13px; color:var(--ink-3); }
+  .msg-item.a-blue { border-left:3px solid var(--blue-600); }
+  .msg-item.a-teal { border-left:3px solid var(--teal-600); }
+  .msg-item.a-amber { border-left:3px solid #E8993C; }
+  .msg-item.a-red { border-left:3px solid var(--red-600); }
+  .msg-item.a-purple { border-left:3px solid var(--purple-600); }
+
+  .quiz-q { margin-bottom:26px; }
+  .quiz-q p { font-size:14px; font-weight:600; color:var(--ink); margin-bottom:10px; line-height:1.5; }
+  .quiz-opts { display:flex; flex-direction:column; gap:8px; }
+  .quiz-opt { border:1px solid var(--border); border-radius:var(--radius-md); padding:10px 14px; font-size:13px; cursor:pointer; display:flex; gap:10px; align-items:center; transition:all .12s; }
+  .quiz-opt:hover { background:var(--surface-2); border-color:var(--border-2); }
+  .quiz-opt.correct { background:var(--green-50); border-color:#639922; color:var(--green-800); }
+  .quiz-opt.wrong { background:var(--red-50); border-color:var(--red-600); color:var(--red-800); }
+  .opt-l { min-width:22px; height:22px; border-radius:50%; background:var(--surface-3); color:var(--ink-3); font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .quiz-exp { display:none; margin-top:8px; font-size:13px; padding:10px 14px; border-radius:var(--radius-sm); }
+  .quiz-exp.show { display:block; }
+  .quiz-exp.ok { background:var(--green-50); color:var(--green-800); }
+  .quiz-exp.nope { background:var(--red-50); color:var(--red-800); }
+  #quiz-score { display:none; text-align:center; padding:36px 16px; }
+  .score-big { font-size:52px; font-weight:800; }
+
+  .param-screen { background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-md); padding:18px 20px; margin:14px 0; font-size:13px; }
+  .param-screen .ps-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--blue-600); margin-bottom:10px; }
+  .param-row { display:flex; gap:12px; align-items:flex-start; padding:7px 0; border-bottom:1px solid var(--border); }
+  .param-row:last-child { border-bottom:none; }
+  .param-label { min-width:210px; font-weight:600; color:var(--ink); font-size:13px; }
+  .param-val { color:var(--ink-3); flex:1; }
+
+  /* Árbol de consolidación visual */
+  .tree { font-size:13px; color:var(--ink-2); line-height:2; }
+  .tree-node { display:flex; align-items:center; gap:8px; padding:6px 12px; border-radius:var(--radius-sm); margin-bottom:4px; }
+  .tree-node.root { background:var(--blue-50); border:1px solid var(--blue-100); font-weight:700; color:var(--blue-800); }
+  .tree-node.mid { background:var(--purple-50); border:1px solid var(--purple-100); font-weight:600; color:var(--purple-800); margin-left:30px; }
+  .tree-node.leaf { background:var(--surface-2); border:1px solid var(--border); color:var(--ink-3); margin-left:60px; }
+  .tree-node.elim { background:var(--amber-50); border:1px solid var(--amber-100); color:var(--amber-800); margin-left:60px; }
+
+  @media print { .site-header { display:none; } .section { display:block !important; page-break-before:always; } .section:first-child { page-break-before:auto; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="header-logo" href="#">
+      <span class="logo-badge">IFS Cloud</span>
+      <div>
+        <div class="logo-title">Group Consolidation · Módulo 2.17</div>
+        <div class="logo-course">Consolidación Financiera de Grupo · Guía de Capacitación</div>
+      </div>
+    </a>
+    <nav class="nav-tabs">
+      <button class="nav-tab active"  onclick="show('overview')">📌 Mapa del Curso</button>
+      <button class="nav-tab"         onclick="show('conceptos')">🧠 Conceptos</button>
+      <button class="nav-tab"         onclick="show('realworld')">🏢 Caso Real</button>
+      <button class="nav-tab"         onclick="show('bdr')">⚙️ Datos Básicos</button>
+      <button class="nav-tab"         onclick="show('proceso')">📋 Proceso Completo</button>
+      <button class="nav-tab"         onclick="show('ejecucion')">🖥️ Ejecución en IFS</button>
+      <button class="nav-tab"         onclick="show('usuario')">👤 Usuario Final</button>
+      <button class="nav-tab"         onclick="show('instructor')">🎤 Instructor</button>
+      <button class="nav-tab"         onclick="show('quiz')">✅ Quiz</button>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- 0. MAPA DEL CURSO -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="section active" id="overview">
+  <div class="hero hero-blue">
+    <div class="hero-badge">Módulo 2.17 · IFS Cloud Financials</div>
+    <h1>Group Consolidation</h1>
+    <p>El proceso que permite consolidar estados financieros de múltiples compañías del grupo: Balance Sheet e Income Statement, con eliminación de intercompañía, conversión de moneda, ownership y análisis segmentado — todo dentro de IFS Cloud.</p>
+  </div>
+
+  <p class="sec-title">Subprocesos del módulo 2.17</p>
+  <p class="sec-desc">Basado en la documentación oficial IFS Cloud 25R2 · Haz clic en cualquier subproceso para ir a su sección.</p>
+
+  <div class="course-topics">
+    <div class="topic-pill" onclick="show('conceptos')">
+      <div class="t-num">2.17.0</div>
+      <div><strong>Introducción a Group Consolidation</strong><br><span style="color:var(--ink-3);font-size:12px;">Propósito, arquitectura y flujo general</span></div>
+      <span class="t-status done">✓ Incluido</span>
+    </div>
+    <div class="topic-pill" onclick="show('bdr')">
+      <div class="t-num">2.17.1</div>
+      <div><strong>BDR for Group Consolidation</strong><br><span style="color:var(--ink-3);font-size:12px;">Datos básicos: master company, mapping, versiones</span></div>
+      <span class="t-status done">✓ Incluido</span>
+    </div>
+    <div class="topic-pill" onclick="show('bdr')">
+      <div class="t-num">2.17.2</div>
+      <div><strong>BDR for Consolidation Structure</strong><br><span style="color:var(--ink-3);font-size:12px;">Jerarquía, nodos, ownership, métodos</span></div>
+      <span class="t-status done">✓ Incluido</span>
+    </div>
+    <div class="topic-pill" onclick="show('bdr')">
+      <div class="t-num">2.17.3</div>
+      <div><strong>BDR for Parallel Consolidation Structure</strong><br><span style="color:var(--ink-3);font-size:12px;">Consolidación por dimensión paralela / segmento</span></div>
+      <span class="t-status done">✓ Incluido</span>
+    </div>
+    <div class="topic-pill" onclick="show('proceso')">
+      <div class="t-num">2.17.4</div>
+      <div><strong>Transfer Balances</strong><br><span style="color:var(--ink-3);font-size:12px;">Transferir saldos de compañías al grupo</span></div>
+      <span class="t-status done">✓ Incluido</span>
+    </div>
+    <div class="topic-pill" onclick="show('proceso')">
+      <div class="t-num">2.17.5</div>
+      <div><strong>Consolidation</strong><br><span style="color:var(--ink-3);font-size:12px;">Ejecutar la consolidación por nodo o estructura</span></div>
+      <span class="t-status done">✓ Incluido</span>
+    </div>
+    <div class="topic-pill" onclick="show('proceso')">
+      <div class="t-num">2.17.6</div>
+      <div><strong>Consolidation Balances Analysis</strong><br><span style="color:var(--ink-3);font-size:12px;">Análisis de saldos consolidados y detalles</span></div>
+      <span class="t-status done">✓ Incluido</span>
+    </div>
+    <div class="topic-pill" onclick="show('proceso')">
+      <div class="t-num">2.17.7</div>
+      <div><strong>Reported Balances Analysis</strong><br><span style="color:var(--ink-3);font-size:12px;">Análisis de saldos reportados y journals</span></div>
+      <span class="t-status done">✓ Incluido</span>
+    </div>
+    <div class="topic-pill" onclick="show('quiz')">
+      <div class="t-num">2.17</div>
+      <div><strong>Test Your Knowledge</strong><br><span style="color:var(--ink-3);font-size:12px;">Quiz de evaluación final</span></div>
+      <span class="t-status pending">⏳ Pendiente</span>
+    </div>
+  </div>
+
+  <div class="g4" style="margin-bottom:28px;">
+    <div class="stat"><div class="stat-num" style="color:var(--blue-600);">7</div><div class="stat-lbl">Subprocesos cubiertos</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--green-600);">15</div><div class="stat-lbl">Pasos del flujo end-to-end</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--amber-600);">10</div><div class="stat-lbl">Preguntas de quiz</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--purple-600);">5</div><div class="stat-lbl">Errores típicos cubiertos</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" style="background:var(--surface-2);">🔄 Flujo de Group Consolidation de punta a punta</div>
+    <div class="card-body">
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-num">1</div>
+          <h4>Configurar BDR</h4>
+          <p>Master company, mapping, balance versions</p>
+        </div>
+        <div class="flow-arr">→</div>
+        <div class="flow-step">
+          <div class="flow-num">2</div>
+          <h4>Definir Estructura</h4>
+          <p>Nodos, ownership, métodos de consolidación</p>
+        </div>
+        <div class="flow-arr">→</div>
+        <div class="flow-step">
+          <div class="flow-num">3</div>
+          <h4>Abrir Período</h4>
+          <p>Reporting Status en Open</p>
+        </div>
+        <div class="flow-arr">→</div>
+        <div class="flow-step">
+          <div class="flow-num">4</div>
+          <h4>Transfer Balances</h4>
+          <p>Enviar saldos a master company</p>
+        </div>
+        <div class="flow-arr">→</div>
+        <div class="flow-step">
+          <div class="flow-num">5</div>
+          <h4>Adjustment Journals</h4>
+          <p>Ajustes y correcciones</p>
+        </div>
+        <div class="flow-arr">→</div>
+        <div class="flow-step">
+          <div class="flow-num">6</div>
+          <h4>Consolidation</h4>
+          <p>Ejecutar eliminaciones y consolidar</p>
+        </div>
+        <div class="flow-arr">→</div>
+        <div class="flow-step">
+          <div class="flow-num">7</div>
+          <h4>Análisis y BI</h4>
+          <p>Revisión, drill-down y reporting</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout info" style="margin-top:20px;">
+    <span class="callout-icon">ℹ️</span>
+    <div><strong>Alcance del módulo</strong>
+    Group Consolidation es un proceso de consolidación financiera operativa. No sustituye ni genera funcionalidades fiscales mexicanas (CFDI, SAT, DIOT, contabilidad electrónica). Las implicaciones fiscales deben validarse con el equipo contable y fiscal de cada cliente.</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- 1. CONCEPTOS (CAPA 1 + 2) -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="section" id="conceptos">
+  <div class="hero hero-blue">
+    <div class="hero-badge">Capa 1 · Entiéndelo tú primero</div>
+    <h1>¿Qué es Group Consolidation en IFS?</h1>
+    <p>El proceso financiero que combina los estados financieros de múltiples compañías del grupo en un solo resultado consolidado, eliminando operaciones internas y aplicando reglas de participación accionaria.</p>
+  </div>
+
+  <p class="sec-title">Los cuatro elementos arquitectónicos clave</p>
+  <p class="sec-desc">Antes de configurar cualquier cosa en IFS, el instructor debe comprender estos cuatro pilares.</p>
+
+  <div class="g2" style="margin-bottom:24px;">
+    <div class="concept blue">
+      <div class="concept-tag">Pilar 1 · Repositorio</div>
+      <h3>Master Company</h3>
+      <p>La compañía IFS donde vive toda la configuración de consolidación y donde se ejecuta el proceso. <strong>No debe usarse para transacciones de negocio</strong>: sus propios saldos no pueden incluirse en la consolidación. La moneda de la master company debe ser la moneda del grupo.</p>
+    </div>
+    <div class="concept purple">
+      <div class="concept-tag">Pilar 2 · Origen</div>
+      <h3>Reporting Entity</h3>
+      <p>Normalmente representa una compañía que reporta saldos hacia la master company. También puede ser una entidad de ajuste no conectada a ninguna compañía, usada para registrar ajustes manuales a nivel nodo. El tipo <code>Reporting</code> transfiere saldos reales de GL o saldos de planificación.</p>
+    </div>
+    <div class="concept teal">
+      <div class="concept-tag">Pilar 3 · Identificador</div>
+      <h3>Balance Version</h3>
+      <p>Identifica el conjunto de saldos reportados y consolidados. Se usa en la transferencia de saldos, adjustment journals y consolidación. También conecta los tipos de cambio para la conversión de moneda. Pueden existir versiones alternativas para usar diferentes tipos de cambio.</p>
+    </div>
+    <div class="concept coral">
+      <div class="concept-tag">Pilar 4 · Jerarquía</div>
+      <h3>Consolidation Structure</h3>
+      <p>Define la estructura jerárquica bajo la cual se consolidan las entidades: grupo, subgrupos, subsidiarias. Determina la moneda por nodo, el ownership percentage, el método de consolidación y los ajustes por defecto (equity eliminations, historical rates).</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:24px;">
+    <div class="card-header">🌐 La lógica de consolidación en dos momentos</div>
+    <div class="card-body">
+      <div class="g2">
+        <div>
+          <div style="font-size:12px; font-weight:700; text-transform:uppercase; color:var(--blue-600); margin-bottom:10px; letter-spacing:.05em;">Momento 1 — Reporting</div>
+          <ul style="font-size:13px; color:var(--ink-3); line-height:1.9; padding-left:18px;">
+            <li>Cada compañía reportante (subsidiaria) envía sus saldos hacia la master company.</li>
+            <li>Se aplica el mapeo de plan de cuentas (<strong>Code Part Mapping</strong>).</li>
+            <li>Se realizan ajustes en moneda local si aplica.</li>
+            <li>IFS crea journals de balance transfer con posting types <code>GCP1</code> y <code>GCP2</code>.</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:12px; font-weight:700; text-transform:uppercase; color:var(--purple-600); margin-bottom:10px; letter-spacing:.05em;">Momento 2 — Consolidación</div>
+          <ul style="font-size:13px; color:var(--ink-3); line-height:1.9; padding-left:18px;">
+            <li>La master company ejecuta la consolidación por estructura completa o por nodo.</li>
+            <li>Se aplica conversión de moneda (average rate / closing rate).</li>
+            <li>Se eliminan operaciones intercompañía.</li>
+            <li>Se aplica ownership percentage y equity elimination.</li>
+            <li>El resultado son los <strong>Consolidated Balances</strong> disponibles para BI y reporting.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="sec-title">Capa 2 · Conexión con el mundo real</p>
+  <p class="sec-desc">¿Cuándo necesita realmente una empresa Group Consolidation?</p>
+
+  <div class="g3">
+    <div class="concept amber">
+      <div class="concept-tag">Escenario 1</div>
+      <h3>Grupo con múltiples entidades legales</h3>
+      <p>La empresa tiene varias subsidiarias con RFC propios, contabilidades independientes y distintos planes de cuentas. Necesitan un estado financiero único del grupo a fin de mes.</p>
+    </div>
+    <div class="concept teal">
+      <div class="concept-tag">Escenario 2</div>
+      <h3>Operaciones en múltiples monedas</h3>
+      <p>Algunas subsidiarias llevan su contabilidad en USD, otras en MXN o EUR. La consolidación requiere conversión a la moneda del grupo con tasas promedio y de cierre.</p>
+    </div>
+    <div class="concept purple">
+      <div class="concept-tag">Escenario 3</div>
+      <h3>Reporteo por segmento o división</h3>
+      <p>Además del reporte legal por entidad, la dirección necesita ver el desempeño por línea de negocio, región o división — sin importar qué compañía legal ejecutó las transacciones.</p>
+    </div>
+  </div>
+
+  <div class="callout warn" style="margin-top:20px;">
+    <span class="callout-icon">⚠️</span>
+    <div><strong>Error conceptual más frecuente en capacitación</strong>
+    Los usuarios tienden a confundir Group Consolidation con el proceso de "cierre contable" de cada empresa. Son procesos distintos: primero se hace el cierre individual de cada compañía, y después se ejecuta la consolidación de grupo. IFS requiere que el período de reporte esté abierto en la master company antes de transferir saldos.</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- 2. CASO REAL -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="section" id="realworld">
+  <div class="hero hero-purple">
+    <div class="hero-badge">Capa 2 · Caso Real · México</div>
+    <h1>Grupo Metalmex S.A.B. de C.V.</h1>
+    <p>Un grupo industrial mexicano con tres subsidiarias operativas, una holding y reporteo en dos monedas. Caso práctico de configuración end-to-end de Group Consolidation en IFS.</p>
+  </div>
+
+  <p class="sec-title">Estructura del grupo</p>
+  <p class="sec-desc">Así se vería la jerarquía de consolidación en IFS para Grupo Metalmex.</p>
+
+  <div class="card" style="margin-bottom:24px;">
+    <div class="card-header">🏗️ Árbol de Consolidación — Grupo Metalmex</div>
+    <div class="card-body">
+      <div class="tree-node root">🏛️ GRUPO_METALMEX — Nodo raíz (Master Company) — Moneda: USD</div>
+      <div class="tree-node mid">📂 HOLDING_MX — Holding México (100% ownership) — Método: Equity Majority</div>
+      <div class="tree-node leaf">🏭 ACEROS_MTY — Aceros Monterrey S.A. de C.V. — MXN → USD</div>
+      <div class="tree-node leaf">⚙️ COMPONENTES_GDL — Componentes Guadalajara S.A. de C.V. — MXN → USD</div>
+      <div class="tree-node mid">📂 INTL_NODE — División Internacional (60% ownership) — Método: Proportional</div>
+      <div class="tree-node leaf">🌎 METALCO_USA — Metalco USA Inc. — USD (sin conversión)</div>
+      <div class="tree-node elim">✂️ ELIM_NODE — Nodo de Eliminación (generado automáticamente por IFS)</div>
+    </div>
+  </div>
+
+  <div class="g2" style="margin-bottom:24px;">
+    <div class="card">
+      <div class="card-header">⚙️ Configuración — Master Company</div>
+      <div class="card-body">
+        <div class="param-screen">
+          <div class="ps-title">Master Company — Grupo Metalmex Consolidation</div>
+          <div class="param-row"><span class="param-label">Company ID</span><span class="param-val"><code>GMET_CONSOL</code></span></div>
+          <div class="param-row"><span class="param-label">Accounting Currency</span><span class="param-val">USD (moneda de grupo)</span></div>
+          <div class="param-row"><span class="param-label">Uso</span><span class="param-val">Solo consolidación — sin transacciones operativas</span></div>
+          <div class="param-row"><span class="param-label">Nota</span><span class="param-val">La holding y subsidiarias son compañías normales que reportan hacia aquí</span></div>
+        </div>
+        <div class="callout danger" style="margin-top:10px;">
+          <span class="callout-icon">🚫</span>
+          <div><strong>Regla crítica</strong> — Nunca registrar facturas, pagos ni asientos contables directamente en la master company.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">📋 Balance Versions configuradas</div>
+      <div class="card-body">
+        <table class="dt">
+          <thead><tr><th>Version ID</th><th>Uso</th><th>Rate Type</th></tr></thead>
+          <tbody>
+            <tr><td><code>ACTUAL_2025</code></td><td>Saldos reales cierre mensual</td><td>Closing Rate</td></tr>
+            <tr><td><code>BUDGET_2025</code></td><td>Presupuesto consolidado</td><td>Average Rate</td></tr>
+            <tr><td><code>FORECAST_Q3</code></td><td>Forecast trimestral</td><td>Average Rate</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:24px;">
+    <div class="card-header">🗺️ Code Part Mapping — Homologación de planes de cuentas</div>
+    <div class="card-body">
+      <p style="font-size:13px; color:var(--ink-3); margin-bottom:14px;">Cada subsidiaria tiene su propio catálogo de cuentas. El mapping define cómo los saldos locales se traducen al plan de cuentas de la master company durante el balance transfer.</p>
+      <table class="dt">
+        <thead><tr><th>Compañía Origen</th><th>Cuenta Local</th><th>Descripción Local</th><th>→</th><th>Cuenta Master</th><th>Descripción Grupo</th></tr></thead>
+        <tbody>
+          <tr><td><code>ACEROS_MTY</code></td><td>1105</td><td>Clientes nacionales</td><td>→</td><td>1100</td><td>Accounts Receivable</td></tr>
+          <tr><td><code>ACEROS_MTY</code></td><td>5100</td><td>Costo de producción</td><td>→</td><td>5000</td><td>Cost of Goods Sold</td></tr>
+          <tr><td><code>COMPONENTES_GDL</code></td><td>1110</td><td>Clientes por cobrar</td><td>→</td><td>1100</td><td>Accounts Receivable</td></tr>
+          <tr><td><code>METALCO_USA</code></td><td>AR-001</td><td>Trade Receivables</td><td>→</td><td>1100</td><td>Accounts Receivable</td></tr>
+        </tbody>
+      </table>
+      <div class="callout warn" style="margin-top:12px;">
+        <span class="callout-icon">⚠️</span>
+        <div><strong>Riesgo más común:</strong> Si un código de cuenta local no tiene mapping configurado, el Balance Transfer fallará. El log mostrará el error <em>"missing code part value mapping"</em>.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">🔄 Flujo mensual del cierre consolidado — Grupo Metalmex</div>
+    <div class="card-body">
+      <ol class="steps">
+        <li>
+          <div><h4>Cierre individual de cada subsidiaria</h4>
+          <p>ACEROS_MTY, COMPONENTES_GDL y METALCO_USA cierran su contabilidad local. Hasta aquí no interviene Group Consolidation.</p></div>
+        </li>
+        <li>
+          <div><h4>Apertura del Reporting Period en master company</h4>
+          <p>El equipo de consolidación abre el período de reporte para la Balance Version <code>ACTUAL_2025</code> en la master company <code>GMET_CONSOL</code>.</p></div>
+        </li>
+        <li>
+          <div><h4>Transfer Balances — subsidiarias hacia master company</h4>
+          <p>Cada subsidiaria transfiere sus saldos usando el Balance Transfer Assistant. IFS aplica el Code Part Mapping y convierte la moneda (MXN → USD).</p></div>
+        </li>
+        <li>
+          <div><h4>Revisión del Balance Transfer Log</h4>
+          <p>El equipo verifica que no haya errores de mapping o de tipos de cambio. Si hay errores, se corrigen y se re-transfiere.</p></div>
+        </li>
+        <li>
+          <div><h4>Adjustment Journals (si aplica)</h4>
+          <p>Se registran ajustes de consolidación: diferencias de homologación, reclasificaciones de grupo, eliminaciones manuales especiales.</p></div>
+        </li>
+        <li>
+          <div><h4>Ejecución de la consolidación</h4>
+          <p>Se ejecuta la consolidación por estructura completa. IFS genera Consolidated Balances, aplica ownership elimination (60% en INTL_NODE), elimina intercompañía y aplica equity elimination.</p></div>
+        </li>
+        <li>
+          <div><h4>Análisis y entrega al CFO</h4>
+          <p>El equipo usa Consolidation Details Analysis para reconciliar. El CFO consume el Tabular Model en BI para ver el Balance Sheet e Income Statement consolidados del grupo.</p></div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- 3. DATOS BÁSICOS (BDR) -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="section" id="bdr">
+  <div class="hero hero-teal">
+    <div class="hero-badge">Capa 3 · Parametrización · BDR</div>
+    <h1>Basic Data Requirements — 2.17.1 · 2.17.2 · 2.17.3</h1>
+    <p>Todo lo que debe configurarse antes de transferir un solo saldo. Si el BDR está incompleto, el proceso fallará con errores de mapping, moneda o permisos.</p>
+  </div>
+
+  <!-- 2.17.1 BDR FOR GROUP CONSOLIDATION -->
+  <p class="sec-title">2.17.1 — BDR for Group Consolidation</p>
+  <p class="sec-desc">Los datos base que hacen posible la transferencia de saldos y la consolidación.</p>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">📦 Resumen de elementos a configurar</div>
+    <div class="card-body">
+      <table class="dt">
+        <thead><tr><th>Elemento</th><th>¿Qué hace?</th><th>Riesgo si falta</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Master Company</strong></td>
+            <td>Repositorio central de consolidación. Sin transacciones propias.</td>
+            <td>No existe el universo de consolidación</td>
+          </tr>
+          <tr>
+            <td><strong>Reporting Entity</strong></td>
+            <td>Conecta cada compañía origen al proceso de consolidación.</td>
+            <td>La compañía no puede transferir saldos</td>
+          </tr>
+          <tr>
+            <td><strong>Reporting Transaction Type</strong></td>
+            <td>Define qué tipo de saldos se transfieren (actual, budget, forecast).</td>
+            <td>No se pueden abrir períodos de reporte</td>
+          </tr>
+          <tr>
+            <td><strong>Balance Version</strong></td>
+            <td>Identifica el set de saldos y conecta tipos de cambio.</td>
+            <td>Sin versión no hay transferencia ni consolidación</td>
+          </tr>
+          <tr>
+            <td><strong>Code Part Mapping</strong></td>
+            <td>Homologa code parts de compañía local a master company.</td>
+            <td>Transfer falla: missing code part mapping</td>
+          </tr>
+          <tr>
+            <td><strong>Code Part Value Mapping</strong></td>
+            <td>Mapea valores específicos de cuentas locales a cuentas del grupo.</td>
+            <td>Transfer falla: missing code part value mapping</td>
+          </tr>
+          <tr>
+            <td><strong>Intercompany Elimination Rules</strong></td>
+            <td>Define cómo se eliminan las operaciones intercompañía.</td>
+            <td>Las operaciones internas no se eliminan</td>
+          </tr>
+          <tr>
+            <td><strong>Posting Types GCP1 / GCP2</strong></td>
+            <td>IFS los usa para balancear IS y BS al transferir saldos.</td>
+            <td>Error en automatic posting instructions</td>
+          </tr>
+          <tr>
+            <td><strong>Reported Balance Security</strong></td>
+            <td>Controla quién puede reportar, ajustar y ver saldos.</td>
+            <td>Acceso demasiado amplio o bloqueo de usuarios</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="g2" style="margin-bottom:20px;">
+    <div class="card">
+      <div class="card-header">⚙️ Configuración — Reporting Entity (Ejemplo)</div>
+      <div class="card-body">
+        <div class="param-screen">
+          <div class="ps-title">Reporting Entity — ACEROS_MTY</div>
+          <div class="param-row"><span class="param-label">Entity ID</span><span class="param-val"><code>RE_ACEROS_MTY</code></span></div>
+          <div class="param-row"><span class="param-label">Entity Type</span><span class="param-val">Reporting</span></div>
+          <div class="param-row"><span class="param-label">Connected Company</span><span class="param-val">ACEROS_MTY</span></div>
+          <div class="param-row"><span class="param-label">Reporting Transaction Type</span><span class="param-val">ACTUAL_MONTHLY</span></div>
+          <div class="param-row"><span class="param-label">Currency</span><span class="param-val">MXN</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">⚙️ Configuración — Balance Version (Ejemplo)</div>
+      <div class="card-body">
+        <div class="param-screen">
+          <div class="ps-title">Balance Version — ACTUAL_2025</div>
+          <div class="param-row"><span class="param-label">Version ID</span><span class="param-val"><code>ACTUAL_2025</code></span></div>
+          <div class="param-row"><span class="param-label">Description</span><span class="param-val">Saldos reales 2025</span></div>
+          <div class="param-row"><span class="param-label">Average Rate Type</span><span class="param-val">AVG_MONTHLY</span></div>
+          <div class="param-row"><span class="param-label">Closing Rate Type</span><span class="param-val">CLOSE_MONTH</span></div>
+          <div class="param-row"><span class="param-label">Nota</span><span class="param-val">Average rate para IS, Closing rate para BS</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.17.2 BDR FOR CONSOLIDATION STRUCTURE -->
+  <p class="sec-title" style="margin-top:32px;">2.17.2 — BDR for Consolidation Structure</p>
+  <p class="sec-desc">La jerarquía que define cómo se acumulan los saldos y dónde ocurren las eliminaciones.</p>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">🏗️ Elementos de la Consolidation Structure</div>
+    <div class="card-body">
+      <div class="g2">
+        <div>
+          <table class="dt">
+            <thead><tr><th>Elemento</th><th>Descripción</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Nodo (Node)</strong></td><td>Agrupación de entidades dentro de la estructura. Cada nodo tiene su currency code para generar consolidated balances en esa moneda.</td></tr>
+              <tr><td><strong>Nodo de Eliminación</strong></td><td>IFS lo crea automáticamente para cada nodo. Aquí se generan los postings de eliminación intercompañía. Es visible en Consolidation Details Analysis.</td></tr>
+              <tr><td><strong>Conexión (Connection)</strong></td><td>Vincula un nodo con una reporting entity. Contiene el Ownership % y el Consolidation Method.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <div style="margin-bottom:14px;">
+            <div style="font-size:12px; font-weight:700; text-transform:uppercase; color:var(--blue-600); margin-bottom:8px; letter-spacing:.05em;">Métodos de Consolidación</div>
+            <div class="msg-list">
+              <div class="msg-item a-blue"><div class="msg-icon">🔵</div><div><h4>Equity Majority</h4><p>Control total o mayoría. Consolida 100% de activos/pasivos/resultados con eliminación de NCI.</p></div></div>
+              <div class="msg-item a-purple"><div class="msg-icon">🟣</div><div><h4>Equity Minority</h4><p>Participación minoritaria. Se contabiliza por el método de participación (equity method).</p></div></div>
+              <div class="msg-item a-teal"><div class="msg-icon">🟢</div><div><h4>Proportional</h4><p>Joint ventures o negocios conjuntos. Solo consolida el porcentaje de participación.</p></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="callout info" style="margin-top:8px;">
+        <span class="callout-icon">📅</span>
+        <div><strong>Importante:</strong> Los cambios en la Consolidation Structure son válidos desde un período específico y quedan registrados. Si se modifica la estructura después de iniciar una consolidación, se debe hacer rollback del período afectado.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.17.3 PARALLEL STRUCTURE -->
+  <p class="sec-title" style="margin-top:32px;">2.17.3 — BDR for Parallel Consolidation Structure</p>
+  <p class="sec-desc">Cuando la dirección necesita ver el mismo resultado consolidado desde otra dimensión (segmento, división, región).</p>
+
+  <div class="card">
+    <div class="card-header">📐 Parallel Consolidation Structure — Cuándo y cómo usarla</div>
+    <div class="card-body">
+      <div class="g2">
+        <div>
+          <div class="concept amber">
+            <div class="concept-tag">¿Para qué sirve?</div>
+            <h3>Análisis por dimensión paralela</h3>
+            <p>Permite obtener balances consolidados analizados por una dimensión distinta a la estructura legal. Ejemplo: ver el resultado del grupo por división de negocio o por región geográfica, en paralelo al reporte por entidad legal.</p>
+          </div>
+        </div>
+        <div>
+          <div class="concept blue">
+            <div class="concept-tag">Restricciones IFS</div>
+            <h3>Limitaciones a considerar</h3>
+            <p>No puede usarse <code>Counterpart 1</code>, <code>Counterpart 2</code> ni <code>Currency Code</code> como dimensión paralela. IFS crea un <strong>null node</strong> automáticamente donde acumula saldos sin valores de dimensión.</p>
+          </div>
+        </div>
+      </div>
+      <div class="callout tip" style="margin-top:14px;">
+        <span class="callout-icon">💡</span>
+        <div><strong>Caso de uso típico:</strong> El grupo legal tiene 3 compañías, pero la dirección quiere ver P&amp;L por 4 líneas de negocio que existen en diferentes compañías. La Parallel Structure permite ese análisis sin duplicar la estructura legal.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- 4. PROCESO COMPLETO -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="section" id="proceso">
+  <div class="hero hero-coral">
+    <div class="hero-badge">Capa 3 · Ejecución del Proceso</div>
+    <h1>Transfer Balances · Consolidation · Analysis</h1>
+    <p>Subprocesos 2.17.4 al 2.17.7 — El ciclo operativo mensual de la consolidación de grupo.</p>
+  </div>
+
+  <!-- 2.17.4 TRANSFER BALANCES -->
+  <p class="sec-title">2.17.4 — Transfer Balances</p>
+  <p class="sec-desc">Mover los saldos contables de cada compañía hacia la master company para su consolidación.</p>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">📤 Prerrequisitos confirmados por IFS antes de ejecutar Transfer Balances</div>
+    <div class="card-body">
+      <div class="g2">
+        <ul style="font-size:13px; color:var(--ink-3); line-height:2; padding-left:18px;">
+          <li>Master Company configurada</li>
+          <li>Posting types <code>GCP1</code> y <code>GCP2</code> configurados</li>
+          <li>Reporting Transaction Type creado</li>
+          <li>Reporting Entity conectada al Transaction Type</li>
+        </ul>
+        <ul style="font-size:13px; color:var(--ink-3); line-height:2; padding-left:18px;">
+          <li>Balance Version definida</li>
+          <li>Reporting Period Range en status <code>Open</code></li>
+          <li>Code String Mapping configurado</li>
+          <li>Tipos de cambio cargados</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="g2" style="margin-bottom:20px;">
+    <div class="card">
+      <div class="card-header">▶️ Pasos de ejecución — Balance Transfer Assistant</div>
+      <div class="card-body">
+        <ol class="steps">
+          <li><div><h4>Abrir Balance Transfer Assistant</h4><p>Puede abrirse desde el navegador para una reporting entity individual, o desde Reporting Status para transferir múltiples entidades.</p></div></li>
+          <li><div><h4>Seleccionar Reporting Transaction Type y Balance Version</h4><p>El sistema filtra las reporting entities conectadas al transaction type seleccionado.</p></div></li>
+          <li><div><h4>Seleccionar período en la master company</h4><p>El período debe estar en status Open. Si está Closed, la transferencia falla.</p></div></li>
+          <li><div><h4>Ejecutar la transferencia</h4><p>IFS crea un journal automáticamente. Los saldos se trasladan aplicando el Code Part Mapping y la conversión de moneda.</p></div></li>
+          <li><div><h4>Revisar Balance Transfer Log</h4><p>Si hay errores, se investigan aquí. Los más comunes: missing code part value mapping y missing automatic posting instructions.</p></div></li>
+          <li><div><h4>Registrar Adjustment Journals si aplica</h4><p>Los adjustment journals deben balancear en moneda de la reporting entity y también separadamente entre Balance Sheet e Income Statement.</p></div></li>
+          <li><div><h4>Aprobar y cerrar el Reporting Period</h4><p>Cuando transferencias y ajustes están completos, se aprueba el journal y se cierra el período de reporte. Status cambia a Closed.</p></div></li>
+        </ol>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-header">🔄 Transaction Types generados</div>
+        <div class="card-body">
+          <p style="font-size:13px; color:var(--ink-3); margin-bottom:10px;">IFS crea estos transaction types durante el proceso de consolidación:</p>
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid var(--border);"><span style="font-size:13px; font-weight:600;">Translated Balance</span><span class="badge b-blue">Moneda</span></div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid var(--border);"><span style="font-size:13px; font-weight:600;">Ownership Elimination</span><span class="badge b-purple">Ownership</span></div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid var(--border);"><span style="font-size:13px; font-weight:600;">Profit Elimination</span><span class="badge b-amber">IS</span></div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid var(--border);"><span style="font-size:13px; font-weight:600;">Intercompany Elimination</span><span class="badge b-teal">IC</span></div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid var(--border);"><span style="font-size:13px; font-weight:600;">Equity Elimination - Group</span><span class="badge b-purple">Equity</span></div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid var(--border);"><span style="font-size:13px; font-weight:600;">Equity Elimination - NCI</span><span class="badge b-coral">NCI</span></div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 0;"><span style="font-size:13px; font-weight:600;">Consolidated Balance</span><span class="badge b-green">Final</span></div>
+          </div>
+          <div class="callout danger" style="margin-top:12px;">
+            <span class="callout-icon">🚨</span>
+            <div><strong>Error crítico de reporte:</strong> Un Balance Sheet consolidado debe basarse únicamente en el transaction type <code>Consolidated Balances</code>. Si se incluyen otros, los saldos se duplican.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.17.5 CONSOLIDATION -->
+  <p class="sec-title" style="margin-top:32px;">2.17.5 — Consolidation</p>
+  <p class="sec-desc">Ejecución del proceso de consolidación sobre los saldos ya transferidos.</p>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">⚙️ Parámetros de ejecución de Consolidation</div>
+    <div class="card-body">
+      <div class="param-screen">
+        <div class="ps-title">Consolidation Run — Parámetros típicos</div>
+        <div class="param-row"><span class="param-label">Consolidation Structure</span><span class="param-val">GRUPO_METALMEX_LEGAL</span></div>
+        <div class="param-row"><span class="param-label">Balance Version</span><span class="param-val">ACTUAL_2025</span></div>
+        <div class="param-row"><span class="param-label">Consolidation Period</span><span class="param-val">2025-06 (Junio 2025)</span></div>
+        <div class="param-row"><span class="param-label">Scope</span><span class="param-val">Full Structure (toda la estructura) o por nodo individual</span></div>
+        <div class="param-row"><span class="param-label">Generate Group Currency Balances</span><span class="param-val">Sí — si la estructura tiene Group Currency Code definido</span></div>
+      </div>
+      <div class="g2" style="margin-top:14px;">
+        <div class="callout tip">
+          <span class="callout-icon">💡</span>
+          <div><strong>Rollback:</strong> Si el resultado no es el esperado, IFS permite hacer rollback para remover consolidated balances y cambiar el nodo a status "Not Consolidated". Luego se corrige y se ejecuta de nuevo.</div>
+        </div>
+        <div class="callout warn">
+          <span class="callout-icon">⚠️</span>
+          <div><strong>Errores típicos de consolidación:</strong> Missing currency rates (tasas no cargadas para el período) y missing automatic posting instructions (configuración de postings incompleta).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.17.6 ANALYSIS -->
+  <p class="sec-title" style="margin-top:32px;">2.17.6 — Consolidation Balances Analysis</p>
+  <p class="sec-desc">Herramientas para revisar y reconciliar los saldos consolidados.</p>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">🔍 Herramientas de análisis disponibles</div>
+    <div class="card-body">
+      <div class="g3">
+        <div class="concept blue">
+          <div class="concept-tag">Herramienta 1</div>
+          <h3>Consolidation Details Analysis</h3>
+          <p>Muestra el detalle por etapa del proceso: translated balances, ownership elimination, profit elimination, intercompany elimination, equity elimination y currency effects. Clave para reconciliar el neto consolidado.</p>
+        </div>
+        <div class="concept teal">
+          <div class="concept-tag">Herramienta 2</div>
+          <h3>Intercompany Period Balance Analysis</h3>
+          <p>Analiza saldos intercompañía y cómo fueron tratados en la consolidación. Útil para identificar diferencias de eliminación.</p>
+        </div>
+        <div class="concept purple">
+          <div class="concept-tag">Herramienta 3</div>
+          <h3>Consolidation Period Balance Analysis</h3>
+          <p>Analiza los period balances generados por el cálculo de consolidated period balances. Aplica según el método: Consolidated Balances o Consolidation Source Level Details.</p>
+        </div>
+      </div>
+      <div class="callout info" style="margin-top:14px;">
+        <span class="callout-icon">📊</span>
+        <div><strong>BI y Business Reporter:</strong> IFS documenta el Tabular Model "Group Consolidation" con escenarios para Consolidation Reported Balances, Consolidated Balances y Consolidated Balance Set Analysis. Este es el canal principal para el CFO y la dirección.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.17.7 REPORTED BALANCES ANALYSIS -->
+  <p class="sec-title" style="margin-top:32px;">2.17.7 — Reported Balances Analysis</p>
+  <p class="sec-desc">Análisis de los saldos y journals antes de la consolidación.</p>
+
+  <div class="card">
+    <div class="card-header">📋 Herramientas de análisis de saldos reportados</div>
+    <div class="card-body">
+      <div class="msg-list">
+        <div class="msg-item a-blue">
+          <div class="msg-icon">📖</div>
+          <div><h4>Journals Analysis</h4><p>Permite analizar los reporting journals y adjustment journals generados durante el balance transfer. Útil para revisar el detalle de cada journal antes de aprobar el período.</p></div>
+        </div>
+        <div class="msg-item a-teal">
+          <div class="msg-icon">📄</div>
+          <div><h4>Consolidation Journal Report</h4><p>Lista todos los reporting and adjustment journals y sus líneas para un período y balance version seleccionados. Formato para auditoría.</p></div>
+        </div>
+        <div class="msg-item a-purple">
+          <div class="msg-icon">🔁</div>
+          <div><h4>Intercompany Reconciliation Report</h4><p>Lista los saldos intercompañía de reporting and adjustment journals para analizar diferencias de intercompany elimination. Fundamental cuando hay diferencias entre lo que reporta la compradora y la vendedora.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- 5. USUARIO FINAL -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="section" id="usuario">
+  <div class="hero hero-blue">
+    <div class="hero-badge">Capa 4 · Material de Referencia · Usuario Final</div>
+    <h1>Guía de Referencia Rápida</h1>
+    <p>Lo que el equipo de consolidación necesita saber para ejecutar el proceso mensual de Group Consolidation en IFS Cloud.</p>
+  </div>
+
+  <div class="card" style="margin-bottom:24px;">
+    <div class="card-header">🗓️ Checklist del cierre mensual de consolidación</div>
+    <div class="card-body">
+      <table class="dt">
+        <thead><tr><th>#</th><th>Actividad</th><th>Responsable</th><th>Dónde en IFS</th><th>Status esperado</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Confirmar que todas las subsidiarias cerraron su contabilidad local</td><td>Contabilidad local</td><td>No aplica en Group Consolidation</td><td><span class="badge b-green">Previo</span></td></tr>
+          <tr><td>2</td><td>Abrir Reporting Period en master company</td><td>Consolidación</td><td><code>Reporting Status</code></td><td><span class="badge b-blue">Open</span></td></tr>
+          <tr><td>3</td><td>Verificar que los tipos de cambio del período estén cargados</td><td>Consolidación</td><td><code>Currency Rates</code></td><td><span class="badge b-green">✓ Cargados</span></td></tr>
+          <tr><td>4</td><td>Ejecutar Balance Transfer por cada subsidiaria</td><td>Consolidación</td><td><code>Balance Transfer Assistant</code></td><td><span class="badge b-blue">Transferred</span></td></tr>
+          <tr><td>5</td><td>Revisar Balance Transfer Log — corregir errores</td><td>Consolidación</td><td><code>Balance Transfer Log</code></td><td><span class="badge b-green">Sin errores</span></td></tr>
+          <tr><td>6</td><td>Registrar Adjustment Journals si hay ajustes de grupo</td><td>Consolidación</td><td><code>Adjustment Journals</code></td><td><span class="badge b-amber">Opcional</span></td></tr>
+          <tr><td>7</td><td>Aprobar Reporting Journal</td><td>Supervisor</td><td><code>Reporting Status</code></td><td><span class="badge b-blue">Approved</span></td></tr>
+          <tr><td>8</td><td>Cerrar Reporting Period</td><td>Consolidación</td><td><code>Reporting Status</code></td><td><span class="badge b-gray">Closed</span></td></tr>
+          <tr><td>9</td><td>Ejecutar Consolidation (estructura completa)</td><td>Consolidación</td><td><code>Consolidation</code></td><td><span class="badge b-green">Consolidated</span></td></tr>
+          <tr><td>10</td><td>Calcular Group Currency Balances y Period Balances</td><td>Consolidación</td><td><code>Consolidation</code></td><td><span class="badge b-green">Calculated</span></td></tr>
+          <tr><td>11</td><td>Revisar Consolidation Details Analysis — reconciliar</td><td>Consolidación</td><td><code>Consolidation Details Analysis</code></td><td><span class="badge b-green">Reconciliado</span></td></tr>
+          <tr><td>12</td><td>Entregar resultado a CFO vía BI / Business Reporter</td><td>Consolidación</td><td><code>Tabular Model: Group Consolidation</code></td><td><span class="badge b-blue">Entregado</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">🛠️ Troubleshooting rápido — Errores más comunes</div>
+    <div class="card-body">
+      <div class="msg-list">
+        <div class="msg-item a-red">
+          <div class="msg-icon">❌</div>
+          <div><h4>Balance Transfer falla — "Missing code part value mapping"</h4>
+          <p>Una o más cuentas de la subsidiaria no tienen mapping hacia el plan de cuentas de la master company. Revisar <code>Code Part Value Mapping</code>, agregar el valor faltante y volver a ejecutar el transfer.</p></div>
+        </div>
+        <div class="msg-item a-red">
+          <div class="msg-icon">❌</div>
+          <div><h4>Balance Transfer falla — "Missing automatic posting instructions"</h4>
+          <p>Los posting types GCP1 o GCP2 no están configurados correctamente para la compañía. Revisar la configuración de Posting Control en la master company.</p></div>
+        </div>
+        <div class="msg-item a-amber">
+          <div class="msg-icon">⚠️</div>
+          <div><h4>Consolidation falla — "Missing currency rates"</h4>
+          <p>No hay tipos de cambio cargados para la moneda de la subsidiaria en el período de consolidación. Cargar los currency rates correspondientes y ejecutar nuevamente.</p></div>
+        </div>
+        <div class="msg-item a-amber">
+          <div class="msg-icon">⚠️</div>
+          <div><h4>Consolidation Details Analysis no muestra datos</h4>
+          <p>Validar que al menos un nodo esté en status Consolidated para la combinación structure/period/balance version. Verificar también que el usuario tenga seguridad para visualizar consolidated balances.</p></div>
+        </div>
+        <div class="msg-item a-blue">
+          <div class="msg-icon">ℹ️</div>
+          <div><h4>Diferencias intercompañía en el resultado</h4>
+          <p>Usar el <code>Intercompany Reconciliation Report</code> para identificar qué subsidiaria tiene la diferencia. Revisar counterpart mapping e intercompany elimination rules. Generalmente se origina en timing de reconocimiento o monedas distintas.</p></div>
+        </div>
+        <div class="msg-item a-blue">
+          <div class="msg-icon">ℹ️</div>
+          <div><h4>Se modificó la estructura después de ejecutar la consolidación</h4>
+          <p>Hacer rollback del nodo o estructura afectada, reinicializar la combinación structure/balance version/period y ejecutar nuevamente. Los cambios de estructura no afectan una consolidación ya iniciada sin rollback.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- 6. INSTRUCTOR -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="section" id="instructor">
+  <div class="hero hero-purple">
+    <div class="hero-badge">Capa 5 · Guía del Instructor</div>
+    <h1>Agenda · Facilitación · Q&amp;A Difícil</h1>
+    <p>Todo lo que necesitas para impartir Group Consolidation 2.17 con confianza — incluyendo las preguntas que sí van a hacer.</p>
+  </div>
+
+  <p class="sec-title">Agenda sugerida — Sesión de capacitación</p>
+  <p class="sec-desc">Sesión de 6 horas (adaptable a 2 sesiones de 3 horas).</p>
+
+  <div class="card" style="margin-bottom:24px;">
+    <div class="card-header">⏱️ Plan de sesión</div>
+    <div class="card-body">
+      <table class="dt">
+        <thead><tr><th>Tiempo</th><th>Bloque</th><th>Contenido</th><th>Método</th></tr></thead>
+        <tbody>
+          <tr><td>0:00–0:30</td><td><span class="badge b-blue">Apertura</span></td><td>¿Por qué Group Consolidation? Contexto del grupo. Diferencia con cierre individual.</td><td>Exposición + pregunta abierta al grupo</td></tr>
+          <tr><td>0:30–1:15</td><td><span class="badge b-purple">Conceptos</span></td><td>Master Company, Reporting Entity, Balance Version, Consolidation Structure. Árbol del caso Metalmex.</td><td>Presentación visual + discusión</td></tr>
+          <tr><td>1:15–2:00</td><td><span class="badge b-teal">BDR</span></td><td>Recorrido por datos básicos: mapping, reporting transaction types, balance versions, security.</td><td>Demo en IFS + pantalla simulada</td></tr>
+          <tr><td>2:00–2:15</td><td>☕ Descanso</td><td>—</td><td>—</td></tr>
+          <tr><td>2:15–3:30</td><td><span class="badge b-coral">Transfer Balances</span></td><td>Prerrequisitos, Balance Transfer Assistant, Transfer Log, Adjustment Journals, cierre del período.</td><td>Demo en IFS + ejercicio guiado</td></tr>
+          <tr><td>3:30–4:30</td><td><span class="badge b-amber">Consolidation</span></td><td>Parámetros de consolidación, ejecución por nodo, transaction types generados, rollback.</td><td>Demo en IFS + discusión de resultados</td></tr>
+          <tr><td>4:30–5:15</td><td><span class="badge b-green">Análisis</span></td><td>Consolidation Details Analysis, Intercompany Report, BI / Business Reporter. Cómo leer los resultados.</td><td>Demo + ejercicio de lectura</td></tr>
+          <tr><td>5:15–5:45</td><td><span class="badge b-purple">Troubleshooting</span></td><td>Los 5 errores más comunes. Cómo investigar con el Transfer Log.</td><td>Casos reales + preguntas</td></tr>
+          <tr><td>5:45–6:00</td><td><span class="badge b-blue">Quiz + Cierre</span></td><td>10 preguntas de evaluación. Retroalimentación.</td><td>Quiz individual</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <p class="sec-title">Preguntas difíciles — Prepárate para estas</p>
+  <p class="sec-desc">Las preguntas que hacen los usuarios avanzados o los contadores que conocen consolidación internacional.</p>
+
+  <div class="card">
+    <div class="card-header">❓ Q&amp;A de nivel avanzado</div>
+    <div class="card-body">
+      <div class="msg-list">
+        <div class="msg-item a-red">
+          <div class="msg-icon">🤔</div>
+          <div><h4>"¿Group Consolidation genera mi contabilidad electrónica o las pólizas para el SAT?"</h4>
+          <p><strong>Respuesta correcta:</strong> No. Group Consolidation es un proceso de consolidación financiera de grupo, no un proceso fiscal. La contabilidad electrónica (CFDI, pólizas SAT, DIOT) se maneja en cada compañía operativa de IFS por separado. Los saldos consolidados son para uso interno del grupo y para reporteo gerencial/corporativo. Cualquier uso fiscal requiere validación con el equipo contable y fiscal del cliente.</p></div>
+        </div>
+        <div class="msg-item a-amber">
+          <div class="msg-icon">🤔</div>
+          <div><h4>"¿Qué pasa si cambio el ownership percentage a mitad del año?"</h4>
+          <p><strong>Respuesta correcta:</strong> IFS documenta que los cambios en la Consolidation Structure son válidos desde un período específico y quedan registrados. Si el cambio afecta un período ya consolidado, es necesario hacer rollback del nodo afectado, actualizar la estructura y ejecutar nuevamente. No es un cambio retroactivo automático.</p></div>
+        </div>
+        <div class="msg-item a-amber">
+          <div class="msg-icon">🤔</div>
+          <div><h4>"¿Por qué los números del Balance Sheet consolidado no cuadran con la suma de los individuales?"</h4>
+          <p><strong>Respuesta correcta:</strong> Porque la consolidación elimina operaciones intercompañía (ventas, préstamos, dividendos entre compañías del grupo) y ajusta por el porcentaje de ownership. Si una filial es 60% del grupo, el 40% restante se muestra como NCI (Non-Controlling Interest). Usar Consolidation Details Analysis para ver el detalle de cada eliminación y adjustment.</p></div>
+        </div>
+        <div class="msg-item a-blue">
+          <div class="msg-icon">🤔</div>
+          <div><h4>"¿Puedo usar una compañía operativa como master company para ahorrar licencias?"</h4>
+          <p><strong>Respuesta correcta:</strong> No se recomienda. La documentación oficial de IFS advierte que los saldos generados en la master company no pueden incluirse en el proceso de consolidación. Si se usan para transacciones operativas, se contamina el proceso. IFS recomienda explícitamente que la master company sea exclusiva para consolidación.</p></div>
+        </div>
+        <div class="msg-item a-blue">
+          <div class="msg-icon">🤔</div>
+          <div><h4>"¿Puedo consolidar empresas que no están en IFS?"</h4>
+          <p><strong>Respuesta correcta:</strong> Sí. IFS documenta la funcionalidad de <strong>Transfer External Balances</strong> para compañías que no están en IFS. El archivo externo debe definirse conforme al template <code>ExtReportedBalances</code> o templates creados con el external file type <code>ExtRepBal</code>. Esto permite incluir filiales con otros ERP en la consolidación del grupo.</p></div>
+        </div>
+        <div class="msg-item a-teal">
+          <div class="msg-icon">🤔</div>
+          <div><h4>"¿La Parallel Consolidation Structure puede reemplazar a la estructura legal?"</h4>
+          <p><strong>Respuesta correcta:</strong> No. La Parallel Consolidation Structure es una dimensión adicional que corre en paralelo, no un reemplazo. Sirve para obtener el mismo resultado consolidado analizado por otra dimensión (segmento, región, división). La estructura legal sigue siendo la base del proceso.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:20px;">
+    <div class="card-header">✅ Consejos de facilitación</div>
+    <div class="card-body">
+      <div class="g2">
+        <div class="concept green">
+          <div class="concept-tag">Lo que más confunde</div>
+          <h3>Master Company ≠ Compañía Matriz</h3>
+          <p>Los usuarios suelen pensar que la holding o la empresa matriz es la master company. Hay que ser muy explícito: la master company es un contenedor técnico de IFS solo para consolidación, sin transacciones de negocio. La empresa matriz sí puede ser una reporting entity.</p>
+        </div>
+        <div class="concept amber">
+          <div class="concept-tag">Orden de configuración</div>
+          <h3>BDR primero, siempre</h3>
+          <p>Si el instructor empieza mostrando la ejecución de consolidación sin haber explicado el mapping, los usuarios se perderán. El orden correcto es: BDR completo → Transfer → Consolidation → Analysis. No hay atajos.</p>
+        </div>
+        <div class="concept blue">
+          <div class="concept-tag">Ejercicio recomendado</div>
+          <h3>Provocar un error a propósito</h3>
+          <p>Durante la demo de Balance Transfer, eliminar un mapping de cuenta y mostrar el error en el Transfer Log. Luego corregirlo y re-ejecutar. Esto enseña más que cualquier explicación teórica sobre errores de mapping.</p>
+        </div>
+        <div class="concept teal">
+          <div class="concept-tag">Momento clave</div>
+          <h3>Mostrar el drill-down</h3>
+          <p>En Consolidation Details Analysis, mostrar cómo se descompone el saldo consolidado en sus partes: translated balance + eliminations + equity eliminations. Ver el neto frente a los componentes es el "momento wow" del módulo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- 7. QUIZ -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="section" id="quiz">
+  <div class="hero hero-teal">
+    <div class="hero-badge">Capa 5 · Evaluación</div>
+    <h1>Test Your Knowledge — Group Consolidation 2.17</h1>
+    <p>10 preguntas para verificar la comprensión del proceso. Selecciona la mejor respuesta en cada caso.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-body" id="qbox">
+
+      <div class="quiz-q" id="q1">
+        <p>1. ¿Cuál es la principal restricción que IFS impone sobre la Master Company en Group Consolidation?</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="ans(1,'A','w')"><span class="opt-l">A</span> Solo puede tener una moneda contable, siempre en MXN</div>
+          <div class="quiz-opt" onclick="ans(1,'B','c')"><span class="opt-l">B</span> No debe usarse para registrar transacciones de negocio propias</div>
+          <div class="quiz-opt" onclick="ans(1,'C','w')"><span class="opt-l">C</span> Solo puede consolidar hasta 5 compañías como máximo</div>
+          <div class="quiz-opt" onclick="ans(1,'D','w')"><span class="opt-l">D</span> Debe estar en la misma instancia IFS que todas las subsidiarias</div>
+        </div>
+        <div id="e1ok" class="quiz-exp ok">✅ Correcto. IFS documenta explícitamente que la Master Company no debe usarse para transacciones de negocio, porque sus propios saldos no pueden incluirse en el proceso de consolidación.</div>
+        <div id="e1no" class="quiz-exp nope">❌ Incorrecto. La restricción principal es que la Master Company no debe tener transacciones de negocio propias. Es un repositorio técnico exclusivo para la consolidación del grupo.</div>
+      </div>
+
+      <div class="quiz-q" id="q2">
+        <p>2. El Balance Transfer de la subsidiaria COMPONENTES_GDL falla con el mensaje "missing code part value mapping". ¿Cuál es la causa más probable?</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="ans(2,'A','w')"><span class="opt-l">A</span> El período de reporte está en status Closed en la master company</div>
+          <div class="quiz-opt" onclick="ans(2,'B','w')"><span class="opt-l">B</span> Los tipos de cambio del período no están cargados</div>
+          <div class="quiz-opt" onclick="ans(2,'C','c')"><span class="opt-l">C</span> Hay cuentas en COMPONENTES_GDL que no tienen mapping hacia el plan de cuentas de la master company</div>
+          <div class="quiz-opt" onclick="ans(2,'D','w')"><span class="opt-l">D</span> La Reporting Entity no está conectada a la Consolidation Structure</div>
+        </div>
+        <div id="e2ok" class="quiz-exp ok">✅ Correcto. El error "missing code part value mapping" indica que una o más cuentas locales no tienen mapping configurado hacia el plan de cuentas de la master company. Se debe revisar el Code Part Value Mapping, agregar los valores faltantes y re-ejecutar.</div>
+        <div id="e2no" class="quiz-exp nope">❌ Incorrecto. Ese error específico se origina cuando el Code Part Value Mapping está incompleto — alguna cuenta de la subsidiaria no tiene su equivalente en el plan de cuentas de la master company.</div>
+      </div>
+
+      <div class="quiz-q" id="q3">
+        <p>3. ¿Qué elemento de configuración define el porcentaje de participación accionaria y el método de consolidación de una subsidiaria?</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="ans(3,'A','w')"><span class="opt-l">A</span> La Balance Version</div>
+          <div class="quiz-opt" onclick="ans(3,'B','w')"><span class="opt-l">B</span> La Reporting Entity</div>
+          <div class="quiz-opt" onclick="ans(3,'C','c')"><span class="opt-l">C</span> La conexión dentro de la Consolidation Structure</div>
+          <div class="quiz-opt" onclick="ans(3,'D','w')"><span class="opt-l">D</span> El Adjustment Journal</div>
+        </div>
+        <div id="e3ok" class="quiz-exp ok">✅ Correcto. La documentación IFS confirma que las conexiones dentro de la Consolidation Structure contienen el Ownership % y el Consolidation Method (Equity Majority, Equity Minority, Proportional).</div>
+        <div id="e3no" class="quiz-exp nope">❌ Incorrecto. El Ownership % y el Consolidation Method se configuran en las conexiones dentro de la Consolidation Structure, no en la Reporting Entity ni en la Balance Version.</div>
+      </div>
+
+      <div class="quiz-q" id="q4">
+        <p>4. El CFO pregunta por qué el Balance Sheet consolidado del grupo no es simplemente la suma de los balances individuales de cada subsidiaria. ¿Cuál es la explicación correcta?</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="ans(4,'A','w')"><span class="opt-l">A</span> Porque IFS aplica redondeos diferentes en la master company</div>
+          <div class="quiz-opt" onclick="ans(4,'B','c')"><span class="opt-l">B</span> Porque se eliminan las operaciones intercompañía y se ajusta por ownership y equity eliminations</div>
+          <div class="quiz-opt" onclick="ans(4,'C','w')"><span class="opt-l">C</span> Porque Group Consolidation solo consolida el Income Statement, no el Balance Sheet completo</div>
+          <div class="quiz-opt" onclick="ans(4,'D','w')"><span class="opt-l">D</span> Porque cada subsidiaria usa un tipo de cambio diferente para reportar</div>
+        </div>
+        <div id="e4ok" class="quiz-exp ok">✅ Correcto. La consolidación elimina las transacciones entre compañías del grupo (ventas, préstamos, dividendos intercompañía) y ajusta por el porcentaje de ownership. Además, aplica equity eliminations para la inversión de la matriz contra el equity de las subsidiarias.</div>
+        <div id="e4no" class="quiz-exp nope">❌ Incorrecto. La diferencia existe porque la consolidación elimina operaciones intercompañía (ventas internas, préstamos, dividendos entre compañías del grupo) y aplica ajustes por ownership y equity eliminations.</div>
+      </div>
+
+      <div class="quiz-q" id="q5">
+        <p>5. ¿Para qué sirve la Parallel Consolidation Structure en IFS Group Consolidation?</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="ans(5,'A','w')"><span class="opt-l">A</span> Para consolidar dos grupos de empresas de forma independiente al mismo tiempo</div>
+          <div class="quiz-opt" onclick="ans(5,'B','w')"><span class="opt-l">B</span> Para crear una versión de respaldo de la estructura legal en caso de errores</div>
+          <div class="quiz-opt" onclick="ans(5,'C','c')"><span class="opt-l">C</span> Para obtener balances consolidados analizados por una dimensión diferente a la estructura legal (por ejemplo, por segmento o división)</div>
+          <div class="quiz-opt" onclick="ans(5,'D','w')"><span class="opt-l">D</span> Para consolidar compañías que usan diferentes versiones de IFS</div>
+        </div>
+        <div id="e5ok" class="quiz-exp ok">✅ Correcto. IFS documenta que la Parallel Consolidation Structure aplica cuando se requieren balances consolidados analizados por otra dimensión, como reporting segmentado por división o región, en paralelo a la estructura legal.</div>
+        <div id="e5no" class="quiz-exp nope">❌ Incorrecto. La Parallel Structure no duplica la estructura legal ni crea respaldos. Su propósito es permitir análisis del resultado consolidado desde otra dimensión, como una línea de negocio o región, usando una code part diferente.</div>
+      </div>
+
+      <div class="quiz-q" id="q6">
+        <p>6. Antes de ejecutar el Balance Transfer de una subsidiaria, ¿en qué status debe estar el Reporting Period en la master company?</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="ans(6,'A','c')"><span class="opt-l">A</span> Open</div>
+          <div class="quiz-opt" onclick="ans(6,'B','w')"><span class="opt-l">B</span> Closed</div>
+          <div class="quiz-opt" onclick="ans(6,'C','w')"><span class="opt-l">C</span> Approved</div>
+          <div class="quiz-opt" onclick="ans(6,'D','w')"><span class="opt-l">D</span> Draft</div>
+        </div>
+        <div id="e6ok" class="quiz-exp ok">✅ Correcto. IFS documenta que el Reporting Period Range debe estar en status Open para poder transferir saldos. Si está Closed, la transferencia falla.</div>
+        <div id="e6no" class="quiz-exp nope">❌ Incorrecto. El período de reporte debe estar en status Open. Es un prerrequisito confirmado por IFS para ejecutar el Balance Transfer. Si está Closed, no se pueden recibir saldos.</div>
+      </div>
+
+      <div class="quiz-q" id="q7">
+        <p>7. El equipo de consolidación ejecutó la consolidación del mes de junio pero detectó un error en los elimination rules. ¿Qué debe hacer en IFS?</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="ans(7,'A','w')"><span class="opt-l">A</span> Crear un Adjustment Journal para corregir manualmente el saldo consolidado</div>
+          <div class="quiz-opt" onclick="ans(7,'B','c')"><span class="opt-l">B</span> Hacer rollback del nodo consolidado, corregir las elimination rules y ejecutar la consolidación nuevamente</div>
+          <div class="quiz-opt" onclick="ans(7,'C','w')"><span class="opt-l">C</span> Modificar directamente los saldos en la Consolidation Details Analysis</div>
+          <div class="quiz-opt" onclick="ans(7,'D','w')"><span class="opt-l">D</span> Cerrar el período y crear una nueva Balance Version para el mes siguiente</div>
+        </div>
+        <div id="e7ok" class="quiz-exp ok">✅ Correcto. IFS permite hacer rollback para remover los consolidated balances y cambiar el nodo a "Not Consolidated". Luego se corrige la causa raíz (en este caso las elimination rules) y se ejecuta la consolidación nuevamente.</div>
+        <div id="e7no" class="quiz-exp nope">❌ Incorrecto. El proceso correcto es: rollback del nodo → corregir la configuración → ejecutar consolidación nuevamente. No se pueden editar manualmente los saldos consolidados.</div>
+      </div>
+
+      <div class="quiz-q" id="q8">
+        <p>8. ¿Cuál es el Transaction Type que debe usarse como base para generar un Balance Sheet consolidado correcto en BI?</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="ans(8,'A','w')"><span class="opt-l">A</span> Translated Balance</div>
+          <div class="quiz-opt" onclick="ans(8,'B','w')"><span class="opt-l">B</span> Ownership Elimination</div>
+          <div class="quiz-opt" onclick="ans(8,'C','w')"><span class="opt-l">C</span> Intercompany Elimination</div>
+          <div class="quiz-opt" onclick="ans(8,'D','c')"><span class="opt-l">D</span> Consolidated Balances</div>
+        </div>
+        <div id="e8ok" class="quiz-exp ok">✅ Correcto. IFS documenta que los reportes de Balance Sheet consolidado deben basarse en el transaction type Consolidated Balances. Si se incluyen otros transaction types, los saldos se duplican porque cada uno representa una parte del proceso.</div>
+        <div id="e8no" class="quiz-exp nope">❌ Incorrecto. El transaction type correcto para el Balance Sheet consolidado final es Consolidated Balances. Los otros tipos (Translated Balance, Ownership Elimination, etc.) son componentes del proceso, no el resultado final.</div>
+      </div>
+
+      <div class="quiz-q" id="q9">
+        <p>9. El grupo tiene una filial en USA que lleva su contabilidad en otro ERP (no IFS). ¿Puede incluirse en la consolidación de Group Consolidation?</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="ans(9,'A','w')"><span class="opt-l">A</span> No. Group Consolidation solo funciona con compañías IFS</div>
+          <div class="quiz-opt" onclick="ans(9,'B','c')"><span class="opt-l">B</span> Sí, usando Transfer External Balances con el template ExtReportedBalances</div>
+          <div class="quiz-opt" onclick="ans(9,'C','w')"><span class="opt-l">C</span> Solo si la filial migra primero sus datos históricos a IFS</div>
+          <div class="quiz-opt" onclick="ans(9,'D','w')"><span class="opt-l">D</span> Solo con un módulo adicional de integración de terceros</div>
+        </div>
+        <div id="e9ok" class="quiz-exp ok">✅ Correcto. IFS documenta Transfer External Balances para compañías que no están en IFS. El archivo externo debe seguir el template ExtReportedBalances o un template definido con el external file type ExtRepBal.</div>
+        <div id="e9no" class="quiz-exp nope">❌ Incorrecto. IFS soporta la integración de compañías externas mediante Transfer External Balances. No es necesario que la filial esté en IFS: se cargan sus saldos via archivo con el formato ExtReportedBalances.</div>
+      </div>
+
+      <div class="quiz-q" id="q10">
+        <p>10. Al revisar el Consolidation Details Analysis, el contador encuentra que las cifras de eliminación intercompañía no coinciden entre la compradora y la vendedora. ¿Cuál es el reporte de IFS diseñado específicamente para analizar esta diferencia?</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="ans(10,'A','w')"><span class="opt-l">A</span> Balance Transfer Log</div>
+          <div class="quiz-opt" onclick="ans(10,'B','w')"><span class="opt-l">B</span> Journals Analysis</div>
+          <div class="quiz-opt" onclick="ans(10,'C','c')"><span class="opt-l">C</span> Intercompany Reconciliation Report</div>
+          <div class="quiz-opt" onclick="ans(10,'D','w')"><span class="opt-l">D</span> Consolidation Period Balance Analysis</div>
+        </div>
+        <div id="e10ok" class="quiz-exp ok">✅ Correcto. El Intercompany Reconciliation Report lista los saldos intercompañía de reporting and adjustment journals para analizar diferencias en la eliminación intercompañía. Es la herramienta diseñada para reconciliar posiciones entre compradora y vendedora.</div>
+        <div id="e10no" class="quiz-exp nope">❌ Incorrecto. El reporte específico para analizar diferencias de eliminación intercompañía es el Intercompany Reconciliation Report, que lista y compara los saldos intercompañía por período y balance version.</div>
+      </div>
+
+      <div style="text-align:center; margin-top:28px;">
+        <button onclick="showScore()" style="background:var(--blue-800); color:#fff; border:none; border-radius:var(--radius-md); padding:13px 36px; font-size:15px; font-weight:600; cursor:pointer; font-family:var(--sans);">Ver mi resultado →</button>
+      </div>
+    </div>
+
+    <div id="quiz-score" style="display:none; text-align:center; padding:40px 20px;">
+      <div style="font-size:14px; color:var(--ink-3); margin-bottom:8px;">Tu resultado · Group Consolidation 2.17</div>
+      <div class="score-big" id="sc">0/10</div>
+      <div style="font-size:16px; color:var(--ink-3); margin:12px 0 24px;" id="sc-msg"></div>
+      <button onclick="resetQ()" style="background:var(--surface-2); color:var(--ink-2); border:1px solid var(--border); border-radius:var(--radius-md); padding:10px 26px; font-size:14px; cursor:pointer; font-family:var(--sans);">Intentar de nuevo</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- EJECUCIÓN EN IFS — GUÍA PASO A PASO                      -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="section" id="ejecucion">
+  <div class="hero hero-teal">
+    <div class="hero-badge">Guía de Ejecución · IFS Cloud</div>
+    <h1>Cómo ejecutarlo en IFS — Paso a paso</h1>
+    <p>Rutas de navegación exactas, campos obligatorios, orden de configuración y pantallas simuladas para cada subproceso de Group Consolidation 2.17.</p>
+  </div>
+
+  <!-- ORDEN Y DEPENDENCIAS -->
+  <div class="card" style="margin-bottom:24px;">
+    <div class="card-header">⛓️ Orden obligatorio de configuración — Dependencias críticas</div>
+    <div class="card-body">
+      <div class="callout danger">
+        <span class="callout-icon">🚨</span>
+        <div><strong>Antes de empezar:</strong> El orden importa. IFS no te dejará crear un elemento si su prerequisito no existe. Sigue exactamente este orden o recibirás errores de validación.</div>
+      </div>
+      <div style="margin-top:16px;">
+        <div class="flow" style="flex-wrap:wrap; gap:10px;">
+          <div class="flow-step" style="min-width:150px; background:var(--blue-50); border-color:var(--blue-100);">
+            <div class="flow-num" style="background:var(--blue-800);">1</div>
+            <h4 style="color:var(--blue-800);">Master Company</h4>
+            <p>Base de todo. Sin esto nada funciona.</p>
+          </div>
+          <div class="flow-arr">→</div>
+          <div class="flow-step" style="min-width:150px; background:var(--purple-50); border-color:var(--purple-100);">
+            <div class="flow-num" style="background:var(--purple-800);">2</div>
+            <h4 style="color:var(--purple-800);">Balance Version</h4>
+            <p>Define el set de saldos y tipos de cambio.</p>
+          </div>
+          <div class="flow-arr">→</div>
+          <div class="flow-step" style="min-width:150px; background:var(--teal-50); border-color:var(--teal-100);">
+            <div class="flow-num" style="background:var(--teal-800);">3</div>
+            <h4 style="color:var(--teal-800);">Reporting Transaction Type</h4>
+            <p>Define qué tipo de saldo se transfiere.</p>
+          </div>
+          <div class="flow-arr">→</div>
+          <div class="flow-step" style="min-width:150px; background:var(--coral-50); border-color:var(--coral-100);">
+            <div class="flow-num" style="background:var(--coral-800);">4</div>
+            <h4 style="color:var(--coral-800);">Reporting Entity</h4>
+            <p>Conecta la compañía al proceso.</p>
+          </div>
+          <div class="flow-arr">→</div>
+          <div class="flow-step" style="min-width:150px; background:var(--amber-50); border-color:var(--amber-100);">
+            <div class="flow-num" style="background:var(--amber-800);">5</div>
+            <h4 style="color:var(--amber-800);">Code Part Mapping</h4>
+            <p>Homologa planes de cuentas.</p>
+          </div>
+          <div class="flow-arr">→</div>
+          <div class="flow-step" style="min-width:150px; background:var(--green-50); border-color:var(--green-100);">
+            <div class="flow-num" style="background:var(--green-800);">6</div>
+            <h4 style="color:var(--green-800);">Consolidation Structure</h4>
+            <p>Jerarquía, nodos y ownership.</p>
+          </div>
+          <div class="flow-arr">→</div>
+          <div class="flow-step" style="min-width:150px; background:var(--blue-50); border-color:var(--blue-100);">
+            <div class="flow-num" style="background:var(--blue-800);">7</div>
+            <h4 style="color:var(--blue-800);">Posting Control GCP1/GCP2</h4>
+            <p>Balanceo IS/BS en el transfer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 1: MASTER COMPANY -->
+  <p class="sec-title">PASO 1 — Configurar la Master Company</p>
+  <p class="sec-desc">Una sola vez. Es la base de todo el proceso de consolidación.</p>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">🗺️ Ruta de navegación en IFS</div>
+    <div class="card-body">
+      <div class="callout info">
+        <span class="callout-icon">📍</span>
+        <div><strong>Ruta:</strong> <code>Financials</code> → <code>General Ledger</code> → <code>Basic Data</code> → <code>Company</code> → seleccionar la compañía → pestaña <code>Consolidation</code> → activar <strong>"Master Company"</strong></div>
+      </div>
+      <div class="param-screen" style="margin-top:14px;">
+        <div class="ps-title">Pantalla simulada — Company · Pestaña Consolidation</div>
+        <div class="param-row">
+          <span class="param-label">Company ID <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>GMET_CONSOL</code> — No puede modificarse después</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Company Name <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val">Grupo Metalmex Consolidation</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Accounting Currency <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val">USD — Debe ser la moneda del grupo. No cambiar después.</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Master Company <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val">✅ Activar este checkbox — convierte la compañía en repositorio de consolidación</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Group Currency Code</span>
+          <span class="param-val">USD — Opcional. Se usa si necesitas Group Currency Balances separados.</span>
+        </div>
+      </div>
+      <div class="callout warn" style="margin-top:10px;">
+        <span class="callout-icon">⚠️</span>
+        <div><strong>Campos con <span style="color:var(--red-600);">*</span> son obligatorios.</strong> La moneda contable no puede cambiarse una vez que existen transacciones o configuraciones relacionadas.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 2: BALANCE VERSION -->
+  <p class="sec-title">PASO 2 — Crear Balance Version</p>
+  <p class="sec-desc">Define el conjunto de saldos a consolidar y los tipos de cambio a usar.</p>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">🗺️ Ruta de navegación en IFS</div>
+    <div class="card-body">
+      <div class="callout info">
+        <span class="callout-icon">📍</span>
+        <div><strong>Ruta:</strong> <code>Financials</code> → <code>Group Consolidation</code> → <code>Basic Data</code> → <code>Balance Versions</code> → botón <strong>New</strong></div>
+      </div>
+      <div class="param-screen" style="margin-top:14px;">
+        <div class="ps-title">Pantalla simulada — Balance Version</div>
+        <div class="param-row">
+          <span class="param-label">Version ID <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>ACTUAL_2025</code> — Texto libre, sin espacios, máx. 20 caracteres</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Description <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val">Saldos Reales 2025</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Average Rate Type <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>AVG_MONTHLY</code> — Se usa para Income Statement (cuentas de resultado)</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Closing Rate Type <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>CLOSE_MONTH</code> — Se usa para Balance Sheet (cuentas de balance)</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Historical Rate Type</span>
+          <span class="param-val">Opcional. Para cuentas que requieren tasa histórica (equity, activos fijos adquiridos).</span>
+        </div>
+      </div>
+      <div class="callout tip">
+        <span class="callout-icon">💡</span>
+        <div><strong>Práctica recomendada:</strong> Crear una Balance Version por tipo de saldo: <code>ACTUAL_2025</code>, <code>BUDGET_2025</code>, <code>FORECAST_Q3</code>. Cada una puede tener diferentes rate types.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 3: REPORTING TRANSACTION TYPE -->
+  <p class="sec-title">PASO 3 — Crear Reporting Transaction Type</p>
+  <p class="sec-desc">Define qué tipo de saldo transfiere cada compañía: real, presupuesto o forecast.</p>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">🗺️ Ruta de navegación en IFS</div>
+    <div class="card-body">
+      <div class="callout info">
+        <span class="callout-icon">📍</span>
+        <div><strong>Ruta:</strong> <code>Financials</code> → <code>Group Consolidation</code> → <code>Basic Data</code> → <code>Reporting Transaction Types</code> → botón <strong>New</strong></div>
+      </div>
+      <div class="param-screen" style="margin-top:14px;">
+        <div class="ps-title">Pantalla simulada — Reporting Transaction Type</div>
+        <div class="param-row">
+          <span class="param-label">Transaction Type ID <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>ACTUAL_MONTHLY</code></span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Description <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val">Transferencia de saldos reales mensuales</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Source Type <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>Actual</code> — Opciones: Actual / Budget / Forecast</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Balance Version <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>ACTUAL_2025</code> — La que creaste en el Paso 2</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Master Company <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>GMET_CONSOL</code> — La que creaste en el Paso 1</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 4: REPORTING ENTITY -->
+  <p class="sec-title">PASO 4 — Crear Reporting Entities</p>
+  <p class="sec-desc">Una por cada compañía que reportará saldos al grupo. Repetir para cada subsidiaria.</p>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">🗺️ Ruta de navegación en IFS</div>
+    <div class="card-body">
+      <div class="callout info">
+        <span class="callout-icon">📍</span>
+        <div><strong>Ruta:</strong> <code>Financials</code> → <code>Group Consolidation</code> → <code>Basic Data</code> → <code>Reporting Entities</code> → botón <strong>New</strong></div>
+      </div>
+      <div class="param-screen" style="margin-top:14px;">
+        <div class="ps-title">Pantalla simulada — Reporting Entity (Ejemplo: ACEROS_MTY)</div>
+        <div class="param-row">
+          <span class="param-label">Entity ID <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>RE_ACEROS_MTY</code></span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Description <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val">Aceros Monterrey S.A. de C.V.</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Entity Type <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>Reporting</code> — Para compañías IFS que transfieren saldos reales</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Connected Company <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>ACEROS_MTY</code> — La compañía IFS origen. Debe existir previamente.</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Master Company <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>GMET_CONSOL</code></span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Reporting Transaction Type <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>ACTUAL_MONTHLY</code> — La que creaste en el Paso 3</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Currency</span>
+          <span class="param-val">MXN — Se toma automáticamente de la compañía conectada</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Intercompany Counterpart</span>
+          <span class="param-val">Definir si esta entidad tiene operaciones intercompañía que eliminar</span>
+        </div>
+      </div>
+      <div class="callout warn" style="margin-top:10px;">
+        <span class="callout-icon">⚠️</span>
+        <div><strong>Repite este paso</strong> para cada subsidiaria: COMPONENTES_GDL, METALCO_USA, HOLDING_MX. Si tienes compañías externas (no en IFS), el Entity Type será <code>External</code>.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 5: CODE PART MAPPING -->
+  <p class="sec-title">PASO 5 — Configurar Code Part Mapping y Code Part Value Mapping</p>
+  <p class="sec-desc">El paso más crítico del BDR. Si falta un solo valor, el Balance Transfer fallará.</p>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">🗺️ Ruta de navegación en IFS</div>
+    <div class="card-body">
+      <div class="callout info">
+        <span class="callout-icon">📍</span>
+        <div><strong>Ruta Code Part Mapping:</strong> <code>Financials</code> → <code>Group Consolidation</code> → <code>Basic Data</code> → <code>Code Part Mapping</code> → seleccionar Reporting Entity → botón <strong>New</strong></div>
+      </div>
+      <div class="callout info" style="margin-top:6px;">
+        <span class="callout-icon">📍</span>
+        <div><strong>Ruta Code Part Value Mapping:</strong> Misma pantalla de Code Part Mapping → pestaña <strong>Code Part Value Mapping</strong> → agregar cada cuenta</div>
+      </div>
+      <div class="param-screen" style="margin-top:14px;">
+        <div class="ps-title">Pantalla simulada — Code Part Value Mapping (Ejemplo: ACEROS_MTY → GMET_CONSOL)</div>
+        <div class="param-row">
+          <span class="param-label">Reporting Entity <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>RE_ACEROS_MTY</code></span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Code Part <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>Account</code> — El code part que se mapea (normalmente la cuenta contable)</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">From Value (Compañía Local) <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>1105</code> — Clientes nacionales en ACEROS_MTY</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">To Value (Master Company) <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>1100</code> — Accounts Receivable en GMET_CONSOL</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Valid From</span>
+          <span class="param-val">Fecha desde la cual aplica el mapping. Dejar en blanco para que aplique siempre.</span>
+        </div>
+      </div>
+      <div class="callout tip" style="margin-top:10px;">
+        <span class="callout-icon">💡</span>
+        <div><strong>Consejo de eficiencia:</strong> IFS permite importar el Code Part Value Mapping desde un archivo Excel. Si el cliente tiene muchas cuentas, es mucho más rápido preparar el archivo y cargarlo que capturarlo línea por línea.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 6: CONSOLIDATION STRUCTURE -->
+  <p class="sec-title">PASO 6 — Crear la Consolidation Structure</p>
+  <p class="sec-desc">La jerarquía del grupo: quién consolida a quién, con qué porcentaje y qué método.</p>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">🗺️ Ruta de navegación en IFS</div>
+    <div class="card-body">
+      <div class="callout info">
+        <span class="callout-icon">📍</span>
+        <div><strong>Ruta:</strong> <code>Financials</code> → <code>Group Consolidation</code> → <code>Basic Data</code> → <code>Consolidation Structure</code> → botón <strong>New</strong></div>
+      </div>
+      <div class="param-screen" style="margin-top:14px;">
+        <div class="ps-title">Pantalla simulada — Consolidation Structure (Cabecera)</div>
+        <div class="param-row">
+          <span class="param-label">Structure ID <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>GMET_LEGAL</code></span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Description <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val">Estructura Legal Grupo Metalmex</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Master Company <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>GMET_CONSOL</code></span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Generate Equity Eliminations</span>
+          <span class="param-val">✅ Activar si el grupo tiene inversiones entre compañías que deben eliminarse</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Apply Consolidation Historical Rates</span>
+          <span class="param-val">✅ Activar si se requieren tasas históricas para equity y activos adquiridos</span>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;">
+        <div style="font-size:12px; font-weight:700; text-transform:uppercase; color:var(--blue-600); letter-spacing:.05em; margin-bottom:10px;">Cómo agregar Nodos y Conexiones dentro de la estructura</div>
+        <ol class="steps">
+          <li>
+            <div><h4>Crear el Nodo Raíz</h4>
+            <p>En la vista de árbol de la Consolidation Structure → clic derecho → <strong>Add Node</strong>. Asignar: Node ID, Description, Currency Code (moneda de consolidación del nodo). IFS creará automáticamente un nodo de eliminación paralelo.</p></div>
+          </li>
+          <li>
+            <div><h4>Agregar Nodos hijo</h4>
+            <p>Seleccionar el nodo padre → clic derecho → <strong>Add Node</strong>. Repetir para cada nivel de la jerarquía (subholdings, divisiones, regiones).</p></div>
+          </li>
+          <li>
+            <div><h4>Conectar Reporting Entities a Nodos</h4>
+            <p>Seleccionar el nodo → pestaña <strong>Connections</strong> → botón <strong>New Connection</strong>. Seleccionar la Reporting Entity y definir:</p>
+            <div class="param-screen" style="margin-top:8px;">
+              <div class="param-row"><span class="param-label">Reporting Entity <span style="color:var(--red-600);">*</span></span><span class="param-val"><code>RE_ACEROS_MTY</code></span></div>
+              <div class="param-row"><span class="param-label">Ownership % <span style="color:var(--red-600);">*</span></span><span class="param-val"><code>100</code> — Porcentaje de participación del grupo en esta entidad</span></div>
+              <div class="param-row"><span class="param-label">Consolidation Method <span style="color:var(--red-600);">*</span></span><span class="param-val"><code>Equity Majority</code> — O Equity Minority / Proportional según corresponda</span></div>
+              <div class="param-row"><span class="param-label">Valid From <span style="color:var(--red-600);">*</span></span><span class="param-val">Fecha desde la que aplica esta conexión (inicio del período de reporte)</span></div>
+            </div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 7: POSTING CONTROL GCP1/GCP2 -->
+  <p class="sec-title">PASO 7 — Configurar Posting Control GCP1 y GCP2</p>
+  <p class="sec-desc">IFS necesita estos posting types para balancear el Income Statement y el Balance Sheet durante el transfer.</p>
+  <div class="card" style="margin-bottom:24px;">
+    <div class="card-header">🗺️ Ruta de navegación en IFS</div>
+    <div class="card-body">
+      <div class="callout info">
+        <span class="callout-icon">📍</span>
+        <div><strong>Ruta:</strong> <code>Financials</code> → <code>General Ledger</code> → <code>Basic Data</code> → <code>Posting Control</code> → buscar posting types <code>GCP1</code> y <code>GCP2</code> → configurar cuenta contable destino en la master company</div>
+      </div>
+      <table class="dt" style="margin-top:14px;">
+        <thead><tr><th>Posting Type</th><th>Propósito</th><th>Cuenta típica en master company</th></tr></thead>
+        <tbody>
+          <tr><td><code>GCP1</code></td><td>Contrapartida de Balance Sheet en el transfer</td><td>Cuenta puente de consolidación BS (ej. 9990-CONSOL-BS)</td></tr>
+          <tr><td><code>GCP2</code></td><td>Contrapartida de Income Statement en el transfer</td><td>Cuenta puente de consolidación IS (ej. 9991-CONSOL-IS)</td></tr>
+        </tbody>
+      </table>
+      <div class="callout danger" style="margin-top:12px;">
+        <span class="callout-icon">🚨</span>
+        <div><strong>Si GCP1 o GCP2 no están configurados</strong>, el Balance Transfer fallará con el error "missing automatic posting instructions". Este es el segundo error más frecuente después del mapping de cuentas.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EJECUCIÓN: TRANSFER BALANCES -->
+  <p class="sec-title">EJECUCIÓN — Transfer Balances (2.17.4)</p>
+  <p class="sec-desc">Ya tienes el BDR listo. Ahora ejecutas el proceso mensual.</p>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">▶️ Paso a paso — Balance Transfer Assistant</div>
+    <div class="card-body">
+      <ol class="steps">
+        <li>
+          <div><h4>Abrir Reporting Status</h4>
+          <p><code>Financials</code> → <code>Group Consolidation</code> → <code>Reporting Status</code><br>
+          Seleccionar: Master Company = <code>GMET_CONSOL</code>, Reporting Transaction Type = <code>ACTUAL_MONTHLY</code>, Balance Version = <code>ACTUAL_2025</code>, Period = <code>2025-06</code> → botón <strong>Open Period</strong>. El status cambia a <code>Open</code>.</p></div>
+        </li>
+        <li>
+          <div><h4>Verificar tipos de cambio</h4>
+          <p><code>Financials</code> → <code>General Ledger</code> → <code>Currency</code> → <code>Currency Rates</code><br>
+          Confirmar que existen tasas para MXN/USD en el período 2025-06, con Rate Types <code>AVG_MONTHLY</code> y <code>CLOSE_MONTH</code>. Si no existen, cargarlos antes de continuar.</p></div>
+        </li>
+        <li>
+          <div><h4>Lanzar Balance Transfer Assistant</h4>
+          <p>Desde Reporting Status → seleccionar la Reporting Entity → botón <strong>Transfer Balances</strong>. O bien: <code>Group Consolidation</code> → <code>Balance Transfer Assistant</code> → seleccionar parámetros → <strong>Execute</strong>.</p></div>
+        </li>
+        <li>
+          <div><h4>Revisar el Balance Transfer Log</h4>
+          <p><code>Group Consolidation</code> → <code>Balance Transfer Log</code><br>
+          Si hay líneas en rojo: identificar el error (missing mapping, missing rates, período cerrado). Corregir y volver al paso 3.</p></div>
+        </li>
+        <li>
+          <div><h4>Registrar Adjustment Journals (si aplica)</h4>
+          <p><code>Group Consolidation</code> → <code>Adjustment Journals</code> → <strong>New</strong><br>
+          <strong>Regla crítica:</strong> El journal debe cuadrar en moneda de la reporting entity Y separadamente el Balance Sheet con el Income Statement. Si no cuadra, IFS creará filas de balanceo con GCP1/GCP2.</p></div>
+        </li>
+        <li>
+          <div><h4>Aprobar y Cerrar el Reporting Period</h4>
+          <p>Desde Reporting Status → botón <strong>Approve Journal</strong> → status cambia a <code>Approved</code>.<br>
+          Cuando todo está listo: botón <strong>Close Period</strong> → status cambia a <code>Closed</code>. Ya no se pueden agregar más saldos para este período.</p></div>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- EJECUCIÓN: CONSOLIDATION -->
+  <p class="sec-title">EJECUCIÓN — Consolidation (2.17.5)</p>
+  <p class="sec-desc">Con todos los saldos transferidos y el período cerrado, ejecutas la consolidación.</p>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">▶️ Paso a paso — Ejecutar la Consolidación</div>
+    <div class="card-body">
+      <div class="callout info">
+        <span class="callout-icon">📍</span>
+        <div><strong>Ruta:</strong> <code>Financials</code> → <code>Group Consolidation</code> → <code>Consolidation</code></div>
+      </div>
+      <ol class="steps" style="margin-top:14px;">
+        <li>
+          <div><h4>Crear registro de consolidación</h4>
+          <p>Botón <strong>New</strong>. Seleccionar: Consolidation Structure = <code>GMET_LEGAL</code>, Balance Version = <code>ACTUAL_2025</code>, Consolidation Period = <code>2025-06</code>. IFS muestra la representación gráfica de la estructura y cambia el campo Open/Close a <code>Open</code>.</p></div>
+        </li>
+        <li>
+          <div><h4>Ejecutar consolidación por nodo o estructura completa</h4>
+          <p>Opciones en la barra de acciones:<br>
+          — <strong>Consolidate Node</strong>: consolida un nodo específico (útil para verificar antes de procesar todo)<br>
+          — <strong>Consolidate Structure</strong>: consolida toda la jerarquía de una vez (recomendado para el proceso mensual)<br>
+          IFS cambia el status de cada nodo procesado a <code>Consolidated</code>.</p></div>
+        </li>
+        <li>
+          <div><h4>Calcular Group Currency Balances (si aplica)</h4>
+          <p>Si configuraste Group Currency Code en la master company → botón <strong>Calculate Group Currency Balances</strong>. Solo aplica si necesitas saldos en una moneda de grupo distinta a la del nodo.</p></div>
+        </li>
+        <li>
+          <div><h4>Calcular Consolidated Period Balances</h4>
+          <p>Botón <strong>Calculate Consolidated Period Balances</strong>. Necesario para el análisis de period balances en reportes y BI.</p></div>
+        </li>
+        <li>
+          <div><h4>Si hay que reprocesar — Rollback</h4>
+          <p>Botón <strong>Rollback</strong> (disponible por nodo o estructura completa). IFS remueve los consolidated balances y cambia el status a <code>Not Consolidated</code>. Corriges la causa raíz y ejecutas nuevamente desde el paso 2.</p></div>
+        </li>
+      </ol>
+      <div class="param-screen" style="margin-top:14px;">
+        <div class="ps-title">Estados posibles de un nodo durante la consolidación</div>
+        <div class="param-row"><span class="param-label"><span class="badge b-gray">Not Consolidated</span></span><span class="param-val">Estado inicial. No se ha ejecutado la consolidación para este nodo.</span></div>
+        <div class="param-row"><span class="param-label"><span class="badge b-blue">In Progress</span></span><span class="param-val">La consolidación está ejecutándose. No interrumpir.</span></div>
+        <div class="param-row"><span class="param-label"><span class="badge b-green">Consolidated</span></span><span class="param-val">Consolidación exitosa. Los balances están disponibles para análisis.</span></div>
+        <div class="param-row"><span class="param-label"><span class="badge b-red">Error</span></span><span class="param-val">Ocurrió un error. Revisar log, corregir y hacer rollback antes de re-ejecutar.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANÁLISIS Y VERIFICACIÓN -->
+  <p class="sec-title">VERIFICACIÓN — Analizar los resultados</p>
+  <p class="sec-desc">Cómo confirmar que la consolidación es correcta antes de entregarla al CFO.</p>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">🔍 Rutas de análisis y reconciliación</div>
+    <div class="card-body">
+      <table class="dt">
+        <thead><tr><th>Herramienta</th><th>Ruta en IFS</th><th>¿Para qué usarla?</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Consolidation Details Analysis</strong></td>
+            <td><code>Group Consolidation</code> → <code>Consolidation Details Analysis</code></td>
+            <td>Ver el detalle por etapa: translated balance, eliminations, equity. Reconciliar el neto consolidado contra sus componentes.</td>
+          </tr>
+          <tr>
+            <td><strong>Intercompany Reconciliation Report</strong></td>
+            <td><code>Group Consolidation</code> → <code>Reports</code> → <code>Intercompany Reconciliation</code></td>
+            <td>Identificar diferencias entre lo que reporta la compradora y la vendedora en operaciones intercompañía.</td>
+          </tr>
+          <tr>
+            <td><strong>Journals Analysis</strong></td>
+            <td><code>Group Consolidation</code> → <code>Journals Analysis</code></td>
+            <td>Revisar el detalle de los reporting y adjustment journals generados en el transfer.</td>
+          </tr>
+          <tr>
+            <td><strong>Consolidation Period Balance Analysis</strong></td>
+            <td><code>Group Consolidation</code> → <code>Consolidation Period Balance Analysis</code></td>
+            <td>Verificar period balances para Income Statement cuando se usa la opción "Consolidation Source Level Details".</td>
+          </tr>
+          <tr>
+            <td><strong>BI / Business Reporter</strong></td>
+            <td><code>Business Intelligence</code> → <code>Group Consolidation</code> → <code>Tabular Models</code></td>
+            <td>Vista ejecutiva: Balance Sheet y P&L consolidado del grupo. Aquí consume la información el CFO y la dirección.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout danger" style="margin-top:14px;">
+        <span class="callout-icon">🚨</span>
+        <div><strong>Regla de oro del reporting:</strong> En el Tabular Model de BI, siempre filtrar por Transaction Type = <code>Consolidated Balances</code> para el Balance Sheet y el P&L finales. Si incluyes otros transaction types, los saldos se duplican porque cada uno representa una etapa del proceso, no el resultado final.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESUMEN VISUAL -->
+  <div class="card">
+    <div class="card-header">📋 Resumen ejecutivo — ¿Estás listo para ejecutarlo en IFS?</div>
+    <div class="card-body">
+      <table class="dt">
+        <thead><tr><th>¿Tienes esto?</th><th>Elemento</th><th>Si no lo tienes...</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge b-green">✓ Verificar</span></td><td>Master Company creada y sin transacciones de negocio</td><td>Crear una compañía IFS nueva dedicada solo a consolidación</td></tr>
+          <tr><td><span class="badge b-green">✓ Verificar</span></td><td>Balance Version con Rate Types de promedio y cierre</td><td>Crear en Group Consolidation → Basic Data → Balance Versions</td></tr>
+          <tr><td><span class="badge b-green">✓ Verificar</span></td><td>Reporting Transaction Type conectado a la Balance Version</td><td>Crear en Group Consolidation → Basic Data → Reporting Transaction Types</td></tr>
+          <tr><td><span class="badge b-green">✓ Verificar</span></td><td>Reporting Entity por cada subsidiaria</td><td>Crear en Group Consolidation → Basic Data → Reporting Entities</td></tr>
+          <tr><td><span class="badge b-amber">⚠️ Crítico</span></td><td>Code Part Value Mapping completo para cada compañía</td><td>Configurar en Code Part Mapping → pestaña Code Part Value Mapping</td></tr>
+          <tr><td><span class="badge b-amber">⚠️ Crítico</span></td><td>Posting Control GCP1 y GCP2 configurados en master company</td><td>Configurar en General Ledger → Posting Control</td></tr>
+          <tr><td><span class="badge b-green">✓ Verificar</span></td><td>Consolidation Structure con nodos, conexiones, ownership y método</td><td>Crear en Group Consolidation → Basic Data → Consolidation Structure</td></tr>
+          <tr><td><span class="badge b-amber">⚠️ Crítico</span></td><td>Currency Rates cargados para el período a consolidar</td><td>Cargar en General Ledger → Currency → Currency Rates</td></tr>
+          <tr><td><span class="badge b-green">✓ Verificar</span></td><td>Reporting Period abierto (status Open) en master company</td><td>Abrir desde Group Consolidation → Reporting Status</td></tr>
+        </tbody>
+      </table>
+      <div class="callout tip" style="margin-top:14px;">
+        <span class="callout-icon">🎯</span>
+        <div><strong>Si todos los elementos están en verde:</strong> Estás listo para ejecutar el Balance Transfer y la Consolidación. Los elementos marcados en ⚠️ son los que más frecuentemente causan errores en implementaciones reales. Revísalos dos veces antes de ejecutar.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+  var scores = {}, done = {};
+
+  function show(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    var map = {overview:0,conceptos:1,realworld:2,bdr:3,proceso:4,ejecucion:5,usuario:6,instructor:7,quiz:8};
+    var tabs = document.querySelectorAll('.nav-tab');
+    if (map[id] !== undefined) tabs[map[id]].classList.add('active');
+    window.scrollTo(0,0);
+  }
+
+  function ans(q, ltr, res) {
+    if (done[q]) return;
+    done[q] = true;
+    scores[q] = (res === 'c') ? 1 : 0;
+    document.querySelectorAll('#q'+q+' .quiz-opt').forEach(function(o) {
+      o.style.pointerEvents = 'none';
+      if (o.querySelector('.opt-l').textContent === ltr)
+        o.classList.add(res === 'c' ? 'correct' : 'wrong');
+    });
+    var ok = document.getElementById('e'+q+'ok');
+    var no = document.getElementById('e'+q+'no');
+    if (res === 'c') { ok.classList.add('show'); }
+    else { no.classList.add('show'); }
+  }
+
+  function showScore() {
+    var total = Object.values(scores).reduce(function(a,b){ return a+b; }, 0);
+    document.getElementById('qbox').style.display = 'none';
+    document.getElementById('quiz-score').style.display = 'block';
+    document.getElementById('sc').textContent = total + '/10';
+    var msgs = [
+      'Sigue estudiando, revisa los conceptos de Master Company y el flujo de Transfer Balances.',
+      'Buen inicio. Repasa las elimination rules y los transaction types del proceso.',
+      'Muy bien. Estás listo para capacitar este módulo.',
+      '¡Excelente dominio de Group Consolidation!'
+    ];
+    var idx = total <= 3 ? 0 : total <= 6 ? 1 : total <= 8 ? 2 : 3;
+    document.getElementById('sc-msg').textContent = msgs[idx];
+    document.getElementById('sc').style.color = total >= 9 ? '#3B6D11' : total >= 7 ? '#854F0B' : '#A32D2D';
+  }
+
+  function resetQ() {
+    scores = {}; done = {};
+    document.getElementById('qbox').style.display = 'block';
+    document.getElementById('quiz-score').style.display = 'none';
+    document.querySelectorAll('.quiz-opt').forEach(function(o){ o.classList.remove('correct','wrong'); o.style.pointerEvents = ''; });
+    document.querySelectorAll('.quiz-exp').forEach(function(e){ e.classList.remove('show'); });
+  }
+</script>
+</body>
+</html>

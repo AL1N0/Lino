@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IFS Cloud · Business Planning 2.16 · Guía de Capacitación</title>
+<style>
+  :root {
+    --ink: #1a1917; --ink-2: #3d3d3a; --ink-3: #73726c; --ink-4: #9c9a92;
+    --surface: #ffffff; --surface-2: #f7f6f2; --surface-3: #efede7;
+    --border: #e0ded7; --border-2: #cac8c0;
+    --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px; --radius-xl: 22px;
+    --sans: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    --blue-50:#E6F1FB; --blue-100:#B5D4F4; --blue-200:#85B7EB; --blue-600:#185FA5; --blue-800:#0C447C; --blue-900:#042C53;
+    --purple-50:#EEEDFE; --purple-100:#CECBF6; --purple-600:#534AB7; --purple-800:#3C3489; --purple-900:#26215C;
+    --teal-50:#E1F5EE; --teal-100:#9FE1CB; --teal-600:#0F6E56; --teal-800:#085041;
+    --coral-50:#FAECE7; --coral-100:#F5C4B3; --coral-600:#993C1D; --coral-800:#712B13;
+    --amber-50:#FAEEDA; --amber-100:#FAC775; --amber-600:#854F0B; --amber-800:#633806;
+    --green-50:#EAF3DE; --green-100:#C0DD97; --green-600:#3B6D11; --green-800:#27500A;
+    --red-50:#FCEBEB; --red-100:#F7C1C1; --red-600:#A32D2D; --red-800:#791F1F;
+    --gray-50:#F1EFE8; --gray-100:#D3D1C7; --gray-400:#888780; --gray-600:#5F5E5A; --gray-800:#444441;
+    --pink-50:#FBEAF0; --pink-100:#F4C0D1; --pink-600:#993556; --pink-800:#72243E;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:var(--sans); background:var(--surface-2); color:var(--ink-2); font-size:15px; line-height:1.65; }
+
+  /* ── HEADER ── */
+  .site-header { background:var(--blue-800); color:#fff; position:sticky; top:0; z-index:100; box-shadow:0 2px 8px rgba(0,0,0,.18); }
+  .header-inner { max-width:1120px; margin:0 auto; padding:0 28px; display:flex; align-items:center; justify-content:space-between; height:58px; gap:20px; }
+  .header-logo { display:flex; align-items:center; gap:10px; text-decoration:none; color:#fff; white-space:nowrap; }
+  .logo-badge { background:rgba(255,255,255,.2); border:1px solid rgba(255,255,255,.25); border-radius:6px; padding:3px 9px; font-size:11px; font-weight:700; letter-spacing:.05em; }
+  .logo-title { font-size:14px; font-weight:600; opacity:.92; }
+  .logo-course { font-size:11px; opacity:.6; font-weight:400; }
+  .nav-tabs { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; }
+  .nav-tabs::-webkit-scrollbar { display:none; }
+  .nav-tab { background:none; border:none; color:rgba(255,255,255,.65); padding:7px 13px; border-radius:6px; cursor:pointer; font-size:12.5px; font-family:var(--sans); white-space:nowrap; transition:all .14s; }
+  .nav-tab:hover { background:rgba(255,255,255,.12); color:#fff; }
+  .nav-tab.active { background:rgba(255,255,255,.2); color:#fff; font-weight:600; }
+
+  /* ── LAYOUT ── */
+  .page { max-width:1120px; margin:0 auto; padding:36px 28px 80px; }
+  .section { display:none; }
+  .section.active { display:block; }
+
+  /* ── HEROES ── */
+  .hero { border-radius:var(--radius-xl); padding:40px 48px; color:#fff; margin-bottom:32px; position:relative; overflow:hidden; }
+  .hero::before { content:''; position:absolute; right:-60px; bottom:-60px; width:260px; height:260px; border-radius:50%; background:rgba(255,255,255,.05); }
+  .hero::after { content:''; position:absolute; right:60px; bottom:-20px; width:140px; height:140px; border-radius:50%; background:rgba(255,255,255,.04); }
+  .hero-blue { background:linear-gradient(135deg, var(--blue-900) 0%, var(--blue-800) 100%); }
+  .hero-purple { background:linear-gradient(135deg, var(--purple-900) 0%, var(--purple-800) 100%); }
+  .hero-teal { background:linear-gradient(135deg, #085041 0%, var(--teal-600) 100%); }
+  .hero-badge { display:inline-block; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.22); border-radius:100px; padding:4px 14px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; margin-bottom:14px; }
+  .hero h1 { font-size:28px; font-weight:800; margin-bottom:10px; line-height:1.2; }
+  .hero p { font-size:15px; opacity:.82; max-width:600px; line-height:1.6; }
+
+  /* ── PROGRESS BAR (course topics) ── */
+  .course-topics { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:28px; }
+  .topic-pill { display:flex; align-items:center; gap:10px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); padding:12px 16px; font-size:13px; cursor:pointer; transition:all .14s; }
+  .topic-pill:hover { border-color:var(--blue-200); background:var(--blue-50); }
+  .topic-pill .t-num { min-width:26px; height:26px; border-radius:50%; background:var(--blue-50); color:var(--blue-800); font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  .topic-pill .t-status { margin-left:auto; font-size:11px; font-weight:600; }
+  .topic-pill .done { color:var(--green-600); }
+  .topic-pill .pending { color:var(--amber-600); }
+
+  /* ── CARDS ── */
+  .card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); overflow:hidden; }
+  .card + .card { margin-top:20px; }
+  .card-header { padding:14px 22px; border-bottom:1px solid var(--border); font-weight:600; font-size:14px; display:flex; align-items:center; gap:8px; color:var(--ink); }
+  .card-body { padding:22px; }
+
+  /* ── GRIDS ── */
+  .g2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .g3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+  .g4 { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+  @media(max-width:720px) { .g2,.g3,.g4 { grid-template-columns:1fr; } .course-topics { grid-template-columns:1fr; } }
+
+  /* ── CONCEPT BOXES ── */
+  .concept { border-radius:var(--radius-lg); padding:22px; border:1.5px solid transparent; }
+  .concept.blue { background:var(--blue-50); border-color:var(--blue-100); }
+  .concept.purple { background:var(--purple-50); border-color:var(--purple-100); }
+  .concept.teal { background:var(--teal-50); border-color:var(--teal-100); }
+  .concept.coral { background:var(--coral-50); border-color:var(--coral-100); }
+  .concept.amber { background:var(--amber-50); border-color:var(--amber-100); }
+  .concept.green { background:var(--green-50); border-color:var(--green-100); }
+  .concept.pink { background:var(--pink-50); border-color:var(--pink-100); }
+  .concept-tag { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; margin-bottom:8px; }
+  .blue .concept-tag { color:var(--blue-600); }
+  .purple .concept-tag { color:var(--purple-600); }
+  .teal .concept-tag { color:var(--teal-600); }
+  .coral .concept-tag { color:var(--coral-600); }
+  .amber .concept-tag { color:var(--amber-600); }
+  .green .concept-tag { color:var(--green-600); }
+  .pink .concept-tag { color:var(--pink-600); }
+  .concept h3 { font-size:15px; font-weight:700; color:var(--ink); margin-bottom:8px; }
+  .concept p { font-size:13px; color:var(--ink-3); line-height:1.6; }
+
+  /* ── FLOW ── */
+  .flow { display:flex; align-items:stretch; gap:0; overflow-x:auto; padding:4px 0 8px; }
+  .flow-step { flex:1; min-width:130px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); padding:14px 14px; text-align:center; }
+  .flow-num { width:26px; height:26px; border-radius:50%; background:var(--blue-800); color:#fff; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; margin:0 auto 8px; }
+  .flow-step h4 { font-size:13px; font-weight:600; color:var(--ink); margin-bottom:3px; }
+  .flow-step p { font-size:11px; color:var(--ink-3); }
+  .flow-arr { font-size:20px; color:var(--ink-4); padding:0 6px; align-self:center; flex-shrink:0; }
+
+  /* ── TABLE ── */
+  .dt { width:100%; border-collapse:collapse; font-size:13px; }
+  .dt th { background:var(--surface-2); text-align:left; padding:9px 14px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-3); border-bottom:1px solid var(--border); }
+  .dt td { padding:10px 14px; border-bottom:1px solid var(--border); vertical-align:top; }
+  .dt tr:last-child td { border-bottom:none; }
+  .dt tr:hover td { background:var(--surface-2); }
+  code { font-family:var(--mono); background:var(--surface-3); border:1px solid var(--border); border-radius:4px; padding:1px 6px; font-size:11.5px; color:var(--blue-800); }
+
+  /* ── BADGE ── */
+  .badge { display:inline-block; border-radius:100px; padding:2px 10px; font-size:11px; font-weight:600; }
+  .b-blue { background:var(--blue-50); color:var(--blue-800); }
+  .b-green { background:var(--green-50); color:var(--green-800); }
+  .b-amber { background:var(--amber-50); color:var(--amber-800); }
+  .b-red { background:var(--red-50); color:var(--red-800); }
+  .b-purple { background:var(--purple-50); color:var(--purple-800); }
+  .b-teal { background:var(--teal-50); color:var(--teal-800); }
+  .b-coral { background:var(--coral-50); color:var(--coral-800); }
+  .b-gray { background:var(--gray-50); color:var(--gray-800); }
+  .b-pink { background:var(--pink-50); color:var(--pink-800); }
+
+  /* ── CALLOUT ── */
+  .callout { border-radius:var(--radius-md); padding:14px 18px; margin:14px 0; font-size:13px; display:flex; gap:10px; align-items:flex-start; }
+  .callout-icon { font-size:17px; flex-shrink:0; margin-top:1px; }
+  .tip { background:var(--teal-50); color:var(--teal-800); }
+  .warn { background:var(--amber-50); color:var(--amber-800); }
+  .danger { background:var(--red-50); color:var(--red-800); }
+  .info { background:var(--blue-50); color:var(--blue-800); }
+  .callout strong { display:block; font-weight:700; margin-bottom:2px; }
+
+  /* ── STEP LIST ── */
+  .steps { list-style:none; counter-reset:s; }
+  .steps li { counter-increment:s; display:flex; gap:16px; padding:16px 0; border-bottom:1px solid var(--border); }
+  .steps li:last-child { border-bottom:none; }
+  .steps li::before { content:counter(s); min-width:32px; height:32px; border-radius:50%; background:var(--blue-50); color:var(--blue-800); font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+  .steps h4 { font-size:14px; font-weight:600; color:var(--ink); margin-bottom:4px; }
+  .steps p { font-size:13px; color:var(--ink-3); }
+
+  /* ── STAT CARDS ── */
+  .stat { background:var(--surface-2); border-radius:var(--radius-md); padding:16px; text-align:center; }
+  .stat-num { font-size:30px; font-weight:800; }
+  .stat-lbl { font-size:12px; color:var(--ink-3); margin-top:2px; }
+
+  /* ── SECTION TITLE ── */
+  .sec-title { font-size:22px; font-weight:700; color:var(--ink); margin-bottom:5px; }
+  .sec-desc { font-size:14px; color:var(--ink-3); margin-bottom:26px; }
+
+  /* ── MSG LIST ── */
+  .msg-list { display:flex; flex-direction:column; gap:10px; }
+  .msg-item { display:flex; gap:14px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); padding:14px 16px; }
+  .msg-icon { font-size:20px; flex-shrink:0; }
+  .msg-item h4 { font-size:13px; font-weight:700; margin-bottom:3px; color:var(--ink); }
+  .msg-item p { font-size:13px; color:var(--ink-3); }
+  .msg-item.a-blue { border-left:3px solid var(--blue-600); }
+  .msg-item.a-teal { border-left:3px solid var(--teal-600); }
+  .msg-item.a-amber { border-left:3px solid #E8993C; }
+  .msg-item.a-red { border-left:3px solid var(--red-600); }
+  .msg-item.a-purple { border-left:3px solid var(--purple-600); }
+
+  /* ── QUIZ ── */
+  .quiz-q { margin-bottom:26px; }
+  .quiz-q p { font-size:14px; font-weight:600; color:var(--ink); margin-bottom:10px; line-height:1.5; }
+  .quiz-opts { display:flex; flex-direction:column; gap:8px; }
+  .quiz-opt { border:1px solid var(--border); border-radius:var(--radius-md); padding:10px 14px; font-size:13px; cursor:pointer; display:flex; gap:10px; align-items:center; transition:all .12s; }
+  .quiz-opt:hover { background:var(--surface-2); border-color:var(--border-2); }
+  .quiz-opt.correct { background:var(--green-50); border-color:#639922; color:var(--green-800); }
+  .quiz-opt.wrong { background:var(--red-50); border-color:var(--red-600); color:var(--red-800); }
+  .opt-l { min-width:22px; height:22px; border-radius:50%; background:var(--surface-3); color:var(--ink-3); font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .quiz-exp { display:none; margin-top:8px; font-size:13px; padding:10px 14px; border-radius:var(--radius-sm); }
+  .quiz-exp.show { display:block; }
+  .quiz-exp.ok { background:var(--green-50); color:var(--green-800); }
+  .quiz-exp.nope { background:var(--red-50); color:var(--red-800); }
+  #quiz-score { display:none; text-align:center; padding:36px 16px; }
+  .score-big { font-size:52px; font-weight:800; }
+
+  /* ── PARAM SCREEN ── */
+  .param-screen { background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-md); padding:18px 20px; margin:14px 0; font-size:13px; }
+  .param-screen .ps-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--blue-600); margin-bottom:10px; }
+  .param-row { display:flex; gap:12px; align-items:flex-start; padding:7px 0; border-bottom:1px solid var(--border); }
+  .param-row:last-child { border-bottom:none; }
+  .param-label { min-width:190px; font-weight:600; color:var(--ink); font-size:13px; }
+  .param-val { color:var(--ink-3); flex:1; }
+
+  /* PRINT */
+  @media print { .site-header { display:none; } .section { display:block !important; page-break-before:always; } .section:first-child { page-break-before:auto; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="header-logo" href="#">
+      <span class="logo-badge">IFS Cloud</span>
+      <div>
+        <div class="logo-title">Business Planning · Módulo 2.16</div>
+        <div class="logo-course">CPCL0A2507FFIN2.16 · Guía de Capacitación</div>
+      </div>
+    </a>
+    <nav class="nav-tabs">
+      <button class="nav-tab active"  onclick="show('overview')">📌 Mapa del Curso</button>
+      <button class="nav-tab"         onclick="show('conceptos')">🧠 Conceptos</button>
+      <button class="nav-tab"         onclick="show('realworld')">🏢 Caso Real</button>
+      <button class="nav-tab"         onclick="show('bdr')">⚙️ Datos Básicos</button>
+      <button class="nav-tab"         onclick="show('proceso')">📋 Proceso Completo</button>
+      <button class="nav-tab"         onclick="show('ejecucion')">🖥️ Ejecución en IFS</button>
+      <button class="nav-tab"         onclick="show('usuario')">👤 Usuario Final</button>
+      <button class="nav-tab"         onclick="show('instructor')">🎤 Instructor</button>
+      <button class="nav-tab"         onclick="show('quiz')">✅ Quiz</button>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- 0. MAPA DEL CURSO -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="section active" id="overview">
+  <div class="hero hero-blue">
+    <div class="hero-badge">Módulo 2.16 · IFS Cloud Financials</div>
+    <h1>Business Planning</h1>
+    <p>El módulo que permite a la empresa traducir su estrategia en números: crear presupuestos, definir estructuras de planificación, gestionar personal y generar transacciones financieras planificadas — todo dentro de IFS Cloud.</p>
+  </div>
+
+  <p class="sec-title">Temas del curso oficial</p>
+  <p class="sec-desc">Basado en el eLearning CPCL0A2507FFIN2.16 · Haz clic en cualquier tema para ir a su sección.</p>
+
+  <div class="course-topics">
+    <div class="topic-pill" onclick="show('conceptos')">
+      <div class="t-num">2.16.0</div>
+      <div><strong>Introduction to Business Planning Process</strong><br><span style="color:var(--ink-3);font-size:12px;">Visión general y flujo del proceso</span></div>
+      <span class="t-status done">✓ Completado</span>
+    </div>
+    <div class="topic-pill" onclick="show('bdr')">
+      <div class="t-num">2.16.1</div>
+      <div><strong>BDR for Business Planning</strong><br><span style="color:var(--ink-3);font-size:12px;">Datos básicos del módulo</span></div>
+      <span class="t-status done">✓ Completado</span>
+    </div>
+    <div class="topic-pill" onclick="show('bdr')">
+      <div class="t-num">2.16.2</div>
+      <div><strong>BDR for Personnel Planning</strong><br><span style="color:var(--ink-3);font-size:12px;">Datos básicos de planificación de personal</span></div>
+      <span class="t-status done">✓ Completado</span>
+    </div>
+    <div class="topic-pill" onclick="show('proceso')">
+      <div class="t-num">2.16.3</div>
+      <div><strong>Create Business Plan</strong><br><span style="color:var(--ink-3);font-size:12px;">Crear y configurar el plan de negocio</span></div>
+      <span class="t-status done">✓ Completado</span>
+    </div>
+    <div class="topic-pill" onclick="show('proceso')">
+      <div class="t-num">2.16.4</div>
+      <div><strong>Create Planning Unit</strong><br><span style="color:var(--ink-3);font-size:12px;">Unidades de planificación (centros de costo)</span></div>
+      <span class="t-status done">✓ Completado</span>
+    </div>
+    <div class="topic-pill" onclick="show('proceso')">
+      <div class="t-num">2.16.5</div>
+      <div><strong>Define Planning Rules</strong><br><span style="color:var(--ink-3);font-size:12px;">Reglas que distribuyen y calculan montos</span></div>
+      <span class="t-status done">✓ Completado</span>
+    </div>
+    <div class="topic-pill" onclick="show('proceso')">
+      <div class="t-num">2.16.6</div>
+      <div><strong>Define Personnel Planning</strong><br><span style="color:var(--ink-3);font-size:12px;">Planificación de plantilla y costos de personal</span></div>
+      <span class="t-status pending">⏳ Pendiente</span>
+    </div>
+    <div class="topic-pill" onclick="show('proceso')">
+      <div class="t-num">2.16.7</div>
+      <div><strong>Create Planning Transactions</strong><br><span style="color:var(--ink-3);font-size:12px;">Captura de líneas presupuestales</span></div>
+      <span class="t-status pending">⏳ Pendiente</span>
+    </div>
+    <div class="topic-pill" onclick="show('proceso')">
+      <div class="t-num">2.16.8</div>
+      <div><strong>Create and Use Planning Unit Structure</strong><br><span style="color:var(--ink-3);font-size:12px;">Jerarquía de unidades de planificación</span></div>
+      <span class="t-status pending">⏳ Pendiente</span>
+    </div>
+    <div class="topic-pill" onclick="show('quiz')">
+      <div class="t-num">2.16</div>
+      <div><strong>Test Your Knowledge</strong><br><span style="color:var(--ink-3);font-size:12px;">Quiz de evaluación</span></div>
+      <span class="t-status pending">⏳ Pendiente</span>
+    </div>
+  </div>
+
+  <div class="g4" style="margin-bottom:28px;">
+    <div class="stat"><div class="stat-num" style="color:var(--blue-600);">3:09</div><div class="stat-lbl">Horas de eLearning</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--green-600);">6</div><div class="stat-lbl">Temas completados</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--amber-600);">4</div><div class="stat-lbl">Temas pendientes</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--purple-600);">10</div><div class="stat-lbl">Temas en total</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" style="background:var(--surface-2);">🔄 El proceso de Business Planning de punta a punta</div>
+    <div class="card-body">
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-num">1</div>
+          <h4>Configurar BDR</h4>
+          <p>Cuentas, tipos de transacción, calendarios</p>
+        </div>
+        <div class="flow-arr">→</div>
+        <div class="flow-step">
+          <div class="flow-num">2</div>
+          <h4>Crear Business Plan</h4>
+          <p>Año, moneda, versión</p>
+        </div>
+        <div class="flow-arr">→</div>
+        <div class="flow-step">
+          <div class="flow-num">3</div>
+          <h4>Definir Planning Units</h4>
+          <p>Centros de costo / departamentos</p>
+        </div>
+        <div class="flow-arr">→</div>
+        <div class="flow-step">
+          <div class="flow-num">4</div>
+          <h4>Crear Planning Rules</h4>
+          <p>Distribución mensual y cálculos</p>
+        </div>
+        <div class="flow-arr">→</div>
+        <div class="flow-step">
+          <div class="flow-num">5</div>
+          <h4>Planning Transactions</h4>
+          <p>Capturar líneas del presupuesto</p>
+        </div>
+        <div class="flow-arr">→</div>
+        <div class="flow-step">
+          <div class="flow-num">6</div>
+          <h4>Personal Planning</h4>
+          <p>Costos de nómina y headcount</p>
+        </div>
+        <div class="flow-arr">→</div>
+        <div class="flow-step">
+          <div class="flow-num">7</div>
+          <h4>Aprobar y publicar</h4>
+          <p>Budget activo en contabilidad</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- 1. CONCEPTOS (CAPA 1 + 2) -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="section" id="conceptos">
+  <div class="hero hero-blue">
+    <div class="hero-badge">Capa 1 · Entiéndelo tú primero</div>
+    <h1>¿Qué es Business Planning en IFS?</h1>
+    <p>El módulo financiero que convierte los objetivos del negocio en un presupuesto estructurado, distribuido y aprobado, conectado directamente a la contabilidad.</p>
+  </div>
+
+  <p class="sec-title">La idea central en una oración</p>
+  <p class="sec-desc">Business Planning es el "Excel inteligente" de IFS: permite presupuestar por área, con reglas de distribución automáticas, incluye los costos de personal, y al final genera los asientos contables del presupuesto aprobado.</p>
+
+  <div class="g2" style="margin-bottom:20px;">
+    <div class="concept blue">
+      <div class="concept-tag">Concepto Central</div>
+      <h3>Business Plan</h3>
+      <p>Es el contenedor maestro del presupuesto. Define el año fiscal, la moneda de planificación y la versión (porque puede haber un presupuesto inicial y revisiones). Todos los demás elementos cuelgan de aquí.</p>
+      <div style="margin-top:10px; padding:10px; background:rgba(255,255,255,.6); border-radius:8px; font-size:12px; color:var(--blue-800);">
+        <strong>Analogía:</strong> Es como crear una carpeta llamada "Presupuesto 2025" donde vas a meter todo.
+      </div>
+    </div>
+    <div class="concept purple">
+      <div class="concept-tag">Unidad de Planificación</div>
+      <h3>Planning Unit</h3>
+      <p>Es el "quién" del presupuesto: un departamento, centro de costo, división o cualquier unidad organizacional que tiene su propio presupuesto. Cada Planning Unit puede tener su propio responsable presupuestal.</p>
+      <div style="margin-top:10px; padding:10px; background:rgba(255,255,255,.6); border-radius:8px; font-size:12px; color:var(--purple-800);">
+        <strong>Ejemplo:</strong> Finanzas, Operaciones, Ventas Zona Norte, Planta Monterrey.
+      </div>
+    </div>
+    <div class="concept teal">
+      <div class="concept-tag">Regla de Planificación</div>
+      <h3>Planning Rule</h3>
+      <p>Es la lógica que distribuye los montos: cómo se reparte el presupuesto anual en meses (¿igual cada mes? ¿más en temporada alta?), cómo se calcula un costo basado en otro (ej: beneficios = 30% del salario base).</p>
+      <div style="margin-top:10px; padding:10px; background:rgba(255,255,255,.6); border-radius:8px; font-size:12px; color:var(--teal-800);">
+        <strong>Tipos:</strong> Distribución uniforme, distribución estacional, factor sobre base, importación.
+      </div>
+    </div>
+    <div class="concept coral">
+      <div class="concept-tag">Transacción de Planificación</div>
+      <h3>Planning Transaction</h3>
+      <p>Es la línea del presupuesto: cuenta contable + monto + período. Es donde el usuario captura el número real. Las Planning Rules definen cómo distribuirlo; las Planning Transactions guardan el resultado.</p>
+      <div style="margin-top:10px; padding:10px; background:rgba(255,255,255,.6); border-radius:8px; font-size:12px; color:var(--coral-800);">
+        <strong>Analogía:</strong> Es como una fila en tu tabla de Excel: "Cuenta 6010 – Sueldos – Enero – $50,000".
+      </div>
+    </div>
+    <div class="concept amber">
+      <div class="concept-tag">Planificación de Personal</div>
+      <h3>Personnel Planning</h3>
+      <p>Módulo dentro de Business Planning para presupuestar el headcount: cuántas personas, con qué perfil de puesto, qué salario, qué prestaciones. Genera automáticamente las transacciones de nómina presupuestal.</p>
+      <div style="margin-top:10px; padding:10px; background:rgba(255,255,255,.6); border-radius:8px; font-size:12px; color:var(--amber-800);">
+        <strong>Output:</strong> Presupuesto de nómina mensual por departamento, integrado al Business Plan.
+      </div>
+    </div>
+    <div class="concept green">
+      <div class="concept-tag">Estructura</div>
+      <h3>Planning Unit Structure</h3>
+      <p>Es la jerarquía de Planning Units: permite ver el presupuesto consolidado (empresa → división → departamento). Si cambias el monto en un nivel, se puede redistribuir hacia abajo o consolidar hacia arriba.</p>
+      <div style="margin-top:10px; padding:10px; background:rgba(255,255,255,.6); border-radius:8px; font-size:12px; color:var(--green-800);">
+        <strong>Analogía:</strong> Es el organigrama financiero de la empresa.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header" style="background:var(--surface-2);">🗺️ Cómo se relacionan todos los conceptos</div>
+    <div class="card-body">
+      <div style="background:var(--blue-50); border:1px solid var(--blue-100); border-radius:var(--radius-lg); padding:20px; margin-bottom:16px;">
+        <p style="font-size:13px; color:var(--blue-800); font-weight:600; margin-bottom:14px;">Estructura jerárquica del módulo:</p>
+        <div style="font-family:var(--mono); font-size:12px; line-height:2; color:var(--ink-2);">
+          <div style="color:var(--blue-800); font-weight:700;">📁 Business Plan (2025 · MXN · Versión 1)</div>
+          <div style="padding-left:24px; color:var(--purple-800); font-weight:600;">├── 🏢 Planning Unit: Corporativo</div>
+          <div style="padding-left:48px; color:var(--teal-800);">│   ├── 📐 Planning Rule: Distribución Lineal</div>
+          <div style="padding-left:48px; color:var(--teal-800);">│   ├── 📐 Planning Rule: Factor sobre Salario Base</div>
+          <div style="padding-left:48px; color:var(--coral-800);">│   ├── 💰 Planning Transaction: Cuenta 6010 – $1,200,000</div>
+          <div style="padding-left:48px; color:var(--coral-800);">│   └── 💰 Planning Transaction: Cuenta 6020 – $180,000</div>
+          <div style="padding-left:24px; color:var(--purple-800); font-weight:600;">├── 🏭 Planning Unit: Planta Norte</div>
+          <div style="padding-left:48px; color:var(--amber-800);">│   └── 👥 Personnel Planning: 45 operadores · $45,000/mes c/u</div>
+          <div style="padding-left:24px; color:var(--purple-800); font-weight:600;">└── 🛒 Planning Unit: Ventas Nacional</div>
+        </div>
+      </div>
+      <div class="callout info">
+        <span class="callout-icon">💡</span>
+        <div><strong>Lo que hace único a IFS Business Planning:</strong> Al final del proceso, el presupuesto aprobado se convierte en vouchers contables reales en el Libro Mayor (General Ledger), lo que permite comparar real vs. presupuesto directamente en contabilidad.</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- CASO REAL (sección independiente) -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="section" id="realworld">
+  <div class="hero hero-teal">
+    <div class="hero-badge">Capa 2 · Caso Real</div>
+    <h1>Business Planning en una empresa real</h1>
+    <p>Caso completo de <strong>Metalmex S.A. de C.V.</strong> — fabricante mexicano de componentes metálicos — recorriendo todo el proceso presupuestal en IFS Cloud de octubre a diciembre.</p>
+  </div>
+
+  <!-- Ficha de la empresa -->
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header" style="background:var(--teal-50); color:var(--teal-800);">🏭 La empresa: Metalmex S.A. de C.V.</div>
+    <div class="card-body">
+      <div class="g4" style="margin-bottom:18px;">
+        <div class="stat"><div class="stat-num" style="color:var(--teal-600);">3</div><div class="stat-lbl">Plantas de producción</div></div>
+        <div class="stat"><div class="stat-num" style="color:var(--blue-600);">450</div><div class="stat-lbl">Empleados totales</div></div>
+        <div class="stat"><div class="stat-num" style="color:var(--purple-600);">$180M</div><div class="stat-lbl">Ingresos anuales MXN</div></div>
+        <div class="stat"><div class="stat-num" style="color:var(--amber-600);">12</div><div class="stat-lbl">Centros de costo</div></div>
+      </div>
+      <p style="font-size:13px; color:var(--ink-3);">Fabricante de componentes metálicos con plantas en Monterrey, Querétaro y CDMX. Ejercicio fiscal = año calendario. Antes de IFS, el presupuesto lo hacían en <strong>22 archivos Excel independientes</strong> — uno por área — que el Controller consolidaba manualmente en un proceso de 6 semanas.</p>
+    </div>
+  </div>
+
+  <!-- Timeline del proceso presupuestal -->
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header" style="background:var(--surface-2);">📅 El proceso presupuestal paso a paso — octubre a diciembre</div>
+    <div class="card-body">
+      <div class="msg-list">
+        <div class="msg-item a-blue">
+          <div class="msg-icon">📁</div>
+          <div>
+            <h4>1 Oct — El CFO crea el Business Plan en IFS</h4>
+            <p>Crea <code>BP-2026-V1</code> con tipo BUDGET, período enero–diciembre 2026, moneda MXN. Asigna a cada jefe de área como Responsible User de su Planning Unit. Desde ese momento, cada quien solo puede ver y editar su propio presupuesto.</p>
+          </div>
+        </div>
+        <div class="msg-item a-purple">
+          <div class="msg-icon">📐</div>
+          <div>
+            <h4>5 Oct — Finanzas configura las Planning Rules</h4>
+            <p>Configuran 4 reglas: <strong>LINEAL-12</strong> para gastos fijos (renta, seguros), <strong>TEMP-VERANO</strong> para mayor gasto en junio–agosto (mantenimiento preventivo), <strong>CALC-BENEF-32%</strong> para prestaciones como % del salario, y <strong>COPY-2025</strong> para importar reales del año anterior como referencia de partida.</p>
+          </div>
+        </div>
+        <div class="msg-item a-teal">
+          <div class="msg-icon">👥</div>
+          <div>
+            <h4>10 Oct — RH captura el headcount en Personnel Planning</h4>
+            <p>El área de RH define las posiciones: 45 operadores Planta Norte ($12,500/mes), 30 operadores Planta Sur ($12,000/mes), 8 supervisores ($28,000/mes), 5 ingenieros de proceso ($35,000/mes). IFS calcula automáticamente el IMSS, Infonavit y fondo de ahorro. Costo total de nómina presupuestado: <strong>$9.4M al mes</strong>.</p>
+          </div>
+        </div>
+        <div class="msg-item a-amber">
+          <div class="msg-icon">🏢</div>
+          <div>
+            <h4>Nov — Cada jefe de área captura su Planning Unit</h4>
+            <p>El Jefe de Mantenimiento entra a <code>PU-MANTENIMIENTO</code> y captura: renta de equipos $800K/año con regla LINEAL-12, refacciones $1.2M/año con regla TEMP-VERANO. El sistema distribuye los $2M en 12 meses con el perfil correcto — sin fórmulas ni copiar-pegar.</p>
+          </div>
+        </div>
+        <div class="msg-item a-red" style="border-left-color:var(--coral-600);">
+          <div class="msg-icon">🔍</div>
+          <div>
+            <h4>25 Nov — El CFO detecta una desviación en la estructura</h4>
+            <p>Revisando la Planning Unit Structure, ve que <code>PU-COMERCIAL</code> presupuestó $4.8M cuando el techo aprobado era $4.0M. Pide al Director Comercial ajustar. Este reduce viáticos en $500K y comisiones en $300K. El CFO confirma el ajuste y la unidad queda dentro del techo.</p>
+          </div>
+        </div>
+        <div class="msg-item a-blue" style="border-left-color:var(--green-600);">
+          <div class="msg-icon">✅</div>
+          <div>
+            <h4>15 Dic — Aprobación y generación automática de vouchers</h4>
+            <p>El CFO cambia el estatus a <strong>Approved</strong>. IFS genera 144 vouchers contables (12 meses × 12 centros de costo) en el Libro Mayor. En enero, el Controller ya corre el reporte de <strong>Real vs. Presupuesto</strong> directamente desde contabilidad — sin ningún Excel intermedio.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Antes vs Después -->
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header" style="background:var(--surface-2);">⚡ Antes vs. Después de implementar IFS Business Planning</div>
+    <div class="card-body">
+      <table class="dt">
+        <thead><tr><th>Aspecto</th><th style="color:var(--red-600);">❌ Antes — Excel descentralizado</th><th style="color:var(--green-600);">✅ Con IFS Business Planning</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Tiempo de consolidación</strong></td>
+            <td>6 semanas · trabajo manual del Controller</td>
+            <td>En tiempo real — la Planning Unit Structure consolida automáticamente</td>
+          </tr>
+          <tr>
+            <td><strong>Errores de captura</strong></td>
+            <td>Frecuentes: fórmulas rotas, versiones desincronizadas entre áreas</td>
+            <td>El sistema valida cuentas y períodos al guardar. No se puede capturar en una cuenta inexistente</td>
+          </tr>
+          <tr>
+            <td><strong>Control de acceso</strong></td>
+            <td>Archivos compartidos por correo — todos veían el presupuesto de todos</td>
+            <td>Cada Responsible User solo ve y edita su Planning Unit. El CFO ve todo</td>
+          </tr>
+          <tr>
+            <td><strong>Costo de nómina</strong></td>
+            <td>Calculado manualmente con tabla en Excel · IMSS y prestaciones por separado</td>
+            <td>Personnel Planning + Benefit Rules calcula IMSS, Infonavit, fondo de ahorro automáticamente</td>
+          </tr>
+          <tr>
+            <td><strong>Versiones / revisiones</strong></td>
+            <td>"BP_2025_v3_FINAL_definitivo_2.xlsx"</td>
+            <td>Versiones controladas: V1-Original, V2-Mar, V3-Jun con historial de cambios y quién aprobó</td>
+          </tr>
+          <tr>
+            <td><strong>Real vs. Presupuesto</strong></td>
+            <td>El Controller cruzaba datos manualmente cada mes entre Excel y contabilidad</td>
+            <td>Reporte automático disponible el día 1 del mes — el presupuesto vive en el Libro Mayor</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Perfiles -->
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header" style="background:var(--surface-2);">👤 ¿Qué hace cada perfil en el proceso?</div>
+    <div class="card-body">
+      <div class="g3">
+        <div class="concept blue">
+          <div class="concept-tag">CFO / Dirección Financiera</div>
+          <h3>🎯 Visión y aprobación</h3>
+          <p>Crea el Business Plan, fija los techos presupuestales por área, revisa la Planning Unit Structure consolidada, detecta desviaciones y da la aprobación final que activa el presupuesto en contabilidad.</p>
+        </div>
+        <div class="concept purple">
+          <div class="concept-tag">Jefe de Área / Responsable</div>
+          <h3>📝 Captura de su presupuesto</h3>
+          <p>Accede a su Planning Unit, captura las cuentas de gasto o ingreso usando las Planning Rules definidas, verifica que no supera su techo, y señala cuando su área está lista para aprobación.</p>
+        </div>
+        <div class="concept teal">
+          <div class="concept-tag">Recursos Humanos</div>
+          <h3>👥 Planificación de personal</h3>
+          <p>Captura headcount por posición y área en Personnel Planning. El sistema calcula todos los costos laborales y los integra automáticamente al Business Plan sin que RH tenga que conocer las cuentas contables.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Las 3 preguntas clave -->
+  <div class="card">
+    <div class="card-header" style="background:var(--surface-2);">❓ Las 3 preguntas que debes hacerle a tu cliente en sala</div>
+    <div class="card-body">
+      <div class="g3">
+        <div style="background:var(--purple-50); border:1px solid var(--purple-100); border-radius:var(--radius-md); padding:16px;">
+          <p style="font-size:22px; margin-bottom:8px;">🗂️</p>
+          <p style="font-size:13px; color:var(--purple-800); font-weight:700; margin-bottom:6px;">"¿Hoy quién hace el presupuesto y en qué herramienta?"</p>
+          <p style="font-size:12px; color:var(--purple-600);">Si dicen "Excel con archivos por área", conecta con el caso Metalmex. Ese dolor es exactamente el que IFS resuelve. Pregunta cuánto tiempo les toma consolidar — la respuesta siempre impacta.</p>
+        </div>
+        <div style="background:var(--teal-50); border:1px solid var(--teal-100); border-radius:var(--radius-md); padding:16px;">
+          <p style="font-size:22px; margin-bottom:8px;">📆</p>
+          <p style="font-size:13px; color:var(--teal-800); font-weight:700; margin-bottom:6px;">"¿Cómo distribuyen el presupuesto anual en meses?"</p>
+          <p style="font-size:12px; color:var(--teal-600);">Esto define qué Planning Rules necesitan configurar. "Igual cada mes" → LINEAL-12. "Más en temporada alta" → perfil estacional personalizado. "Depende de cada cuenta" → reglas múltiples por tipo de gasto.</p>
+        </div>
+        <div style="background:var(--coral-50); border:1px solid var(--coral-100); border-radius:var(--radius-md); padding:16px;">
+          <p style="font-size:22px; margin-bottom:8px;">👥</p>
+          <p style="font-size:13px; color:var(--coral-800); font-weight:700; margin-bottom:6px;">"¿Quién presupuesta la nómina: RH o Finanzas?"</p>
+          <p style="font-size:12px; color:var(--coral-600);">Determina el flujo de Personnel Planning. Si es RH, ellos deben ser Responsible Users de las Planning Units de personal. Si es Finanzas, deben tener las cifras de RH antes de capturar.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- 2. DATOS BÁSICOS (BDR) -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="section" id="bdr">
+  <div class="hero hero-purple">
+    <div class="hero-badge">Temas 2.16.1 y 2.16.2 · BDR</div>
+    <h1>Datos Básicos del Módulo</h1>
+    <p>Todo lo que hay que configurar antes de crear el primer Business Plan. Sin estos datos, el sistema no puede funcionar.</p>
+  </div>
+
+  <p class="sec-title">2.16.1 · BDR for Business Planning</p>
+  <p class="sec-desc">Datos maestros que definen la estructura y comportamiento del módulo.</p>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header" style="background:var(--surface-2);">📋 Configuración de datos básicos — resumen completo</div>
+    <div class="card-body">
+      <table class="dt">
+        <thead><tr><th>Dato básico</th><th>Qué es</th><th>Dónde se configura</th><th>Ejemplo</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Planning Type</strong></td>
+            <td>Clasificación del Business Plan (presupuesto, forecast, plan estratégico)</td>
+            <td><code>Business Planning → Planning Types</code></td>
+            <td>BUDGET, FORECAST, LONG_PLAN</td>
+          </tr>
+          <tr>
+            <td><strong>Planning Period</strong></td>
+            <td>Define el calendario del plan: anual, trimestral, mensual</td>
+            <td><code>Business Planning → Planning Periods</code></td>
+            <td>2026 · Enero–Diciembre · 12 períodos</td>
+          </tr>
+          <tr>
+            <td><strong>Planning Model</strong></td>
+            <td>Plantilla que agrupa Planning Units y Rules predefinidas. Reutilizable año a año</td>
+            <td><code>Business Planning → Planning Models</code></td>
+            <td>MODEL-STD (modelo estándar corporativo)</td>
+          </tr>
+          <tr>
+            <td><strong>Account Groups</strong></td>
+            <td>Agrupación de cuentas contables que pueden presupuestarse juntas</td>
+            <td><code>General Ledger → Account Groups</code></td>
+            <td>GRP-GASTO-OPERATIVO, GRP-CAPEX</td>
+          </tr>
+          <tr>
+            <td><strong>Code Part Mapping</strong></td>
+            <td>Define qué partes del código contable (A-J) se usan en Business Planning</td>
+            <td><code>Business Planning → Code Part Setup</code></td>
+            <td>A=Cuenta, C=Cost Center, D=Proyecto</td>
+          </tr>
+          <tr>
+            <td><strong>Budget Version</strong></td>
+            <td>Control de versiones del presupuesto. Permite tener V1 (original), V2 (revisado)</td>
+            <td><code>Business Plan → Versions</code></td>
+            <td>V1-ORIGINAL, V2-MAR, V3-JUN</td>
+          </tr>
+          <tr>
+            <td><strong>Transaction Types</strong></td>
+            <td>Tipos de transacción de planificación: ingreso, egreso, inversión</td>
+            <td><code>Business Planning → Transaction Types</code></td>
+            <td>INCOME, EXPENSE, CAPEX, TRANSFER</td>
+          </tr>
+          <tr>
+            <td><strong>Distribution Profiles</strong></td>
+            <td>Perfiles de distribución mensual predefinidos (uniformes, estacionales)</td>
+            <td><code>Business Planning → Distribution Profiles</code></td>
+            <td>LINEAL-12, TEMP-VERANO, TEMP-FIN-AÑO</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <span class="callout-icon">⚠️</span>
+    <div><strong>Antes de crear el Business Plan, estos datos DEBEN existir:</strong> Planning Type, Planning Period y al menos un Distribution Profile. Sin ellos el sistema no te dejará avanzar.</div>
+  </div>
+
+  <p class="sec-title" style="margin-top:28px;">2.16.2 · BDR for Personnel Planning</p>
+  <p class="sec-desc">Datos específicos para poder presupuestar costos de personal.</p>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-header" style="background:var(--amber-50); color:var(--amber-800);">👥 Datos maestros de personal</div>
+      <div class="card-body">
+        <table class="dt">
+          <thead><tr><th>Dato</th><th>Propósito</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Job Grades / Salary Bands</strong></td>
+              <td>Niveles salariales predefinidos por puesto. El sistema calcula el rango de salario automáticamente.</td>
+            </tr>
+            <tr>
+              <td><strong>Benefit Types</strong></td>
+              <td>Prestaciones que se aplican al salario: IMSS, ISR, vales, fondo de ahorro, aguinaldo.</td>
+            </tr>
+            <tr>
+              <td><strong>Benefit Rules</strong></td>
+              <td>Define cómo se calcula cada beneficio: % del salario base, monto fijo, factor por días.</td>
+            </tr>
+            <tr>
+              <td><strong>Position Types</strong></td>
+              <td>Clasificación de puestos: temporal, permanente, directivo, operativo.</td>
+            </tr>
+            <tr>
+              <td><strong>Salary Increase Rules</strong></td>
+              <td>Reglas de incremento salarial proyectado (ej: 5% en julio).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" style="background:var(--surface-2);">📐 Ejemplo de Benefit Rule configurada</div>
+      <div class="card-body">
+        <div class="param-screen">
+          <div class="ps-title">Benefit Rule · IMSS-MX-2025</div>
+          <div class="param-row"><span class="param-label">Benefit Type</span><span class="param-val">IMSS (Seguro Social)</span></div>
+          <div class="param-row"><span class="param-label">Calculation Base</span><span class="param-val">Salario Diario Integrado</span></div>
+          <div class="param-row"><span class="param-label">Rate</span><span class="param-val">21.42% (cuota patronal)</span></div>
+          <div class="param-row"><span class="param-label">Cap Amount</span><span class="param-val">25 UMAS · $7,812.25/mes</span></div>
+          <div class="param-row"><span class="param-label">Application</span><span class="param-val">Mensual · todos los empleados</span></div>
+          <div class="param-row"><span class="param-label">GL Account</span><span class="param-val">6140-IMSS-PATRONAL</span></div>
+        </div>
+        <div class="callout tip">
+          <span class="callout-icon">💡</span>
+          <div>Una vez configuradas las Benefit Rules, el sistema calcula automáticamente el costo total de cada posición presupuestada. El usuario solo captura el salario base.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- 3. PROCESO COMPLETO (Temas 2.16.3 al 2.16.8) -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="section" id="proceso">
+  <div class="hero hero-purple">
+    <div class="hero-badge">Temas 2.16.3 – 2.16.8 · Proceso Operativo</div>
+    <h1>El proceso completo paso a paso</h1>
+    <p>Desde crear el Business Plan hasta generar las transacciones finales. Esto es lo que el usuario hace en sistema.</p>
+  </div>
+
+  <!-- 2.16.3 Create Business Plan -->
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header" style="background:var(--blue-50); color:var(--blue-800);">📁 2.16.3 · Create Business Plan</div>
+    <div class="card-body">
+      <p style="font-size:14px; margin-bottom:16px;">Es el primer paso. Crea el contenedor maestro donde vivirá todo el presupuesto.</p>
+      <div class="g2">
+        <div>
+          <div class="param-screen">
+            <div class="ps-title">Pantalla: New Business Plan</div>
+            <div class="param-row"><span class="param-label">Business Plan ID</span><span class="param-val"><code>BP-2026-V1</code></span></div>
+            <div class="param-row"><span class="param-label">Description</span><span class="param-val">Presupuesto Anual 2026 – Versión Original</span></div>
+            <div class="param-row"><span class="param-label">Planning Type</span><span class="param-val"><code>BUDGET</code></span></div>
+            <div class="param-row"><span class="param-label">Planning Period</span><span class="param-val"><code>2026-ANUAL</code> (Ene–Dic)</span></div>
+            <div class="param-row"><span class="param-label">Currency</span><span class="param-val">MXN</span></div>
+            <div class="param-row"><span class="param-label">Company</span><span class="param-val">METALMEX-SA</span></div>
+            <div class="param-row"><span class="param-label">Status</span><span class="param-val"><span class="badge b-amber">Draft</span> → <span class="badge b-blue">Active</span> → <span class="badge b-green">Approved</span></span></div>
+            <div class="param-row"><span class="param-label">Planning Model</span><span class="param-val"><code>MODEL-STD</code> (opcional, carga unidades predefinidas)</span></div>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:13px; font-weight:600; margin-bottom:10px; color:var(--ink);">Ciclo de vida del Business Plan</h4>
+          <div class="msg-list">
+            <div class="msg-item a-amber">
+              <div class="msg-icon">📝</div>
+              <div><h4>Draft</h4><p>En construcción. Se pueden agregar/modificar Planning Units y Transactions. Nadie ve el presupuesto todavía.</p></div>
+            </div>
+            <div class="msg-item a-blue">
+              <div class="msg-icon">🔓</div>
+              <div><h4>Active</h4><p>Habilitado para captura por los responsables de área. Pueden ingresar sus transacciones.</p></div>
+            </div>
+            <div class="msg-item a-teal">
+              <div class="msg-icon">🔒</div>
+              <div><h4>Locked</h4><p>Cerrado para edición. En proceso de revisión y aprobación final.</p></div>
+            </div>
+            <div class="msg-item a-purple">
+              <div class="msg-icon">✅</div>
+              <div><h4>Approved</h4><p>Presupuesto oficial. Genera automáticamente los vouchers en contabilidad para el período.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.16.4 Planning Unit -->
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header" style="background:var(--purple-50); color:var(--purple-800);">🏢 2.16.4 · Create Planning Unit</div>
+    <div class="card-body">
+      <p style="font-size:14px; margin-bottom:16px;">Cada Planning Unit es un "responsable de presupuesto": un departamento, centro de costo, proyecto o unidad de negocio que tiene sus propias líneas presupuestales.</p>
+      <div class="g2">
+        <div>
+          <div class="param-screen">
+            <div class="ps-title">Pantalla: Planning Unit</div>
+            <div class="param-row"><span class="param-label">Planning Unit ID</span><span class="param-val"><code>PU-PLANTA-NORTE</code></span></div>
+            <div class="param-row"><span class="param-label">Description</span><span class="param-val">Planta Norte – Monterrey</span></div>
+            <div class="param-row"><span class="param-label">Business Plan</span><span class="param-val"><code>BP-2026-V1</code></span></div>
+            <div class="param-row"><span class="param-label">Cost Center</span><span class="param-val"><code>CC-1030</code> (vincula al centro de costo contable)</span></div>
+            <div class="param-row"><span class="param-label">Responsible User</span><span class="param-val">jlopez@metalmex.com</span></div>
+            <div class="param-row"><span class="param-label">Parent Planning Unit</span><span class="param-val"><code>PU-OPERACIONES</code> (para la jerarquía)</span></div>
+            <div class="param-row"><span class="param-label">Currency</span><span class="param-val">MXN (hereda del Business Plan)</span></div>
+          </div>
+          <div class="callout tip" style="margin-top:10px;">
+            <span class="callout-icon">💡</span>
+            <div>El campo <strong>Responsible User</strong> es clave: solo ese usuario puede ingresar y modificar las transacciones de su Planning Unit.</div>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:13px; font-weight:600; margin-bottom:10px; color:var(--ink);">Jerarquía típica de Planning Units</h4>
+          <div style="background:var(--surface-2); border-radius:var(--radius-md); padding:16px; font-family:var(--mono); font-size:12px; line-height:2.2; color:var(--ink-2);">
+            <div style="color:var(--blue-800); font-weight:700;">🏢 PU-CORPORATIVO</div>
+            <div style="padding-left:20px; color:var(--purple-800);">├── PU-FINANZAS</div>
+            <div style="padding-left:40px; color:var(--ink-3);">│   ├── PU-CONTABILIDAD</div>
+            <div style="padding-left:40px; color:var(--ink-3);">│   └── PU-TESORERIA</div>
+            <div style="padding-left:20px; color:var(--teal-800);">├── PU-OPERACIONES</div>
+            <div style="padding-left:40px; color:var(--ink-3);">│   ├── PU-PLANTA-NORTE</div>
+            <div style="padding-left:40px; color:var(--ink-3);">│   └── PU-PLANTA-SUR</div>
+            <div style="padding-left:20px; color:var(--coral-800);">└── PU-COMERCIAL</div>
+            <div style="padding-left:40px; color:var(--ink-3);">    ├── PU-VENTAS-MX</div>
+            <div style="padding-left:40px; color:var(--ink-3);">    └── PU-VENTAS-EXPORT</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.16.5 Planning Rules -->
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header" style="background:var(--teal-50); color:var(--teal-800);">📐 2.16.5 · Define Planning Rules</div>
+    <div class="card-body">
+      <p style="font-size:14px; margin-bottom:16px;">Las reglas definen <em>cómo</em> se distribuyen y calculan los montos. Son la inteligencia del presupuesto.</p>
+      <table class="dt" style="margin-bottom:16px;">
+        <thead><tr><th>Tipo de regla</th><th>Qué hace</th><th>Cuándo usarla</th><th>Ejemplo</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="badge b-blue">Distribution Rule</span></td>
+            <td>Distribuye el monto anual en períodos usando un perfil</td>
+            <td>Cuando el gasto no es uniforme durante el año</td>
+            <td>Renta: 1/12 cada mes. Aguinaldo: 100% en diciembre.</td>
+          </tr>
+          <tr>
+            <td><span class="badge b-purple">Calculation Rule</span></td>
+            <td>Calcula un monto como % o factor de otro</td>
+            <td>Para costos que dependen de otro concepto</td>
+            <td>Beneficios = 32% del total de sueldos</td>
+          </tr>
+          <tr>
+            <td><span class="badge b-teal">Import Rule</span></td>
+            <td>Importa datos de otro módulo IFS (ventas reales, RRHH)</td>
+            <td>Para usar datos actuales como base del presupuesto</td>
+            <td>Copiar ventas reales 2025 como base para 2026</td>
+          </tr>
+          <tr>
+            <td><span class="badge b-coral">Copy Rule</span></td>
+            <td>Copia transacciones de otro Business Plan o versión</td>
+            <td>Para crear un presupuesto revisado desde el original</td>
+            <td>Copiar BP-2025-V1 y ajustar +8% inflación</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="g2">
+        <div class="param-screen">
+          <div class="ps-title">Ejemplo: Distribution Rule lineal</div>
+          <div class="param-row"><span class="param-label">Rule ID</span><span class="param-val"><code>RULE-LINEAL-12</code></span></div>
+          <div class="param-row"><span class="param-label">Rule Type</span><span class="param-val">Distribution</span></div>
+          <div class="param-row"><span class="param-label">Distribution Profile</span><span class="param-val">EQUAL-12 (100% ÷ 12)</span></div>
+          <div class="param-row"><span class="param-label">Apply To</span><span class="param-val">Gastos Fijos (renta, seguros, licencias)</span></div>
+        </div>
+        <div class="param-screen">
+          <div class="ps-title">Ejemplo: Calculation Rule sobre base</div>
+          <div class="param-row"><span class="param-label">Rule ID</span><span class="param-val"><code>RULE-BENEF-32PCT</code></span></div>
+          <div class="param-row"><span class="param-label">Rule Type</span><span class="param-val">Calculation</span></div>
+          <div class="param-row"><span class="param-label">Base Account</span><span class="param-val">6010-SUELDOS-BASE</span></div>
+          <div class="param-row"><span class="param-label">Factor</span><span class="param-val">32%</span></div>
+          <div class="param-row"><span class="param-label">Target Account</span><span class="param-val">6140-BENEFICIOS</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.16.6 Personnel Planning -->
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header" style="background:var(--amber-50); color:var(--amber-800);">👥 2.16.6 · Define Personnel Planning</div>
+    <div class="card-body">
+      <p style="font-size:14px; margin-bottom:16px;">Permite presupuestar el costo de personal por posición. El sistema calcula automáticamente todos los costos adicionales (prestaciones, cuotas).</p>
+      <div class="g2">
+        <div>
+          <div class="param-screen">
+            <div class="ps-title">Pantalla: Personnel Planning Line</div>
+            <div class="param-row"><span class="param-label">Planning Unit</span><span class="param-val"><code>PU-PLANTA-NORTE</code></span></div>
+            <div class="param-row"><span class="param-label">Position</span><span class="param-val">Operador de Producción</span></div>
+            <div class="param-row"><span class="param-label">Head Count</span><span class="param-val">45 personas</span></div>
+            <div class="param-row"><span class="param-label">Monthly Salary</span><span class="param-val">$12,500.00 MXN</span></div>
+            <div class="param-row"><span class="param-label">Start Period</span><span class="param-val">Enero 2026</span></div>
+            <div class="param-row"><span class="param-label">End Period</span><span class="param-val">Diciembre 2026</span></div>
+            <div class="param-row"><span class="param-label">Benefit Rules</span><span class="param-val">IMSS-MX-2025, ISR-2025, FONDO-AHORRO</span></div>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:13px; font-weight:600; margin-bottom:12px; color:var(--ink);">Lo que el sistema calcula automáticamente:</h4>
+          <table class="dt">
+            <thead><tr><th>Concepto</th><th>Cálculo</th><th>Monto/mes</th></tr></thead>
+            <tbody>
+              <tr><td>Sueldos Base</td><td>45 × $12,500</td><td>$562,500</td></tr>
+              <tr><td>IMSS Patronal</td><td>× 21.42%</td><td>$120,488</td></tr>
+              <tr><td>Infonavit</td><td>× 5%</td><td>$28,125</td></tr>
+              <tr><td>Fondo Ahorro</td><td>× 13%</td><td>$73,125</td></tr>
+              <tr><td style="font-weight:600;">Total mensual</td><td></td><td style="font-weight:600;">$784,238</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.16.7 Planning Transactions -->
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header" style="background:var(--coral-50); color:var(--coral-800);">💰 2.16.7 · Create Planning Transactions</div>
+    <div class="card-body">
+      <p style="font-size:14px; margin-bottom:16px;">Las transacciones son las líneas del presupuesto: una por cada cuenta contable y período. Pueden capturarse manualmente, generarse por reglas, o importarse.</p>
+      <div class="g2">
+        <div class="param-screen">
+          <div class="ps-title">Pantalla: Planning Transaction</div>
+          <div class="param-row"><span class="param-label">Business Plan</span><span class="param-val"><code>BP-2026-V1</code></span></div>
+          <div class="param-row"><span class="param-label">Planning Unit</span><span class="param-val"><code>PU-PLANTA-NORTE</code></span></div>
+          <div class="param-row"><span class="param-label">Account</span><span class="param-val">6010 – Sueldos y Salarios</span></div>
+          <div class="param-row"><span class="param-label">Cost Center</span><span class="param-val">CC-1030</span></div>
+          <div class="param-row"><span class="param-label">Period</span><span class="param-val">2026-01 (Enero 2026)</span></div>
+          <div class="param-row"><span class="param-label">Amount</span><span class="param-val">$562,500.00 MXN</span></div>
+          <div class="param-row"><span class="param-label">Source</span><span class="param-val"><span class="badge b-amber">Personnel Planning</span> (generada automáticamente)</span></div>
+          <div class="param-row"><span class="param-label">Notes</span><span class="param-val">45 operadores × $12,500</span></div>
+        </div>
+        <div>
+          <h4 style="font-size:13px; font-weight:600; margin-bottom:10px; color:var(--ink);">Formas de crear Planning Transactions</h4>
+          <div class="msg-list">
+            <div class="msg-item a-blue">
+              <div class="msg-icon">✏️</div>
+              <div><h4>Captura manual</h4><p>El usuario escribe el monto. Útil para conceptos únicos o no recurrentes.</p></div>
+            </div>
+            <div class="msg-item a-teal">
+              <div class="msg-icon">📐</div>
+              <div><h4>Por Planning Rule</h4><p>El usuario ingresa el total anual y la regla lo distribuye en 12 meses automáticamente.</p></div>
+            </div>
+            <div class="msg-item a-purple">
+              <div class="msg-icon">👥</div>
+              <div><h4>Desde Personnel Planning</h4><p>Al guardar el Personnel Plan, IFS genera las transacciones de nómina automáticamente.</p></div>
+            </div>
+            <div class="msg-item a-amber">
+              <div class="msg-icon">📥</div>
+              <div><h4>Importación (Excel/CSV)</h4><p>Para migrar presupuestos existentes o manejar volúmenes grandes de cuentas.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.16.8 Planning Unit Structure -->
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header" style="background:var(--green-50); color:var(--green-800);">🌳 2.16.8 · Create and Use Planning Unit Structure</div>
+    <div class="card-body">
+      <p style="font-size:14px; margin-bottom:16px;">La estructura jerárquica permite ver y gestionar el presupuesto a nivel consolidado. Un CFO puede ver el total de la empresa; un director, solo su área.</p>
+      <div class="g2">
+        <div>
+          <div class="callout info">
+            <span class="callout-icon">🌳</span>
+            <div>
+              <strong>¿Para qué sirve la Planning Unit Structure?</strong>
+              <ul style="margin-top:6px; padding-left:16px; line-height:1.8;">
+                <li>Ver el presupuesto consolidado (suma de hijos)</li>
+                <li>Distribuir montos desde el nivel superior hacia abajo (top-down)</li>
+                <li>Comparar real vs. presupuesto en toda la jerarquía</li>
+                <li>Controlar quién aprueba cada nivel</li>
+                <li>Generar reportes por nivel de estructura</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout warn" style="margin-top:10px;">
+            <span class="callout-icon">⚠️</span>
+            <div><strong>Top-down vs. Bottom-up:</strong> En top-down, el CFO fija el techo presupuestal y las áreas asignan sus líneas dentro de ese límite. En bottom-up, las áreas proponen y el nivel superior consolida. IFS soporta ambos.</div>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:13px; font-weight:600; margin-bottom:10px; color:var(--ink);">Vista de la estructura en IFS (simulada)</h4>
+          <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-md); padding:16px;">
+            <table class="dt" style="font-size:12px;">
+              <thead><tr><th>Planning Unit</th><th>Presupuesto</th><th>Real MTD</th><th>Varianza</th></tr></thead>
+              <tbody>
+                <tr style="font-weight:700; background:var(--blue-50);">
+                  <td>▼ PU-CORPORATIVO</td><td>$18,500,000</td><td>$16,230,000</td><td style="color:var(--green-600);">-12.3%</td>
+                </tr>
+                <tr>
+                  <td style="padding-left:20px;">▼ PU-OPERACIONES</td><td>$12,000,000</td><td>$10,840,000</td><td style="color:var(--green-600);">-9.7%</td>
+                </tr>
+                <tr>
+                  <td style="padding-left:36px;">  PU-PLANTA-NORTE</td><td>$7,000,000</td><td>$6,520,000</td><td style="color:var(--green-600);">-6.9%</td>
+                </tr>
+                <tr>
+                  <td style="padding-left:36px;">  PU-PLANTA-SUR</td><td>$5,000,000</td><td>$4,320,000</td><td style="color:var(--green-600);">-13.6%</td>
+                </tr>
+                <tr>
+                  <td style="padding-left:20px;">▼ PU-COMERCIAL</td><td>$4,200,000</td><td>$4,180,000</td><td style="color:var(--amber-600);">-0.5%</td>
+                </tr>
+                <tr>
+                  <td style="padding-left:20px;">PU-FINANZAS</td><td>$2,300,000</td><td>$1,210,000</td><td style="color:var(--red-600);">+47.4%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- 4. USUARIO FINAL -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="section" id="usuario">
+  <div class="hero hero-teal">
+    <div class="hero-badge">Capa 4 · Material para el Usuario Final</div>
+    <h1>Guía del Responsable de Presupuesto</h1>
+    <p>Lo que cada usuario necesita saber para capturar y gestionar su presupuesto en IFS Cloud Business Planning.</p>
+  </div>
+
+  <div class="g4" style="margin-bottom:24px;">
+    <div class="stat"><div class="stat-num" style="color:var(--blue-600);">1 vez</div><div class="stat-lbl">Se crea el Business Plan al año</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--purple-600);">4</div><div class="stat-lbl">Pasos del proceso de captura</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--teal-600);">12</div><div class="stat-lbl">Períodos se distribuyen automáticamente</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--amber-600);">∞</div><div class="stat-lbl">Versiones de revisión posibles</div></div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header" style="background:var(--blue-50); color:var(--blue-800);">📋 Mi rutina de captura presupuestal</div>
+    <div class="card-body">
+      <ol class="steps">
+        <li>
+          <div>
+            <h4>Ingresar a mi Planning Unit</h4>
+            <p>En IFS Cloud, navegar a: Business Planning → Planning Transactions → filtrar por mi Planning Unit y el período activo. Solo verás las unidades donde eres responsable.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h4>Revisar las transacciones ya generadas automáticamente</h4>
+            <p>El sistema puede haber generado líneas desde Personnel Planning o desde reglas de distribución. Verifica que los montos sean correctos antes de agregar nuevas.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h4>Capturar mis líneas de presupuesto</h4>
+            <p>Para cada cuenta contable de tu departamento: seleccionar cuenta, ingresar monto, seleccionar la Planning Rule que distribuirá en meses. Si no hay regla, ingresa mes por mes.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h4>Revisar el total y confirmar</h4>
+            <p>Usa la vista de Planning Unit Structure para ver el consolidado de tu área. Compara contra el techo que te asignó el CFO. Si hay diferencia, ajusta antes de notificar.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h4>Notificar al aprobador</h4>
+            <p>Cuando tu captura esté lista, cambia el estatus de tu Planning Unit a "Submitted" o notifica a tu jefe vía correo. No cierres el Business Plan — eso lo hace solo el CFO o Finanzas.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="g2" style="margin-bottom:20px;">
+    <div class="card">
+      <div class="card-header" style="background:var(--red-50); color:var(--red-800);">🚨 Errores frecuentes del usuario nuevo</div>
+      <div class="card-body">
+        <div class="msg-list">
+          <div class="msg-item a-red">
+            <div class="msg-icon">❌</div>
+            <div><h4>Capturar en la Planning Unit equivocada</h4><p>Verificar siempre el Planning Unit ID antes de capturar. Una transacción en el área equivocada afecta el presupuesto de otro departamento.</p></div>
+          </div>
+          <div class="msg-item a-red">
+            <div class="msg-icon">❌</div>
+            <div><h4>No seleccionar Planning Rule</h4><p>Sin regla, el sistema guarda el monto solo en el período ingresado. El monto anual NO se distribuye automáticamente en 12 meses.</p></div>
+          </div>
+          <div class="msg-item a-red">
+            <div class="msg-icon">❌</div>
+            <div><h4>Duplicar líneas de Personnel Planning</h4><p>Si Personnel Planning ya generó las transacciones de nómina, no volver a capturarlas manualmente. Se sumarían dos veces.</p></div>
+          </div>
+          <div class="msg-item a-red">
+            <div class="msg-icon">❌</div>
+            <div><h4>Intentar editar cuando el plan está Locked</h4><p>El Business Plan en estatus Locked no permite modificaciones. Contactar a Finanzas para reabrir si hay correcciones.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" style="background:var(--green-50); color:var(--green-800);">✅ Buenas prácticas</div>
+      <div class="card-body">
+        <div class="msg-list">
+          <div class="msg-item a-teal">
+            <div class="msg-icon">👍</div>
+            <div><h4>Siempre usa notas descriptivas</h4><p>En el campo Notes de cada transacción, documenta el supuesto: "Contrato anual con proveedor X · $3M anual · 12 pagos iguales".</p></div>
+          </div>
+          <div class="msg-item a-teal">
+            <div class="msg-icon">👍</div>
+            <div><h4>Revisa el histórico antes de capturar</h4><p>Usa la función "Copy from prior year" para cargar el real del año anterior como punto de partida y ajustar en %. Ahorra mucho tiempo.</p></div>
+          </div>
+          <div class="msg-item a-teal">
+            <div class="msg-icon">👍</div>
+            <div><h4>Verifica el monto vs. techo aprobado</h4><p>Antes de enviar tu captura, compara el total de tu Planning Unit vs. el monto que te asignó Finanzas. Evita correcciones de último minuto.</p></div>
+          </div>
+          <div class="msg-item a-teal">
+            <div class="msg-icon">👍</div>
+            <div><h4>Guarda frecuentemente</h4><p>IFS puede tener timeout de sesión. Guarda cada 15-20 transacciones para no perder trabajo.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- 5. INSTRUCTOR -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="section" id="instructor">
+  <div class="hero hero-blue">
+    <div class="hero-badge">Capa 5 · Guía del Instructor</div>
+    <h1>Tu guía completa para la sesión</h1>
+    <p>Agenda, preguntas difíciles con respuesta, ejercicios prácticos y los conceptos que DEBES dominar antes de entrar a sala.</p>
+  </div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header" style="background:var(--surface-2);">🗓️ Agenda recomendada — sesión de 4 horas</div>
+    <div class="card-body">
+      <table class="dt">
+        <thead><tr><th>Tiempo</th><th>Bloque</th><th>Contenido</th><th>Herramienta</th></tr></thead>
+        <tbody>
+          <tr><td>0:00–0:15</td><td><span class="badge b-gray">Apertura</span></td><td>¿Cómo hacen el presupuesto hoy? ¿Qué herramientas? ¿Cuánto tiempo les toma?</td><td>Plenary / preguntas</td></tr>
+          <tr><td>0:15–0:45</td><td><span class="badge b-blue">Conceptos</span></td><td>Business Plan → Planning Unit → Rules → Transactions → Personnel. La jerarquía con pizarrón.</td><td>Esta guía</td></tr>
+          <tr><td>0:45–1:15</td><td><span class="badge b-purple">BDR Demo</span></td><td>Planning Types, Periods, Distribution Profiles, Benefit Rules. Mostrar configuración en IFS.</td><td>IFS Cloud (admin)</td></tr>
+          <tr><td>1:15–2:00</td><td><span class="badge b-teal">Demo proceso</span></td><td>Crear Business Plan → Planning Units → Transacciones manuales → Personnel Planning → Estructura.</td><td>IFS Cloud (ambiente prueba)</td></tr>
+          <tr><td>2:00–2:10</td><td><span class="badge b-gray">Descanso</span></td><td>—</td><td>—</td></tr>
+          <tr><td>2:10–3:10</td><td><span class="badge b-coral">Práctica</span></td><td>3 ejercicios guiados (ver abajo). Usuarios en sistema.</td><td>IFS Cloud</td></tr>
+          <tr><td>3:10–3:40</td><td><span class="badge b-amber">Preguntas</span></td><td>Ronda de dudas + casos específicos de la empresa.</td><td>Abierto</td></tr>
+          <tr><td>3:40–4:00</td><td><span class="badge b-green">Evaluación</span></td><td>Quiz de 10 preguntas + cierre.</td><td>Tab Quiz</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header" style="background:var(--surface-2);">💬 Preguntas difíciles y cómo responderlas</div>
+    <div class="card-body">
+      <div class="msg-list">
+        <div class="msg-item a-blue">
+          <div class="msg-icon">❓</div>
+          <div>
+            <h4>"¿Qué diferencia hay entre Business Planning y el presupuesto que ya hacemos en el GL?"</h4>
+            <p><strong>Respuesta:</strong> El GL solo registra lo que ya pasó (lo real). Business Planning es el módulo de planificación hacia adelante: captura el presupuesto de forma estructurada, lo distribuye en períodos, permite versiones, y al aprobarse genera automáticamente los vouchers de presupuesto en el GL para que puedas comparar real vs. presupuesto.</p>
+          </div>
+        </div>
+        <div class="msg-item a-purple">
+          <div class="msg-icon">❓</div>
+          <div>
+            <h4>"¿Se pueden tener varias versiones del presupuesto al mismo tiempo?"</h4>
+            <p><strong>Respuesta:</strong> Sí. Puedes tener BP-2026-V1 (presupuesto original) y BP-2026-V2 (revisión de marzo) activos simultáneamente. Solo uno puede estar en estatus "Approved" a la vez como presupuesto oficial, pero puedes comparar versiones en reportes.</p>
+          </div>
+        </div>
+        <div class="msg-item a-teal">
+          <div class="msg-icon">❓</div>
+          <div>
+            <h4>"¿Qué pasa si alguien captura en la cuenta equivocada?"</h4>
+            <p><strong>Respuesta:</strong> Mientras el Business Plan esté en estatus Draft o Active, el responsable puede editar o eliminar la transacción. Si ya está Locked, necesita que Finanzas lo reabra temporalmente, haga la corrección, y lo vuelva a bloquear. Si ya está Approved, requiere una versión de ajuste (Budget Amendment).</p>
+          </div>
+        </div>
+        <div class="msg-item a-amber">
+          <div class="msg-icon">❓</div>
+          <div>
+            <h4>"¿El presupuesto de Personnel Planning se conecta al módulo de RH?"</h4>
+            <p><strong>Respuesta:</strong> Puede integrarse con el módulo de RRHH de IFS para tomar la plantilla actual como base. La integración es configurable: puedes importar puestos, salarios y headcount actuales y proyectar cambios desde ahí.</p>
+          </div>
+        </div>
+        <div class="msg-item a-red">
+          <div class="msg-icon">❓</div>
+          <div>
+            <h4>"¿Si apruebo el Business Plan y luego hay un cambio, tengo que volver a hacer todo?"</h4>
+            <p><strong>Respuesta:</strong> No. Tienes dos opciones: 1) Crear una nueva versión (BP-2026-V2) copiando desde la V1 y haciendo los ajustes — es lo más limpio. 2) Hacer un Budget Amendment en la misma versión si los cambios son menores. IFS registra el historial de cambios.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header" style="background:var(--surface-2);">🔬 3 ejercicios prácticos para la sesión</div>
+    <div class="card-body">
+      <div class="g3">
+        <div style="border:1px solid var(--border); border-radius:var(--radius-md); padding:16px;">
+          <div class="badge b-blue" style="margin-bottom:10px;">Ejercicio 1 · 20 min</div>
+          <h4 style="font-size:14px; font-weight:700; margin-bottom:8px;">Crear un Business Plan completo</h4>
+          <p style="font-size:13px; color:var(--ink-3); margin-bottom:10px;">Cada participante crea su propio Business Plan en el ambiente de prueba: define el año, agrega 2 Planning Units, configura 1 Distribution Rule y captura 3 transacciones manuales.</p>
+          <p style="font-size:12px; color:var(--blue-600); font-weight:600;">✓ Valida que entiendan la jerarquía del módulo.</p>
+        </div>
+        <div style="border:1px solid var(--border); border-radius:var(--radius-md); padding:16px;">
+          <div class="badge b-amber" style="margin-bottom:10px;">Ejercicio 2 · 20 min</div>
+          <h4 style="font-size:14px; font-weight:700; margin-bottom:8px;">Personnel Planning básico</h4>
+          <p style="font-size:13px; color:var(--ink-3); margin-bottom:10px;">En su Planning Unit de RH, capturar 3 posiciones con diferentes perfiles salariales. Verificar que el sistema calculó correctamente el IMSS y las prestaciones. Comparar el total vs. el cálculo manual.</p>
+          <p style="font-size:12px; color:var(--amber-600); font-weight:600;">✓ Valida que entiendan las Benefit Rules y el cálculo automático.</p>
+        </div>
+        <div style="border:1px solid var(--border); border-radius:var(--radius-md); padding:16px;">
+          <div class="badge b-green" style="margin-bottom:10px;">Ejercicio 3 · 15 min</div>
+          <h4 style="font-size:14px; font-weight:700; margin-bottom:8px;">Consultar la estructura y comparar</h4>
+          <p style="font-size:13px; color:var(--ink-3); margin-bottom:10px;">Usando la Planning Unit Structure, navegar por los niveles jerárquicos. Identificar cuál Planning Unit está por encima de su techo presupuestal. Proponer qué cuenta ajustar para nivelarse.</p>
+          <p style="font-size:12px; color:var(--green-600); font-weight:600;">✓ Valida que puedan analizar el presupuesto consolidado.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <span class="callout-icon">🎤</span>
+    <div><strong>Consejo de oro para esta sesión:</strong> Al inicio, pide a alguien del grupo que describa cómo hacen el presupuesto hoy. Luego muéstrale exactamente cómo ese proceso se mapea en Business Planning. Cuando el usuario ve su propio proceso reflejado en el sistema, el aprendizaje se acelera 3x.</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- QUIZ -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="section" id="quiz">
+  <div class="hero hero-blue">
+    <div class="hero-badge">2.16 · Test Your Knowledge</div>
+    <h1>Quiz de Evaluación</h1>
+    <p>10 preguntas sobre Business Planning en IFS Cloud. Cubre todos los temas del módulo 2.16.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-body" id="qbox">
+
+      <div class="quiz-q" id="q1">
+        <p>1. ¿Cuál es el propósito principal de un <strong>Business Plan</strong> en IFS Cloud?</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="ans(1,'A','w')"><span class="opt-l">A</span> Registrar transacciones contables reales del período actual</div>
+          <div class="quiz-opt" onclick="ans(1,'B','c')"><span class="opt-l">B</span> Ser el contenedor maestro del presupuesto, definiendo año, moneda y versión</div>
+          <div class="quiz-opt" onclick="ans(1,'C','w')"><span class="opt-l">C</span> Reemplazar el módulo de contabilidad general de la empresa</div>
+          <div class="quiz-opt" onclick="ans(1,'D','w')"><span class="opt-l">D</span> Generar órdenes de compra automáticas para el siguiente período</div>
+        </div>
+        <div id="e1ok" class="quiz-exp ok show-none">✅ Correcto. El Business Plan es el contenedor maestro que agrupa todas las Planning Units, Rules y Transactions del presupuesto de un período específico.</div>
+        <div id="e1no" class="quiz-exp nope show-none">❌ Incorrecto. El Business Plan no registra transacciones reales (eso es el GL). Es el contenedor del presupuesto planificado: define el año fiscal, moneda y versión del plan.</div>
+      </div>
+
+      <div class="quiz-q" id="q2">
+        <p>2. Una Planning Unit representa:</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="ans(2,'A','w')"><span class="opt-l">A</span> Una regla matemática para calcular montos presupuestales</div>
+          <div class="quiz-opt" onclick="ans(2,'B','w')"><span class="opt-l">B</span> Un período de tiempo dentro del Business Plan</div>
+          <div class="quiz-opt" onclick="ans(2,'C','c')"><span class="opt-l">C</span> Una unidad organizacional (departamento, centro de costo) con su propio presupuesto</div>
+          <div class="quiz-opt" onclick="ans(2,'D','w')"><span class="opt-l">D</span> Un tipo de transacción contable específica</div>
+        </div>
+        <div id="e2ok" class="quiz-exp ok">✅ Correcto. La Planning Unit es el "quién" del presupuesto: el departamento, área o centro de costo responsable de sus propias líneas presupuestales.</div>
+        <div id="e2no" class="quiz-exp nope">❌ Incorrecto. La Planning Unit es la unidad organizacional responsable del presupuesto (Finanzas, Planta Norte, Ventas). Las reglas son Planning Rules; los períodos son Planning Periods.</div>
+      </div>
+
+      <div class="quiz-q" id="q3">
+        <p>3. ¿Qué tipo de Planning Rule usarías si quieres que el gasto en publicidad sea mayor en verano y fin de año?</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="ans(3,'A','c')"><span class="opt-l">A</span> Distribution Rule con un perfil estacional definido</div>
+          <div class="quiz-opt" onclick="ans(3,'B','w')"><span class="opt-l">B</span> Calculation Rule con factor sobre el salario base</div>
+          <div class="quiz-opt" onclick="ans(3,'C','w')"><span class="opt-l">C</span> Copy Rule desde el Business Plan del año anterior</div>
+          <div class="quiz-opt" onclick="ans(3,'D','w')"><span class="opt-l">D</span> Import Rule desde el módulo de ventas</div>
+        </div>
+        <div id="e3ok" class="quiz-exp ok">✅ Correcto. La Distribution Rule con un perfil estacional distribuye el monto anual en meses con pesos diferentes. Ejemplo: enero–mayo = 5% c/u, junio–agosto = 10%, sept–nov = 8%, diciembre = 15%.</div>
+        <div id="e3no" class="quiz-exp nope">❌ Incorrecto. Para distribución variable en el tiempo se usa una Distribution Rule con un perfil estacional. La Calculation Rule calcula montos derivados de otros; la Copy y Import Rule traen datos de otras fuentes.</div>
+      </div>
+
+      <div class="quiz-q" id="q4">
+        <p>4. El usuario responsable de una Planning Unit captura sus transacciones y nota que hay líneas de nómina ya generadas automáticamente. ¿Qué debe hacer?</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="ans(4,'A','w')"><span class="opt-l">A</span> Eliminar las líneas automáticas y volver a capturar el monto manualmente</div>
+          <div class="quiz-opt" onclick="ans(4,'B','c')"><span class="opt-l">B</span> Verificar que las líneas de Personnel Planning son correctas y no duplicarlas</div>
+          <div class="quiz-opt" onclick="ans(4,'C','w')"><span class="opt-l">C</span> Ignorar las líneas automáticas y capturar todo desde cero</div>
+          <div class="quiz-opt" onclick="ans(4,'D','w')"><span class="opt-l">D</span> Reportar el error a IT porque las transacciones no debían generarse</div>
+        </div>
+        <div id="e4ok" class="quiz-exp ok">✅ Correcto. Las líneas generadas por Personnel Planning son correctas y no deben duplicarse. El usuario debe verificarlas, y si hay ajustes necesarios, hacerlos en la sección de Personnel Planning, no capturando manualmente las mismas cuentas.</div>
+        <div id="e4no" class="quiz-exp nope">❌ Incorrecto. Las líneas automáticas de nómina son generadas correctamente por Personnel Planning. Eliminarlas o duplicarlas generaría errores en el presupuesto. La acción correcta es verificarlas y ajustar en Personnel Planning si es necesario.</div>
+      </div>
+
+      <div class="quiz-q" id="q5">
+        <p>5. ¿Qué sucede cuando un Business Plan pasa al estatus <strong>Approved</strong>?</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="ans(5,'A','w')"><span class="opt-l">A</span> Se envía automáticamente por correo a todos los responsables de Planning Unit</div>
+          <div class="quiz-opt" onclick="ans(5,'B','w')"><span class="opt-l">B</span> Se borra la versión Draft y solo queda la versión aprobada</div>
+          <div class="quiz-opt" onclick="ans(5,'C','c')"><span class="opt-l">C</span> El sistema genera vouchers contables en el Libro Mayor para habilitar la comparación real vs. presupuesto</div>
+          <div class="quiz-opt" onclick="ans(5,'D','w')"><span class="opt-l">D</span> Las Planning Units quedan habilitadas para captura de nuevas transacciones</div>
+        </div>
+        <div id="e5ok" class="quiz-exp ok">✅ Correcto. Al aprobar el Business Plan, IFS genera automáticamente los asientos (vouchers) de presupuesto en el Libro Mayor. Esto habilita los reportes de real vs. presupuesto directamente desde contabilidad.</div>
+        <div id="e5no" class="quiz-exp nope">❌ Incorrecto. Al aprobar, el sistema genera vouchers en el Libro Mayor. Esto es lo que diferencia a IFS Business Planning de un Excel: el presupuesto se integra directamente a la contabilidad.</div>
+      </div>
+
+      <div class="quiz-q" id="q6">
+        <p>6. ¿Cuál es la diferencia entre un enfoque <strong>Top-Down</strong> y <strong>Bottom-Up</strong> en Business Planning?</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="ans(6,'A','w')"><span class="opt-l">A</span> Top-Down usa Excel; Bottom-Up usa IFS Cloud directamente</div>
+          <div class="quiz-opt" onclick="ans(6,'B','c')"><span class="opt-l">B</span> Top-Down: el CFO fija techos y las áreas asignan dentro de ese límite. Bottom-Up: las áreas proponen y se consolida hacia arriba</div>
+          <div class="quiz-opt" onclick="ans(6,'C','w')"><span class="opt-l">C</span> Top-Down aplica solo para presupuesto de personal; Bottom-Up para gastos operativos</div>
+          <div class="quiz-opt" onclick="ans(6,'D','w')"><span class="opt-l">D</span> No hay diferencia práctica; son dos nombres para el mismo proceso en IFS</div>
+        </div>
+        <div id="e6ok" class="quiz-exp ok">✅ Correcto. IFS soporta ambos enfoques. Top-Down: el nivel directivo fija los montos máximos y las áreas los distribuyen. Bottom-Up: las áreas proponen sus necesidades y los directivos consolidan y ajustan.</div>
+        <div id="e6no" class="quiz-exp nope">❌ Incorrecto. La diferencia es el origen del presupuesto: Top-Down empieza en la dirección (el CFO da el techo), Bottom-Up empieza en las áreas operativas (cada responsable propone). IFS soporta ambos con la misma herramienta.</div>
+      </div>
+
+      <div class="quiz-q" id="q7">
+        <p>7. Un usuario capturó $500,000 anuales en la cuenta de Renta pero NO seleccionó ninguna Planning Rule. ¿Qué resultado obtendrá?</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="ans(7,'A','w')"><span class="opt-l">A</span> El sistema distribuirá automáticamente $41,667 en cada uno de los 12 meses</div>
+          <div class="quiz-opt" onclick="ans(7,'B','c')"><span class="opt-l">B</span> El monto completo quedará en el período en que lo capturó, sin distribuirse en otros meses</div>
+          <div class="quiz-opt" onclick="ans(7,'C','w')"><span class="opt-l">C</span> El sistema mostrará un error y no permitirá guardar sin regla</div>
+          <div class="quiz-opt" onclick="ans(7,'D','w')"><span class="opt-l">D</span> El monto se distribuirá equitativamente solo en los meses futuros al período de captura</div>
+        </div>
+        <div id="e7ok" class="quiz-exp ok">✅ Correcto. Sin Planning Rule, el monto queda concentrado en el período ingresado. Si capturó en enero, los otros 11 meses quedarán en cero. Por eso es crítico seleccionar la regla correcta.</div>
+        <div id="e7no" class="quiz-exp nope">❌ Incorrecto. Sin Planning Rule, IFS guarda el monto exactamente donde lo capturaste, sin distribuirlo. Los demás períodos quedan en cero. La distribución automática solo ocurre cuando se selecciona una Distribution Rule.</div>
+      </div>
+
+      <div class="quiz-q" id="q8">
+        <p>8. ¿Para qué sirve el campo <strong>Responsible User</strong> en una Planning Unit?</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="ans(8,'A','w')"><span class="opt-l">A</span> Es el usuario que puede ver todos los Business Plans de la empresa</div>
+          <div class="quiz-opt" onclick="ans(8,'B','w')"><span class="opt-l">B</span> Es el usuario que configura los datos básicos del módulo</div>
+          <div class="quiz-opt" onclick="ans(8,'C','c')"><span class="opt-l">C</span> Es el único usuario que puede capturar y modificar transacciones de esa Planning Unit</div>
+          <div class="quiz-opt" onclick="ans(8,'D','w')"><span class="opt-l">D</span> Es el usuario que aprueba el Business Plan completo</div>
+        </div>
+        <div id="e8ok" class="quiz-exp ok">✅ Correcto. El Responsible User tiene acceso exclusivo de edición a las transacciones de su Planning Unit. Otros usuarios pueden ver los datos (según permisos), pero no modificarlos.</div>
+        <div id="e8no" class="quiz-exp nope">❌ Incorrecto. El Responsible User es la persona designada para capturar el presupuesto de esa Planning Unit específica. Solo ella puede editar las transacciones de esa unidad.</div>
+      </div>
+
+      <div class="quiz-q" id="q9">
+        <p>9. En Personnel Planning, el sistema calcula automáticamente el costo de IMSS patronal. ¿Qué dato necesita el usuario para que esto funcione?</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="ans(9,'A','w')"><span class="opt-l">A</span> Capturar manualmente el monto de IMSS en la cuenta correspondiente</div>
+          <div class="quiz-opt" onclick="ans(9,'B','c')"><span class="opt-l">B</span> Que la Benefit Rule de IMSS esté configurada en los BDR y asignada a la posición</div>
+          <div class="quiz-opt" onclick="ans(9,'C','w')"><span class="opt-l">C</span> Importar los datos de nómina directamente desde el sistema de RH externo</div>
+          <div class="quiz-opt" onclick="ans(9,'D','w')"><span class="opt-l">D</span> Que el usuario tenga acceso de administrador al módulo de Business Planning</div>
+        </div>
+        <div id="e9ok" class="quiz-exp ok">✅ Correcto. Las Benefit Rules (configuradas en BDR) son las que definen el porcentaje y la base de cálculo del IMSS. Una vez asignadas a la posición, el cálculo es automático. Si no hay Benefit Rule, no hay cálculo automático.</div>
+        <div id="e9no" class="quiz-exp nope">❌ Incorrecto. El cálculo automático de IMSS depende de que exista una Benefit Rule configurada con la tasa correcta. Es un dato básico (BDR) que debe estar listo antes de usar Personnel Planning.</div>
+      </div>
+
+      <div class="quiz-q" id="q10">
+        <p>10. El CFO quiere ver el presupuesto total de toda la empresa (suma de todas las áreas) en una sola pantalla. ¿Qué herramienta de IFS debe usar?</p>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="ans(10,'A','w')"><span class="opt-l">A</span> Planning Transactions — filtrar por Business Plan ID y exportar a Excel</div>
+          <div class="quiz-opt" onclick="ans(10,'B','w')"><span class="opt-l">B</span> Personnel Planning — ver el headcount total de la empresa</div>
+          <div class="quiz-opt" onclick="ans(10,'C','c')"><span class="opt-l">C</span> Planning Unit Structure — vista jerárquica consolidada de todas las Planning Units</div>
+          <div class="quiz-opt" onclick="ans(10,'D','w')"><span class="opt-l">D</span> Budget Version — comparar todas las versiones del plan</div>
+        </div>
+        <div id="e10ok" class="quiz-exp ok">✅ Correcto. La Planning Unit Structure muestra el presupuesto en vista jerárquica: el nivel superior consolida los montos de todos los niveles inferiores. Es la herramienta de visión ejecutiva del módulo.</div>
+        <div id="e10no" class="quiz-exp nope">❌ Incorrecto. Para ver el consolidado total de la empresa, el CFO debe usar la Planning Unit Structure, que muestra la jerarquía completa con montos consolidados en cada nivel. Las Planning Transactions son líneas individuales.</div>
+      </div>
+
+      <div style="text-align:center; margin-top:28px;">
+        <button onclick="showScore()" style="background:var(--blue-800); color:#fff; border:none; border-radius:var(--radius-md); padding:13px 36px; font-size:15px; font-weight:600; cursor:pointer; font-family:var(--sans);">Ver mi resultado →</button>
+      </div>
+    </div>
+
+    <div id="quiz-score" style="display:none; text-align:center; padding:40px 20px;">
+      <div style="font-size:14px; color:var(--ink-3); margin-bottom:8px;">Tu resultado · Business Planning 2.16</div>
+      <div class="score-big" id="sc">0/10</div>
+      <div style="font-size:16px; color:var(--ink-3); margin:12px 0 24px;" id="sc-msg"></div>
+      <button onclick="resetQ()" style="background:var(--surface-2); color:var(--ink-2); border:1px solid var(--border); border-radius:var(--radius-md); padding:10px 26px; font-size:14px; cursor:pointer; font-family:var(--sans);">Intentar de nuevo</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- EJECUCIÓN EN IFS — BUSINESS PLANNING 2.16               -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="section" id="ejecucion">
+  <div class="hero hero-teal">
+    <div class="hero-badge">Guía de Ejecución · IFS Cloud</div>
+    <h1>Cómo ejecutarlo en IFS — Paso a paso</h1>
+    <p>Rutas de navegación exactas, campos obligatorios, orden de configuración y pantallas simuladas para cada subproceso de Business Planning 2.16.</p>
+  </div>
+
+  <!-- ORDEN Y DEPENDENCIAS -->
+  <div class="card" style="margin-bottom:24px;">
+    <div class="card-header">⛓️ Orden obligatorio de configuración — Dependencias críticas</div>
+    <div class="card-body">
+      <div class="callout danger">
+        <span class="callout-icon">🚨</span>
+        <div><strong>Antes de empezar:</strong> El orden importa. IFS no te dejará crear un Business Plan si los datos básicos no existen. Sigue exactamente este orden.</div>
+      </div>
+      <div style="margin-top:16px;">
+        <div class="flow" style="flex-wrap:wrap; gap:10px;">
+          <div class="flow-step" style="min-width:140px; background:var(--blue-50); border-color:var(--blue-100);">
+            <div class="flow-num" style="background:var(--blue-800);">1</div>
+            <h4 style="color:var(--blue-800);">Planning Types</h4>
+            <p>Clasificación del plan (Budget, Forecast…)</p>
+          </div>
+          <div class="flow-arr">→</div>
+          <div class="flow-step" style="min-width:140px; background:var(--purple-50); border-color:var(--purple-100);">
+            <div class="flow-num" style="background:var(--purple-800);">2</div>
+            <h4 style="color:var(--purple-800);">Planning Periods</h4>
+            <p>Calendario del plan (12 meses, trimestres…)</p>
+          </div>
+          <div class="flow-arr">→</div>
+          <div class="flow-step" style="min-width:140px; background:var(--teal-50); border-color:var(--teal-100);">
+            <div class="flow-num" style="background:var(--teal-800);">3</div>
+            <h4 style="color:var(--teal-800);">Distribution Profiles</h4>
+            <p>Cómo se distribuye el monto en períodos</p>
+          </div>
+          <div class="flow-arr">→</div>
+          <div class="flow-step" style="min-width:140px; background:var(--coral-50); border-color:var(--coral-100);">
+            <div class="flow-num" style="background:var(--coral-800);">4</div>
+            <h4 style="color:var(--coral-800);">Benefit Rules</h4>
+            <p>Prestaciones y cuotas para Personnel</p>
+          </div>
+          <div class="flow-arr">→</div>
+          <div class="flow-step" style="min-width:140px; background:var(--amber-50); border-color:var(--amber-100);">
+            <div class="flow-num" style="background:var(--amber-800);">5</div>
+            <h4 style="color:var(--amber-800);">Business Plan</h4>
+            <p>El contenedor principal del presupuesto</p>
+          </div>
+          <div class="flow-arr">→</div>
+          <div class="flow-step" style="min-width:140px; background:var(--green-50); border-color:var(--green-100);">
+            <div class="flow-num" style="background:var(--green-800);">6</div>
+            <h4 style="color:var(--green-800);">Planning Units</h4>
+            <p>Responsables por área o departamento</p>
+          </div>
+          <div class="flow-arr">→</div>
+          <div class="flow-step" style="min-width:140px; background:var(--blue-50); border-color:var(--blue-100);">
+            <div class="flow-num" style="background:var(--blue-800);">7</div>
+            <h4 style="color:var(--blue-800);">Planning Rules y Transactions</h4>
+            <p>Reglas de cálculo y captura del presupuesto</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 1: PLANNING TYPE -->
+  <p class="sec-title">PASO 1 — Crear Planning Types</p>
+  <p class="sec-desc">Define la naturaleza del plan: presupuesto, forecast, plan estratégico. Se crea una sola vez y se reutiliza.</p>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">🗺️ Ruta de navegación en IFS</div>
+    <div class="card-body">
+      <div class="callout info">
+        <span class="callout-icon">📍</span>
+        <div><strong>Ruta:</strong> <code>Financials</code> → <code>Business Planning</code> → <code>Basic Data</code> → <code>Planning Types</code> → botón <strong>New</strong></div>
+      </div>
+      <div class="param-screen" style="margin-top:14px;">
+        <div class="ps-title">Pantalla simulada — Planning Type</div>
+        <div class="param-row">
+          <span class="param-label">Planning Type ID <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>BUDGET</code> — Sin espacios, máx. 20 caracteres</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Description <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val">Presupuesto Anual</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Allow Multiple Versions</span>
+          <span class="param-val">✅ Activar — permite tener V1 original, V2 revisado, etc.</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Transaction Type</span>
+          <span class="param-val">Seleccionar los tipos de transacción permitidos en este plan (INCOME, EXPENSE, CAPEX)</span>
+        </div>
+      </div>
+      <div class="callout tip" style="margin-top:10px;">
+        <span class="callout-icon">💡</span>
+        <div><strong>Tipos típicos a crear:</strong> <code>BUDGET</code> (presupuesto anual), <code>FORECAST</code> (pronóstico trimestral), <code>LONG_PLAN</code> (plan estratégico 3-5 años). Cada uno puede tener diferentes reglas y permisos.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 2: PLANNING PERIODS -->
+  <p class="sec-title">PASO 2 — Crear Planning Periods</p>
+  <p class="sec-desc">El calendario del presupuesto: cuántos períodos tiene, qué fechas abarca. Se crea una vez por año fiscal.</p>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">🗺️ Ruta de navegación en IFS</div>
+    <div class="card-body">
+      <div class="callout info">
+        <span class="callout-icon">📍</span>
+        <div><strong>Ruta:</strong> <code>Financials</code> → <code>Business Planning</code> → <code>Basic Data</code> → <code>Planning Periods</code> → botón <strong>New</strong></div>
+      </div>
+      <div class="param-screen" style="margin-top:14px;">
+        <div class="ps-title">Pantalla simulada — Planning Period 2026</div>
+        <div class="param-row">
+          <span class="param-label">Period ID <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>FY2026</code></span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Description <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val">Año Fiscal 2026</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Number of Periods <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>12</code> — Un período por mes</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Start Date <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val">01/01/2026</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">End Date <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val">31/12/2026</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Period Distribution</span>
+          <span class="param-val">Monthly — IFS genera automáticamente los 12 sub-períodos</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 3: DISTRIBUTION PROFILES -->
+  <p class="sec-title">PASO 3 — Crear Distribution Profiles</p>
+  <p class="sec-desc">Define cómo se reparte un monto anual en los 12 meses. Sin esto no puedes crear Planning Rules de distribución.</p>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">🗺️ Ruta de navegación en IFS</div>
+    <div class="card-body">
+      <div class="callout info">
+        <span class="callout-icon">📍</span>
+        <div><strong>Ruta:</strong> <code>Financials</code> → <code>Business Planning</code> → <code>Basic Data</code> → <code>Distribution Profiles</code> → botón <strong>New</strong></div>
+      </div>
+      <div class="g2" style="margin-top:14px;">
+        <div class="param-screen">
+          <div class="ps-title">Perfil Lineal — EQUAL-12</div>
+          <div class="param-row"><span class="param-label">Profile ID <span style="color:var(--red-600);">*</span></span><span class="param-val"><code>EQUAL-12</code></span></div>
+          <div class="param-row"><span class="param-label">Description</span><span class="param-val">Distribución uniforme 12 meses</span></div>
+          <div class="param-row"><span class="param-label">Period 1–12</span><span class="param-val">8.33% cada período (100% ÷ 12)</span></div>
+          <div class="param-row"><span class="param-label">Uso típico</span><span class="param-val">Rentas, seguros, licencias, nómina fija</span></div>
+        </div>
+        <div class="param-screen">
+          <div class="ps-title">Perfil Aguinaldo — AGUINALDO-DIC</div>
+          <div class="param-row"><span class="param-label">Profile ID <span style="color:var(--red-600);">*</span></span><span class="param-val"><code>AGUINALDO-DIC</code></span></div>
+          <div class="param-row"><span class="param-label">Description</span><span class="param-val">100% en diciembre</span></div>
+          <div class="param-row"><span class="param-label">Period 1–11</span><span class="param-val">0% cada período</span></div>
+          <div class="param-row"><span class="param-label">Period 12</span><span class="param-val">100%</span></div>
+          <div class="param-row"><span class="param-label">Uso típico</span><span class="param-val">Aguinaldo, bono anual, prima vacacional diciembre</span></div>
+        </div>
+      </div>
+      <div class="callout warn" style="margin-top:10px;">
+        <span class="callout-icon">⚠️</span>
+        <div><strong>La suma de todos los períodos debe ser exactamente 100%.</strong> IFS valida esto al guardar. Si no suma 100%, no podrás guardar el perfil.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 4: BENEFIT RULES -->
+  <p class="sec-title">PASO 4 — Configurar Benefit Rules (Personnel Planning)</p>
+  <p class="sec-desc">Las reglas que calculan automáticamente IMSS, ISR, fondo de ahorro y demás prestaciones al presupuestar personal.</p>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">🗺️ Ruta de navegación en IFS</div>
+    <div class="card-body">
+      <div class="callout info">
+        <span class="callout-icon">📍</span>
+        <div><strong>Ruta:</strong> <code>Financials</code> → <code>Business Planning</code> → <code>Basic Data</code> → <code>Benefit Rules</code> → botón <strong>New</strong></div>
+      </div>
+      <div class="param-screen" style="margin-top:14px;">
+        <div class="ps-title">Pantalla simulada — Benefit Rule · IMSS-PATRON-2026</div>
+        <div class="param-row">
+          <span class="param-label">Benefit Rule ID <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>IMSS-PATRON-2026</code></span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Description <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val">Cuota Patronal IMSS 2026</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Benefit Type <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>SOCIAL_SECURITY</code> — Tipo de prestación (catálogo IFS)</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Calculation Method <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>Percentage</code> — Opciones: Percentage / Fixed Amount / Days Factor</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Rate / Percentage <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>21.42</code> — % sobre el Salario Diario Integrado</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Calculation Base <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val">Salario Diario Integrado (SDI)</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Cap Amount</span>
+          <span class="param-val">Tope en UMAs si aplica (25 UMAs para IMSS 2026)</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">GL Account <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>6140</code> — Cuenta contable donde se registra el gasto</span>
+        </div>
+      </div>
+      <div class="callout tip" style="margin-top:10px;">
+        <span class="callout-icon">💡</span>
+        <div><strong>Benefit Rules a crear para México:</strong> IMSS patronal, INFONAVIT, ISR retención, fondo de ahorro, vales de despensa, aguinaldo, prima vacacional. Una vez configuradas, el usuario solo captura el salario base y el sistema calcula el costo total automáticamente.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 5: BUSINESS PLAN -->
+  <p class="sec-title">PASO 5 — Crear el Business Plan</p>
+  <p class="sec-desc">El contenedor principal del presupuesto. Aquí se define el año, la moneda y el tipo de plan.</p>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">🗺️ Ruta de navegación en IFS</div>
+    <div class="card-body">
+      <div class="callout info">
+        <span class="callout-icon">📍</span>
+        <div><strong>Ruta:</strong> <code>Financials</code> → <code>Business Planning</code> → <code>Business Plans</code> → botón <strong>New</strong></div>
+      </div>
+      <div class="param-screen" style="margin-top:14px;">
+        <div class="ps-title">Pantalla simulada — Business Plan</div>
+        <div class="param-row">
+          <span class="param-label">Business Plan ID <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>BP-2026-V1</code> — Convenio sugerido: BP-AÑO-VERSION</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Description <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val">Presupuesto Anual 2026 — Versión Original</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Planning Type <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>BUDGET</code> — Del Paso 1</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Planning Period <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>FY2026</code> — Del Paso 2</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Company <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>METALMEX</code> — La compañía IFS a la que pertenece este plan</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Currency <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val">MXN — Hereda de la compañía. No se puede cambiar después.</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Status</span>
+          <span class="param-val"><code>Draft</code> — Estado inicial. Se cambia a Active cuando está listo para captura.</span>
+        </div>
+      </div>
+      <div class="g2" style="margin-top:14px;">
+        <div class="callout warn">
+          <span class="callout-icon">⚠️</span>
+          <div><strong>El Business Plan ID no puede modificarse</strong> una vez guardado. Define una convención de nombres antes de crear el primero (ej: BP-AÑO-TIPO-VERSION).</div>
+        </div>
+        <div class="callout tip">
+          <span class="callout-icon">💡</span>
+          <div><strong>Flujo de estatus:</strong> <code>Draft</code> → <code>Active</code> (habilitado para captura) → <code>Locked</code> (en revisión) → <code>Approved</code> (presupuesto oficial — genera vouchers en GL).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 6: PLANNING UNITS -->
+  <p class="sec-title">PASO 6 — Crear Planning Units</p>
+  <p class="sec-desc">Una Planning Unit por cada área, departamento o centro de costo que tiene responsabilidad presupuestal.</p>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">🗺️ Ruta de navegación en IFS</div>
+    <div class="card-body">
+      <div class="callout info">
+        <span class="callout-icon">📍</span>
+        <div><strong>Ruta:</strong> <code>Financials</code> → <code>Business Planning</code> → <code>Business Plans</code> → abrir el Business Plan → pestaña <strong>Planning Units</strong> → botón <strong>New</strong></div>
+      </div>
+      <div class="param-screen" style="margin-top:14px;">
+        <div class="ps-title">Pantalla simulada — Planning Unit</div>
+        <div class="param-row">
+          <span class="param-label">Planning Unit ID <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>PU-PLANTA-NORTE</code></span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Description <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val">Planta Norte — Monterrey</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Business Plan <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>BP-2026-V1</code> — Se hereda automáticamente</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Cost Center</span>
+          <span class="param-val"><code>CC-1030</code> — Vincula al centro de costo contable para comparar real vs. presupuesto</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Responsible User <span style="color:var(--red-600);">*</span></span>
+          <span class="param-val"><code>jlopez@metalmex.com</code> — Solo este usuario puede capturar en esta Planning Unit</span>
+        </div>
+        <div class="param-row">
+          <span class="param-label">Parent Planning Unit</span>
+          <span class="param-val"><code>PU-OPERACIONES</code> — Para construir la jerarquía. Dejar vacío si es nodo raíz.</span>
+        </div>
+      </div>
+      <div class="callout warn" style="margin-top:10px;">
+        <span class="callout-icon">⚠️</span>
+        <div><strong>El Responsible User es exclusivo:</strong> Solo esa persona puede ingresar y modificar transacciones en su Planning Unit. Si necesitas que otro usuario capture temporalmente, debes cambiar el Responsible User o crear un usuario adicional con acceso.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 7: PLANNING RULES -->
+  <p class="sec-title">PASO 7 — Crear Planning Rules</p>
+  <p class="sec-desc">Las reglas que automatizan la distribución y el cálculo de los montos presupuestados.</p>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">🗺️ Ruta de navegación en IFS</div>
+    <div class="card-body">
+      <div class="callout info">
+        <span class="callout-icon">📍</span>
+        <div><strong>Ruta:</strong> <code>Financials</code> → <code>Business Planning</code> → <code>Business Plans</code> → abrir Business Plan → pestaña <strong>Planning Rules</strong> → botón <strong>New</strong></div>
+      </div>
+      <div class="g2" style="margin-top:14px;">
+        <div class="param-screen">
+          <div class="ps-title">Distribution Rule — RENTA-LINEAL</div>
+          <div class="param-row"><span class="param-label">Rule ID <span style="color:var(--red-600);">*</span></span><span class="param-val"><code>RENTA-LINEAL</code></span></div>
+          <div class="param-row"><span class="param-label">Rule Type <span style="color:var(--red-600);">*</span></span><span class="param-val"><code>Distribution</code></span></div>
+          <div class="param-row"><span class="param-label">Planning Unit <span style="color:var(--red-600);">*</span></span><span class="param-val"><code>PU-PLANTA-NORTE</code></span></div>
+          <div class="param-row"><span class="param-label">Account <span style="color:var(--red-600);">*</span></span><span class="param-val"><code>6020</code> — Cuenta de renta</span></div>
+          <div class="param-row"><span class="param-label">Distribution Profile <span style="color:var(--red-600);">*</span></span><span class="param-val"><code>EQUAL-12</code> — Del Paso 3</span></div>
+          <div class="param-row"><span class="param-label">Annual Amount</span><span class="param-val">$1,200,000 MXN — IFS distribuye 100k/mes</span></div>
+        </div>
+        <div class="param-screen">
+          <div class="ps-title">Calculation Rule — BENEFICIOS-PCT</div>
+          <div class="param-row"><span class="param-label">Rule ID <span style="color:var(--red-600);">*</span></span><span class="param-val"><code>BENEFICIOS-32PCT</code></span></div>
+          <div class="param-row"><span class="param-label">Rule Type <span style="color:var(--red-600);">*</span></span><span class="param-val"><code>Calculation</code></span></div>
+          <div class="param-row"><span class="param-label">Base Account <span style="color:var(--red-600);">*</span></span><span class="param-val"><code>6010</code> — Cuenta de sueldos base</span></div>
+          <div class="param-row"><span class="param-label">Factor <span style="color:var(--red-600);">*</span></span><span class="param-val"><code>32%</code></span></div>
+          <div class="param-row"><span class="param-label">Target Account <span style="color:var(--red-600);">*</span></span><span class="param-val"><code>6140</code> — Cuenta de beneficios</span></div>
+          <div class="param-row"><span class="param-label">Execution</span><span class="param-val">Automático al ejecutar la regla</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 8: PLANNING TRANSACTIONS -->
+  <p class="sec-title">PASO 8 — Capturar Planning Transactions</p>
+  <p class="sec-desc">La captura del presupuesto línea por línea. Cuatro métodos disponibles según el caso.</p>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">🗺️ Ruta de navegación en IFS</div>
+    <div class="card-body">
+      <div class="callout info">
+        <span class="callout-icon">📍</span>
+        <div><strong>Ruta:</strong> <code>Financials</code> → <code>Business Planning</code> → <code>Planning Transactions</code> → seleccionar Planning Unit → botón <strong>New</strong></div>
+      </div>
+      <table class="dt" style="margin-top:14px;">
+        <thead><tr><th>Método</th><th>Cuándo usarlo</th><th>Cómo activarlo en IFS</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="badge b-blue">Manual</span></td>
+            <td>Gastos específicos con montos conocidos (contratos, servicios)</td>
+            <td>Captura directa en la pantalla de Planning Transactions → campo por campo</td>
+          </tr>
+          <tr>
+            <td><span class="badge b-teal">Apply Planning Rule</span></td>
+            <td>Cuando existe una Distribution o Calculation Rule configurada</td>
+            <td>Botón <strong>Apply Rule</strong> → seleccionar la regla → IFS genera las líneas automáticamente</td>
+          </tr>
+          <tr>
+            <td><span class="badge b-purple">Import</span></td>
+            <td>Cargar datos desde Excel u otro módulo IFS (ventas reales, RRHH)</td>
+            <td>Botón <strong>Import</strong> → seleccionar archivo o fuente → mapear columnas → ejecutar</td>
+          </tr>
+          <tr>
+            <td><span class="badge b-coral">Copy from Plan</span></td>
+            <td>Tomar el presupuesto del año anterior como base y ajustar</td>
+            <td>Botón <strong>Copy Transactions</strong> → seleccionar plan origen → definir factor de ajuste (ej. +8%)</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="param-screen" style="margin-top:14px;">
+        <div class="ps-title">Campos obligatorios — Línea de Planning Transaction (captura manual)</div>
+        <div class="param-row"><span class="param-label">Planning Unit <span style="color:var(--red-600);">*</span></span><span class="param-val"><code>PU-PLANTA-NORTE</code> — Se hereda si entraste desde la Planning Unit</span></div>
+        <div class="param-row"><span class="param-label">Account <span style="color:var(--red-600);">*</span></span><span class="param-val"><code>6030</code> — Mantenimiento de equipo</span></div>
+        <div class="param-row"><span class="param-label">Period <span style="color:var(--red-600);">*</span></span><span class="param-val">Marzo 2026 — O "Annual" si usas una Planning Rule de distribución</span></div>
+        <div class="param-row"><span class="param-label">Amount <span style="color:var(--red-600);">*</span></span><span class="param-val">$85,000.00 MXN</span></div>
+        <div class="param-row"><span class="param-label">Planning Rule</span><span class="param-val">Opcional. Si se selecciona, el sistema distribuye el monto según el perfil de la regla.</span></div>
+        <div class="param-row"><span class="param-label">Notes</span><span class="param-val">Mantenimiento preventivo trimestral — Proveedor: Técnica Industrial S.A.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 9: PERSONNEL PLANNING -->
+  <p class="sec-title">PASO 9 — Ejecutar Personnel Planning</p>
+  <p class="sec-desc">Presupuestar el costo de personal por posición. El sistema calcula todas las prestaciones automáticamente con las Benefit Rules del Paso 4.</p>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">🗺️ Ruta de navegación en IFS</div>
+    <div class="card-body">
+      <div class="callout info">
+        <span class="callout-icon">📍</span>
+        <div><strong>Ruta:</strong> <code>Financials</code> → <code>Business Planning</code> → <code>Personnel Planning</code> → seleccionar Planning Unit → botón <strong>New Position</strong></div>
+      </div>
+      <div class="param-screen" style="margin-top:14px;">
+        <div class="ps-title">Pantalla simulada — Personnel Planning Line</div>
+        <div class="param-row"><span class="param-label">Planning Unit <span style="color:var(--red-600);">*</span></span><span class="param-val"><code>PU-PLANTA-NORTE</code></span></div>
+        <div class="param-row"><span class="param-label">Position <span style="color:var(--red-600);">*</span></span><span class="param-val">Operador de Producción</span></div>
+        <div class="param-row"><span class="param-label">Head Count <span style="color:var(--red-600);">*</span></span><span class="param-val"><code>45</code></span></div>
+        <div class="param-row"><span class="param-label">Monthly Salary <span style="color:var(--red-600);">*</span></span><span class="param-val">$12,500.00 MXN — Salario mensual por persona</span></div>
+        <div class="param-row"><span class="param-label">Start Period <span style="color:var(--red-600);">*</span></span><span class="param-val">Enero 2026</span></div>
+        <div class="param-row"><span class="param-label">End Period <span style="color:var(--red-600);">*</span></span><span class="param-val">Diciembre 2026</span></div>
+        <div class="param-row"><span class="param-label">Benefit Rules <span style="color:var(--red-600);">*</span></span><span class="param-val"><code>IMSS-PATRON-2026</code>, <code>INFONAVIT-2026</code>, <code>FONDO-AHORRO</code></span></div>
+        <div class="param-row"><span class="param-label">Salary Account <span style="color:var(--red-600);">*</span></span><span class="param-val"><code>6010</code> — Cuenta donde se registra el salario</span></div>
+      </div>
+      <div class="callout tip" style="margin-top:10px;">
+        <span class="callout-icon">💡</span>
+        <div><strong>Después de guardar</strong>, IFS calcula automáticamente el costo total por período: salario × headcount + todas las Benefit Rules. El usuario puede ver el desglose completo antes de confirmar. Solo hace falta hacer clic en <strong>Calculate</strong> para que genere las Planning Transactions de nómina.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 10: APROBAR -->
+  <p class="sec-title">PASO 10 — Aprobar el Business Plan</p>
+  <p class="sec-desc">El paso final: bloquear el presupuesto, aprobarlo y generar los vouchers en contabilidad.</p>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">▶️ Flujo de aprobación paso a paso</div>
+    <div class="card-body">
+      <ol class="steps">
+        <li>
+          <div><h4>Verificar el total en Planning Unit Structure</h4>
+          <p><code>Business Planning</code> → <code>Planning Unit Structure</code> → seleccionar Business Plan.<br>
+          Vista jerárquica consolidada: el nivel raíz muestra el total de toda la empresa. Cada nodo hijo muestra su subtotal. Verificar que los montos coincidan con los techos aprobados por el CFO.</p></div>
+        </li>
+        <li>
+          <div><h4>Cambiar estatus a Active (para captura)</h4>
+          <p>Abrir el Business Plan → botón <strong>Activate</strong> (o cambiar el campo Status a <code>Active</code>).<br>
+          Desde este momento los Responsible Users de cada Planning Unit pueden ingresar sus transacciones.</p></div>
+        </li>
+        <li>
+          <div><h4>Cambiar estatus a Locked (revisión final)</h4>
+          <p>Cuando la captura esté completa → botón <strong>Lock</strong>.<br>
+          Nadie puede modificar transacciones. Solo el administrador del módulo puede reabrir si hay correcciones.</p></div>
+        </li>
+        <li>
+          <div><h4>Aprobar el Business Plan</h4>
+          <p>Botón <strong>Approve</strong> → IFS cambia el estatus a <code>Approved</code>.<br>
+          <strong>Efecto automático:</strong> IFS genera vouchers de presupuesto en el General Ledger para todos los períodos del plan. Desde ese momento puedes ver el comparativo Real vs. Presupuesto en los reportes de GL.</p></div>
+        </li>
+      </ol>
+      <div class="callout danger" style="margin-top:14px;">
+        <span class="callout-icon">🚨</span>
+        <div><strong>Una vez Approved:</strong> No se pueden modificar las transacciones del plan. Si hay cambios necesarios, debes crear una nueva versión (BP-2026-V2) copiando desde la V1, hacer las modificaciones y aprobar la nueva versión. La V1 queda como registro histórico.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHECKLIST FINAL -->
+  <div class="card">
+    <div class="card-header">📋 Checklist — ¿Estás listo para ejecutarlo en IFS?</div>
+    <div class="card-body">
+      <table class="dt">
+        <thead><tr><th>¿Tienes esto?</th><th>Elemento</th><th>Si no lo tienes...</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge b-green">✓ Verificar</span></td><td>Planning Type creado (BUDGET, FORECAST…)</td><td>Business Planning → Basic Data → Planning Types → New</td></tr>
+          <tr><td><span class="badge b-green">✓ Verificar</span></td><td>Planning Period con 12 sub-períodos para el año fiscal</td><td>Business Planning → Basic Data → Planning Periods → New</td></tr>
+          <tr><td><span class="badge b-amber">⚠️ Crítico</span></td><td>Distribution Profiles configurados (lineal, aguinaldo, estacional…)</td><td>Business Planning → Basic Data → Distribution Profiles → New</td></tr>
+          <tr><td><span class="badge b-amber">⚠️ Crítico</span></td><td>Benefit Rules para IMSS, INFONAVIT, ISR (si usas Personnel Planning)</td><td>Business Planning → Basic Data → Benefit Rules → New</td></tr>
+          <tr><td><span class="badge b-green">✓ Verificar</span></td><td>Business Plan creado en estatus Draft o Active</td><td>Business Planning → Business Plans → New</td></tr>
+          <tr><td><span class="badge b-green">✓ Verificar</span></td><td>Planning Units creadas con Responsible User asignado</td><td>Dentro del Business Plan → pestaña Planning Units → New</td></tr>
+          <tr><td><span class="badge b-amber">⚠️ Crítico</span></td><td>Planning Rules configuradas antes de capturar transacciones automáticas</td><td>Dentro del Business Plan → pestaña Planning Rules → New</td></tr>
+          <tr><td><span class="badge b-green">✓ Verificar</span></td><td>Business Plan en estatus Active para que los usuarios puedan capturar</td><td>Abrir Business Plan → botón Activate</td></tr>
+          <tr><td><span class="badge b-green">✓ Verificar</span></td><td>Planning Unit Structure configurada para vista consolidada (CFO)</td><td>Business Planning → Planning Unit Structure → configurar jerarquía</td></tr>
+          <tr><td><span class="badge b-amber">⚠️ Crítico</span></td><td>GL Accounts habilitadas para Business Planning en el catálogo de cuentas</td><td>General Ledger → Chart of Accounts → activar flag "Budget Account" en cada cuenta</td></tr>
+        </tbody>
+      </table>
+      <div class="callout tip" style="margin-top:14px;">
+        <span class="callout-icon">🎯</span>
+        <div><strong>Si todos los elementos están verificados:</strong> Puedes crear el Business Plan, asignar Planning Units a los responsables y comenzar la captura. Los elementos en ⚠️ son los que más frecuentemente generan bloqueos en la primera sesión de captura. Confírmalos antes de la sesión de entrenamiento.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+  var scores = {}, done = {};
+
+  function show(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    var map = {overview:0,conceptos:1,realworld:2,bdr:3,proceso:4,ejecucion:5,usuario:6,instructor:7,quiz:8};
+    var tabs = document.querySelectorAll('.nav-tab');
+    if (map[id] !== undefined) tabs[map[id]].classList.add('active');
+    window.scrollTo(0,0);
+  }
+
+  function ans(q, ltr, res) {
+    if (done[q]) return;
+    done[q] = true;
+    scores[q] = (res === 'c') ? 1 : 0;
+    document.querySelectorAll('#q'+q+' .quiz-opt').forEach(function(o) {
+      o.style.pointerEvents = 'none';
+      if (o.querySelector('.opt-l').textContent === ltr)
+        o.classList.add(res === 'c' ? 'correct' : 'wrong');
+    });
+    var ok = document.getElementById('e'+q+'ok');
+    var no = document.getElementById('e'+q+'no');
+    if (res === 'c') { ok.classList.add('show'); }
+    else { no.classList.add('show'); }
+  }
+
+  function showScore() {
+    var total = Object.values(scores).reduce(function(a,b){ return a+b; }, 0);
+    document.getElementById('qbox').style.display = 'none';
+    document.getElementById('quiz-score').style.display = 'block';
+    document.getElementById('sc').textContent = total + '/10';
+    var msgs = ['Sigue estudiando, revisa el material y vuelve a intentar.', 'Buen inicio. Repasa los temas de Planning Rules y Personnel Planning.', 'Muy bien. Estás listo para capacitar este módulo.', '¡Excelente dominio de Business Planning!'];
+    var idx = total <= 3 ? 0 : total <= 6 ? 1 : total <= 8 ? 2 : 3;
+    document.getElementById('sc-msg').textContent = msgs[idx];
+    document.getElementById('sc').style.color = total >= 9 ? '#3B6D11' : total >= 7 ? '#854F0B' : '#A32D2D';
+  }
+
+  function resetQ() {
+    scores = {}; done = {};
+    document.getElementById('qbox').style.display = 'block';
+    document.getElementById('quiz-score').style.display = 'none';
+    document.querySelectorAll('.quiz-opt').forEach(function(o){ o.classList.remove('correct','wrong'); o.style.pointerEvents = ''; });
+    document.querySelectorAll('.quiz-exp').forEach(function(e){ e.classList.remove('show'); });
+  }
+</script>
+</body>
+</html>
